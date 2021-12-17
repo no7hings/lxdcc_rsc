@@ -25,7 +25,7 @@ def main(session):
                     with_surface_publish=True,
                     #
                     user=bsc_core.SystemMtd.get_user_name(), time_tag=bsc_core.SystemMtd.get_time_tag(),
-                    td_enable=True
+                    td_enable=False
                 )
             )
             #
@@ -109,7 +109,7 @@ def main(session):
                 'project', 'Project'
             )
         )
-        projects = ['shl', 'cjd']
+        projects = get_projects()
         p.set(values=projects)
         #
         w.set_window_show()

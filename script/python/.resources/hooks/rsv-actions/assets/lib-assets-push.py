@@ -31,7 +31,7 @@ def main(session):
                     batch_key='assets',
                     #
                     user=bsc_core.SystemMtd.get_user_name(), time_tag=bsc_core.SystemMtd.get_time_tag(),
-                    td_enable=True
+                    td_enable=False
                 )
             )
             #

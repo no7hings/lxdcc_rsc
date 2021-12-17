@@ -25,7 +25,7 @@ def main(session):
                 with_surface_publish=True,
                 #
                 user=bsc_core.SystemMtd.get_user_name(), time_tag=bsc_core.SystemMtd.get_time_tag(),
-                td_enable=True
+                td_enable=False
             )
         )
         #
@@ -66,6 +66,13 @@ def main(session):
                 asset_src, asset_tgt
             )
             status = bsc_configure.GuiStatus.Normal
+            #
+            utl_core.DialogWindow.set_create(
+                window_title,
+                content=content,
+                yes_method=yes_method_0,
+                status=status
+            )
         else:
             content = (
                 'asset is already exists:\n'
@@ -75,13 +82,15 @@ def main(session):
                 asset_src, asset_tgt
             )
             status = bsc_configure.GuiStatus.Warning
-        #
-        utl_core.DialogWindow.set_create(
-            window_title,
-            content=content,
-            yes_method=yes_method_0,
-            status=status
-        )
+            #
+            utl_core.DialogWindow.set_create(
+                window_title,
+                content=content,
+                yes_method=yes_method_0,
+                yes_label='Override',
+                no_label='Don\'t Override',
+                status=status
+            )
     else:
         utl_core.DialogWindow.set_create(
             window_title,

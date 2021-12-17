@@ -1,0 +1,18 @@
+option:
+    type: 'kit-panel'
+    # config used system
+    systems:
+        - 'linux-python'
+        #
+        - '*-maya'
+        - '*-houdini'
+        - '*-katana'
+    #
+    gui:
+        name: 'App-kit'
+        group_name: ''
+        #
+        icon_name: ''
+        tool_tip: ''
+        #
+        size: [480, 960]

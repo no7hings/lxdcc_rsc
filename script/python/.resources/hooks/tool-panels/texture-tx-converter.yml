@@ -1,0 +1,18 @@
+option:
+    type: 'tool-panel'
+    # config used system
+    systems:
+        - 'linux-python'
+        #
+        - '*-maya'
+        - '*-houdini'
+        - '*-katana'
+    #
+    gui:
+        name: 'Texture-tx Converter'
+        group_name: 'Tool(s)'
+        #
+        icon_name: ''
+        tool_tip: 'use for texture batch convert to ".tx"'
+        #
+        size: [960, 480]
