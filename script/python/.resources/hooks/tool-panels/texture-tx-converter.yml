@@ -15,4 +15,4 @@ option:
         icon_name: ''
         tool_tip: 'use for texture batch convert to ".tx"'
         #
-        size: [960, 480]
+        size: [640, 640]

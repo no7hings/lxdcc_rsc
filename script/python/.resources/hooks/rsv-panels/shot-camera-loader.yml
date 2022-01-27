@@ -3,22 +3,25 @@ option:
     type: 'rsv-loader'
     #
     systems:
-        - 'linux-python'
+        - '*-python'
         #
         - '*-maya'
         - '*-houdini'
         - '*-katana'
     #
     gui:
-        name: 'Shot Camera Loader'
+        name: 'Shot-camera Loader'
         group_name: 'Loader(s)'
         icon_name: ''
         #
         size: [1280, 960]
         item_frame_size: [200, 128]
+    #
+    packages:
+        - 'lxdcc'
 #
 resolver:
-    filter: 'branch=shot&workspace=publish&step=ani'
+    filter: 'branch=shot&workspace=publish&step=rlo+ani+flo'
     #
     task_unit:
         keywords:
@@ -28,10 +31,6 @@ actions:
     task: ''
     task_unit:
         hooks:
-            - 'rsv-actions/maya/work-file-open'
-            - 'rsv-actions/houdini/work-file-open'
-            - 'rsv-actions/katana/work-file-open'
-            #
             - 'rsv-actions/shot/maya/camera-load'
             - 'rsv-actions/shot/katana/camera-load'
             #

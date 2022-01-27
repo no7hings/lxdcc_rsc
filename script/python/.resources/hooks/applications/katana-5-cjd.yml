@@ -1,0 +1,14 @@
+option:
+    type: 'application'
+    # config used system
+    systems:
+        - '*-python'
+    #
+    gui:
+        name: 'Katana-5 CJD'
+        group_name: 'Application(s)'
+        #
+        icon_name: 'application/katana'
+        tool_tip: 'run katana-5 use cjd configure.'
+        #
+        size: [640, 640]

@@ -16,4 +16,3 @@ if file_path:
             assign_selection=True
         )
     ).set_run()
-

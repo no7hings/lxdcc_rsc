@@ -1,0 +1,35 @@
+option:
+    type: unit
+    #
+    systems:
+        - '*-python'
+        - '*-maya'
+        - '*-houdini'
+        - '*-katana'
+    #
+    gui:
+        group_name: 'usd-viewer'
+        #
+        name: 'Open Usd Stage'
+        icon_name: 'application/usd'
+#
+variants:
+    project: ''
+    branch: ''
+    #
+    role: ''
+    asset: ''
+    #
+    sequence: ''
+    shot: ''
+    #
+    step: ''
+    task: ''
+    #
+    application: ''
+#
+resolver:
+    rsv_unit:
+        keyword: '{branch}-set-usd-file'
+        version: latest
+

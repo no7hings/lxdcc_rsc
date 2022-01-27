@@ -2,7 +2,7 @@ option:
     type: asset
     #
     systems:
-        - 'linux-python'
+        - '*-python'
         - '*-maya'
         - '*-houdini'
         - '*-katana'

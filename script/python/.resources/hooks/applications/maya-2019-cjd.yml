@@ -1,0 +1,15 @@
+option:
+    type: 'application'
+    # config used system
+    systems:
+        - '*-python'
+    #
+    gui:
+        name: 'Maya-2019 CJD'
+        group_name: 'Application(s)'
+        #
+        icon_name: 'application/maya'
+        tool_tip: 'run maya-2019 use cjd configure.'
+        #
+        size: [640, 640]
+

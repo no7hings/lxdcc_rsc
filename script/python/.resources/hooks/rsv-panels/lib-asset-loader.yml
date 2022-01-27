@@ -3,7 +3,7 @@ option:
     type: 'rsv-loader'
     #
     systems:
-        - 'linux-python'
+        - '*-python'
         #
         - '*-maya'
         - '*-houdini'
@@ -16,6 +16,9 @@ option:
         #
         size: [1280, 960]
         item_frame_size: [160, 160]
+    #
+    packages:
+        - 'lxdcc'
 #
 resolver:
     filter: 'project=lib&branch=asset&workspace=work&role=chr+flg+prp+env&step=mod+srf+rig+grm'

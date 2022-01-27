@@ -14,7 +14,7 @@ def main(session):
                 key='lib-assets-pull', extend_option_kwargs=dict(configure=_project_tgt)
             )
             #
-            method = ddl_methods.DdlMethodRunner(
+            method = ddl_methods.HookExecutor(
                 method_option=method_query.get_method_option(),
                 script_option=method_query.get_script_option(
                     project=_project_tgt,

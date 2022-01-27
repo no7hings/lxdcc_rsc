@@ -1,0 +1,42 @@
+option:
+    type: 'kit-panel'
+    # config used system
+    systems:
+        - '*-python'
+        #
+        - '*-maya'
+        - '*-houdini'
+        - '*-katana'
+    #
+    gui:
+        name: 'App-kit'
+        group_name: ''
+        #
+        icon_name: ''
+        tool_tip: ''
+        #
+        size: [640, 640]
+    #
+    packages:
+        - 'lxdcc'
+#
+hook_option:
+    engine: maya-python
+    #
+    script: {}
+    #
+    deadline: {}
+    #
+    rez:
+        extend_packages: []
+#
+app:
+    hooks:
+        - 'rsv-panels/asset-loader'
+        - 'rsv-panels/asset-set-loader'
+        - 'rsv-panels/asset-batcher'
+        - 'rsv-panels/lib-asset-loader'
+        - 'rsv-panels/shot-loader'
+        - 'rsv-panels/shot-camera-loader'
+        - 'rsv-panels/shot-set-loader'
+        - 'tool-panels/texture-tx-converter'

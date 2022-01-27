@@ -1,0 +1,38 @@
+option:
+    #
+    type: 'rsv-loader'
+    #
+    systems:
+        - '*-python'
+        #
+        - '*-maya'
+        - '*-houdini'
+        - '*-katana'
+    #
+    gui:
+        name: 'asset-set Loader'
+        group_name: 'Loader(s)'
+        icon_name: ''
+        #
+        size: [1280, 960]
+        item_frame_size: [200, 128]
+    #
+    packages:
+        - 'lxdcc'
+#
+resolver:
+    filter: 'project=cjd&branch=asset&workspace=publish&step=set'
+    #
+    task_unit:
+        keywords:
+            - '{branch}-set-usd-file'
+#
+actions:
+    task: ''
+    task_unit:
+        hooks:
+            - 'rsv-actions/usd/set-file-open'
+            - 'rsv-actions/review-file-open'
+            # directory
+            - 'rsv-actions/work-task-directory-open'
+            - 'rsv-actions/task-directory-open'

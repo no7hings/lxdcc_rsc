@@ -9,7 +9,7 @@ from lxutil import utl_core
 
 import lxutil.dcc.dcc_objects as utl_dcc_objects
 
-from lxutil_gui import gui_core
+from lxutil_gui import utl_gui_core
 
 import lxutil_gui.proxy.widgets as prx_widgets
 
@@ -23,9 +23,9 @@ def set_startup():
 
     and_setup.MtoaSetup('/l/packages/pg/prod/mtoa/4.2.1.1/platform-linux/maya-2019').set_run()
 
-    import os
-
-    os.environ['OCIO'] = '/l/packages/pg/third_party/ocio/aces/1.2/config.ocio'
+    utl_core.Environ.set_add(
+        'OCIO', '/l/packages/pg/third_party/ocio/aces/1.2/config.ocio'
+    )
 
 
 class TextureTxConverter(prx_widgets.PrxToolWindow):
@@ -34,9 +34,9 @@ class TextureTxConverter(prx_widgets.PrxToolWindow):
         super(TextureTxConverter, self).__init__(*args, **kwargs)
         self._name_width = 240
         # noinspection PyUnresolvedReferences
-        gui_configure = session.gui_configure
-        self.set_window_title(gui_configure.get('name'))
-        self.set_definition_window_size(gui_configure.get('size'))
+        utl_gui_configure = session.utl_gui_configure
+        self.set_window_title(utl_gui_configure.get('name'))
+        self.set_definition_window_size(utl_gui_configure.get('size'))
         #
         self._viewer_group = prx_widgets.PrxExpandedGroup()
         self.set_widget_add(self._viewer_group)
@@ -62,12 +62,12 @@ class TextureTxConverter(prx_widgets.PrxToolWindow):
         self._configure_group.set_widget_add(self._configure_node)
         self._configure_node.set_name_width(self._name_width)
         self._directory_port = self._configure_node.set_port_add(
-            prx_widgets.PrxOpenDirectoryPort(
+            prx_widgets.PrxDirectoryOpenPort(
                 'directory', 'Directory'
             )
         )
         self._directory_port.set(
-            '/data/f/texture-tx-test/v006'
+            '/depts/lookdev/YZQ/to'
         )
         #
         self._name_patterns_port = self._configure_node.set_port_add(
@@ -175,7 +175,7 @@ class TextureTxConverter(prx_widgets.PrxToolWindow):
             _, i_texture_gui = self._tree_view_add_opt.set_item_prx_add_as(i_texture, mode='list')
 
             if i_texture.get_tx_is_exists() is False:
-                i_texture_gui.set_state(gui_core.State.WARNING)
+                i_texture_gui.set_state(utl_gui_core.State.WARNING)
 
     def _set_texture_guis_refresh_(self):
         for k, v in self._tree_view._item_dict.items():
@@ -183,9 +183,9 @@ class TextureTxConverter(prx_widgets.PrxToolWindow):
             i_texture = i_texture_gui.get_gui_dcc_obj(namespace='storage-file')
             if i_texture is not None:
                 if i_texture.get_tx_is_exists() is False:
-                    i_texture_gui.set_state(gui_core.State.WARNING)
+                    i_texture_gui.set_state(utl_gui_core.State.WARNING)
                 else:
-                    i_texture_gui.set_state(gui_core.State.NORMAL)
+                    i_texture_gui.set_state(utl_gui_core.State.NORMAL)
 
     def _get_checked_textures_(self):
         lis = []
@@ -231,7 +231,7 @@ class TextureTxConverter(prx_widgets.PrxToolWindow):
         #
         utl_dcc_operators.TextureTxMainProcess.PROCESS_COUNT = 0
         p = utl_dcc_operators.TextureTxMainProcess(lis)
-        p.set_name('texture-jpg-create')
+        p.set_name('texture-tx create')
         p_m = bsc_objects.ProcessMonitor(p)
         p_m.logging.set_connect_to(set_logging_update)
         p_m.processing.set_connect_to(set_processing_update)

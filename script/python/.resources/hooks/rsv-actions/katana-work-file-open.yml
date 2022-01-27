@@ -2,7 +2,7 @@ option:
     type: unit
     #
     systems:
-        - 'linux-python'
+        - '*-python'
     #
     gui:
         group_name: scene

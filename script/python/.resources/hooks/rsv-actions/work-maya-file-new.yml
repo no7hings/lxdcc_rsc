@@ -1,0 +1,11 @@
+option:
+    type: task
+    #
+    systems:
+        - '*-python'
+    #
+    gui:
+        group_name: scene
+        #
+        name: 'New Work Maya File'
+        icon_name: 'application/maya'

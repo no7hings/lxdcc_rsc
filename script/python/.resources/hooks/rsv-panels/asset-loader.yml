@@ -3,7 +3,7 @@ option:
     type: 'rsv-loader'
     #
     systems:
-        - 'linux-python'
+        - '*-python'
         #
         - '*-maya'
         - '*-houdini'
@@ -16,22 +16,25 @@ option:
         #
         size: [1280, 960]
         item_frame_size: [160, 160]
+    #
+    packages:
+        - 'lxdcc'
 #
 resolver:
     filter: 'branch=asset&workspace=work'
     #
-    exact_filter:
-        'linux-python': 'branch=asset&workspace=work'
-        '*-maya': 'branch=asset&workspace=work&step=mod+srf+rig+grm'
-        '*-houdini': 'branch=asset&workspace=work&step=mod+srf'
-        '*-katana': 'branch=asset&workspace=work&step=mod+srf'
+    application_filter:
+        'python': 'branch=asset&workspace=work'
+        'maya': 'branch=asset&workspace=work&step=mod+srf+rig+grm'
+        'houdini': 'branch=asset&workspace=work&step=mod+srf'
+        'katana': 'branch=asset&workspace=work&step=mod+srf'
     #
     task_unit:
         keywords:
-            - '{branch}-work-maya-scene-src-file': {systems: ['linux-python', '*-maya']}
-            - '{branch}-work-houdini-scene-src-file': {systems: ['linux-python', '*-houdini']}
-            - '{branch}-work-katana-scene-src-file': {systems: ['linux-python', '*-katana']}
-            - '{branch}-work-nuke-scene-src-file': {systems: ['linux-python', '*-nuke']}
+            - '{branch}-work-maya-scene-src-file': {systems: ['*-python', '*-maya']}
+            - '{branch}-work-houdini-scene-src-file': {systems: ['*-python', '*-houdini']}
+            - '{branch}-work-katana-scene-src-file': {systems: ['*-python', '*-katana']}
+            - '{branch}-work-nuke-scene-src-file': {systems: ['*-python', '*-nuke']}
 #
 actions:
     asset:
@@ -39,10 +42,16 @@ actions:
             - 'rsv-actions/asset/maya/scene-build'
     task:
         hooks:
+            # standalone
+            - 'rsv-actions/work-maya-file-new'
+            - 'rsv-actions/work-user-maya-file-new'
+            # in dcc
             - 'rsv-actions/maya/work-file-new'
             - 'rsv-actions/houdini/work-file-new'
             - 'rsv-actions/katana/work-file-new'
             - 'rsv-actions/katana/work-surface-file-new'
+            #
+            - 'rsv-actions/review-file-upload'
     #
     task_unit:
         hooks:
@@ -53,6 +62,8 @@ actions:
             - 'rsv-actions/maya/work-file-open'
             - 'rsv-actions/houdini/work-file-open'
             - 'rsv-actions/katana/work-file-open'
+            # usd
+            - 'rsv-actions/usd/component-file-open'
             # review
             - 'rsv-actions/review-file-open'
             # directory

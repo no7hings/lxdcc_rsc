@@ -8,7 +8,7 @@ option:
         group_name: proxy-xarc
         #
         name: 'Import Proxy-xarc File'
-        icon_name: 'file/ass'
+        icon_name: 'file/xarc'
 #
 variants:
     project: ''

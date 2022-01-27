@@ -3,7 +3,7 @@ option:
     type: 'rsv-loader'
     #
     systems:
-        - 'linux-python'
+        - '*-python'
         #
         - '*-maya'
         - '*-houdini'
@@ -16,15 +16,18 @@ option:
         #
         size: [1280, 960]
         item_frame_size: [160, 160]
+    #
+    packages:
+        - 'lxdcc'
 #
 resolver:
     filter: 'branch=asset&workspace=work'
     #
-    exact_filter:
-        'linux-python': 'branch=asset&workspace=work'
-        '*-maya': 'branch=asset&workspace=work&step=mod+srf+rig+grm'
-        '*-houdini': 'branch=asset&workspace=work&step=mod+srf'
-        '*-katana': 'branch=asset&workspace=work&step=mod+srf'
+    application_filter:
+        'python': 'branch=asset&workspace=work'
+        'maya': 'branch=asset&workspace=work&step=mod+srf+rig+grm'
+        'houdini': 'branch=asset&workspace=work&step=mod+srf'
+        'katana': 'branch=asset&workspace=work&step=mod+srf'
     #
     task_unit:
         keywords:

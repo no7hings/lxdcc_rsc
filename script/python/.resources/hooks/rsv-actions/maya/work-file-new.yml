@@ -9,18 +9,3 @@ option:
         #
         name: 'New Work Maya File'
         icon_name: 'application/maya'
-#
-variants:
-    project: ''
-    branch: ''
-    #
-    role: ''
-    asset: ''
-    #
-    sequence: ''
-    shot: ''
-    #
-    step: ''
-    task: ''
-    #
-    application: ''
