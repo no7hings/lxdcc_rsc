@@ -42,4 +42,5 @@ option_hooks:
     # katana method(s)
     - 'rsv-task-methods/asset/katana/scene-export': {dependencies: ['../usd/usd-create'], create_scene_src: True}
     - 'rsv-task-methods/asset/katana/look-export': {dependencies: ['./scene-export'], with_look_ass: False}
-    - 'rsv-task-methods/asset/katana/render-scene-create': {dependencies: ['./look-export']}
+    #
+    - 'rsv-task-methods/asset/katana/render-scene-create': {dependencies: ['../usd/usd-create']}
