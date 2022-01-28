@@ -23,7 +23,7 @@ hook_option:
         save_file: False
         #
         with_xgen_grow_mesh_abc: True
-        with_xgen: True
+        with_xgen_collection: True
     #
     deadline:
         #
