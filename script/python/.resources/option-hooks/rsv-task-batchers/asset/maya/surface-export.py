@@ -31,10 +31,11 @@ def main(session):
 
     rsv_application = utl_ssn_objects.RsvApplication()
 
-    maya_scene_src_file_path = rsv_application.get_scene_src_file()
-    if maya_scene_src_file_path:
+    scene_src_file_path = rsv_application.get_scene_src_file()
+
+    if scene_src_file_path:
         option_opt.set(
-            'file', maya_scene_src_file_path
+            'file', scene_src_file_path
         )
     #
     ssn_commands.set_session_option_hooks_execute_by_deadline(

@@ -7,7 +7,7 @@ option:
     gui:
         group_name: maya
         #
-        name: 'camera-export'
+        name: 'camera-create'
         icon_name: 'application/maya'
 #
 hook_option:
@@ -22,11 +22,8 @@ hook_option:
         open_file: True
         save_file: False
         # extra
-        # main camera alembic
-        with_camera_main_abc: True
-        camera_main_frame_range: [1, 124]
         #
-        with_camera_customize_abc: False
+        with_camera_persp_abc: True
     #
     deadline:
         #
