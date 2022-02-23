@@ -3,6 +3,8 @@ from lxbasic import bsc_core
 
 from lxutil import utl_core
 
+from lxutil_gui import utl_gui_core
+
 from lxutil_gui.qt import utl_gui_qt_core
 
 import lxutil_gui.proxy.widgets as prx_widgets
@@ -79,7 +81,7 @@ class AppKit(prx_widgets.PrxToolWindow):
                     i_tool_tip = i_gui_configure.get('tool_tip')
                     i_list_item.set_name(i_name)
                     if i_icon_name:
-                        i_list_item.set_image_by_file(utl_core.Icon.get(i_icon_name))
+                        i_list_item.set_image_by_file(utl_gui_core.Icons.get(i_icon_name))
                     else:
                         i_list_item.set_image_by_name(i_name)
                     #
