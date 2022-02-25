@@ -10,21 +10,6 @@ parameters:
         value: 'import lxkatana.scripts as ktn_scripts; ktn_scripts.LxAsset(node).set_reset()'
         tool_tip: '...'
 
-    options/asset:
-        widget: ''
-        value: ''
-        tool_tip: '...'
-
-    options/scheme:
-        widget: enumerate
-        value: ['asset-work', 'asset']
-        tool_tip: '...'
-    #
-    options/guess:
-        widget: button
-        value: 'import lxkatana.scripts as ktn_scripts; ktn_scripts.LxAsset(node).set_guess()'
-        tool_tip: '...'
-
     usd/file:
         widget: file
         value: ''
@@ -33,6 +18,11 @@ parameters:
     usd/location:
         widget: path
         value: '/root/world/geo'
+        tool_tip: '...'
+
+    usd/scheme:
+        widget: enumerate
+        value: ['work', 'render', 'shot']
         tool_tip: '...'
 
     usd/create:
@@ -47,27 +37,12 @@ parameters:
     #
     lynxi_variants/geometry:
         widget: enumerate
-        value: ['asset-work', 'asset']
+        value: ['asset', 'asset-work', 'shot']
         tool_tip: '...'
 
     lynxi_variants/look:
         widget: enumerate
-        value: ['asset-work', 'asset']
-        tool_tip: '...'
-
-    lynxi_settings/render_resolution:
-        widget: resolution
-        value: '2048x2048'
-        tool_tip: '...'
-
-    lynxi_settings/render_start_frame:
-        widget: float
-        value: 1001.0
-        tool_tip: '...'
-
-    lynxi_settings/render_end_frame:
-        widget: float
-        value: 1244.0
+        value: ['asset', 'asset-work']
         tool_tip: '...'
     #
     lynxi_properties/project:
