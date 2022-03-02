@@ -2,23 +2,23 @@
 import lxutil_gui.proxy.widgets as prx_widgets
 
 
-class TestForDialog(prx_widgets.PrxDialogWindow0):
+class TestForDialog(prx_widgets.PrxToolWindow):
     NAMESPACE = 'storage'
     def __init__(self, *args, **kwargs):
         super(TestForDialog, self).__init__(*args, **kwargs)
-        self.set_option_group_enable()
 
-        node = self.get_options_node()
+        self._node = prx_widgets.PrxNode_()
+        self.set_widget_add(self._node)
+
         # noinspection PyUnresolvedReferences
-        node.set_ports_create_by_configure(
+        self._node.set_ports_create_by_configure(
             session.configure.get('option.parameters')
         )
 
-        node.get_port('create').set(self.__set_test_)
+        self._node.get_port('create').set(self.__set_test_)
 
     def __set_test_(self):
-        node = self.get_options_node()
-        print node.get_as_kwargs()
+        print self._node.get_as_kwargs()
 
 
 def main():
