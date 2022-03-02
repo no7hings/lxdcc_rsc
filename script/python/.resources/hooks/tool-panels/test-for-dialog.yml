@@ -17,10 +17,10 @@ option:
         #
         size: [640, 640]
     #
-    parameters:
+    node:
         project:
             widget: enumerate
-            value: ['cgm', 'xkt']
+            value: ['cgm', 'xkt', 'cjd']
             tool_tip: '...'
 
         shot:

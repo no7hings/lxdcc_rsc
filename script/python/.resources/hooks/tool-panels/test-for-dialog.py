@@ -12,7 +12,7 @@ class TestForDialog(prx_widgets.PrxToolWindow):
 
         # noinspection PyUnresolvedReferences
         self._node.set_ports_create_by_configure(
-            session.configure.get('option.parameters')
+            session.configure.get('option.node')
         )
 
         self._node.get_port('create').set(self.__set_test_)
