@@ -1,9 +1,6 @@
 # coding:utf-8
 import lxutil_gui.proxy.widgets as prx_widgets
 
-from lxutil_gui.proxy.widgets import _utl_gui_prx_wdt_node
-reload(_utl_gui_prx_wdt_node)
-
 
 class TestForDialog(prx_widgets.PrxDialogWindow0):
     NAMESPACE = 'storage'
