@@ -8,11 +8,17 @@ class TestForDialog(prx_widgets.PrxDialogWindow0):
         super(TestForDialog, self).__init__(*args, **kwargs)
         self.set_option_group_enable()
 
-        parameters_gui = self.get_options_node()
+        node = self.get_options_node()
         # noinspection PyUnresolvedReferences
-        parameters_gui.set_ports_create_by_configure(
+        node.set_ports_create_by_configure(
             session.configure.get('option.parameters')
         )
+
+        node.get_port('create').set(self.__set_test_)
+
+    def __set_test_(self):
+        node = self.get_options_node()
+        print node.get_as_kwargs()
 
 
 def main():

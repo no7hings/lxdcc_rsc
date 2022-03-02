@@ -22,7 +22,13 @@ option:
             widget: string
             value: ''
             tool_tip: '...'
+
         shot:
             widget: string
+            value: ''
+            tool_tip: '...'
+
+        create:
+            widget: button
             value: ''
             tool_tip: '...'
