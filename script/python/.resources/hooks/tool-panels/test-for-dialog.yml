@@ -19,8 +19,8 @@ option:
     #
     parameters:
         project:
-            widget: string
-            value: ''
+            widget: enumerate
+            value: ['cgm', 'xkt']
             tool_tip: '...'
 
         shot:
