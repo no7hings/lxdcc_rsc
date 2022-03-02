@@ -12,7 +12,7 @@ option:
         name: 'Texture-tx Converter'
         group_name: 'Tool(s)'
         #
-        icon_name: 'window/texture'
+        icon_name: ''
         tool_tip: 'use for texture batch convert to ".tx"'
         #
         size: [640, 640]

@@ -45,3 +45,5 @@ app:
         - 'applications/maya-2019-xkt'
         - 'applications/maya-2019-lxdcc'
         - 'applications/katana-5-cjd'
+
+        - 'tool-panels/test-for-dialog'
