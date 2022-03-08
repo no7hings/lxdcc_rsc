@@ -25,7 +25,7 @@ resolver:
     #
     application_filter:
         'python': 'branch=asset&workspace=work'
-        'maya': 'branch=asset&workspace=work&step=mod+srf+rig+grm'
+        'maya': 'branch=asset&workspace=work&step=mod+srf+rig+grm+cam'
         'houdini': 'branch=asset&workspace=work&step=mod+srf'
         'katana': 'branch=asset&workspace=work&step=mod+srf'
     #
