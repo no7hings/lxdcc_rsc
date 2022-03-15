@@ -21,7 +21,7 @@ option:
         - 'lxdcc'
 #
 resolver:
-    filter: 'project=cjd&branch=asset&workspace=publish&step=set'
+    filter: 'branch=asset&workspace=publish&step=set'
     #
     task_unit:
         keywords:

@@ -7,31 +7,38 @@ option:
     gui:
         group_name: 'katana'
         #
-        name: 'Katana Render'
+        name: 'Katana Combination Render Create'
         icon_name: 'application/katana'
 #
 hook_option:
-    engine: katana-render
+    engine: katana
     #
     script:
         # scene file-path
         batch_file: ''
         #
         file: ''
-        # file use for render
+        #
         render_file: ''
         #
+        cameras: []
+        layers: []
+        light_passes: []
+        look_passes: []
+        qualities: []
+        #
+        shot: ''
+        shot_asset: ''
+        #
+        render_asset_frames: []
+        render_shot_frames: []
         render_output_directory: ''
-        #
-        render_frames: []
-        #
-        renderer: ''
     #
     deadline:
         #
-        group: all
+        group: subprogress
         #
-        pool: emergency
+        pool: subprogress
     #
     rez:
         extend_packages: []

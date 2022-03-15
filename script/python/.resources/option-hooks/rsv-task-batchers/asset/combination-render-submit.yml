@@ -1,0 +1,64 @@
+option:
+    type: rsv-task-batcher
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: 'maya'
+        #
+        name: 'Combination Render Submit'
+        icon_name: 'application/python'
+#
+hook_option:
+    engine: python
+    #
+    script:
+        # scene file-path
+        batch_file: ''
+        #
+        file: ''
+        #
+        render_file: ''
+        #
+        cameras: []
+        layers: []
+        light_passes: []
+        look_passes: []
+        qualities: []
+        #
+        shot: ''
+        shot_asset: ''
+        #
+        render_asset_frames: []
+        render_shot_frames: []
+        render_output_directory: ''
+    #
+    deadline:
+        #
+        group: subprogress
+        #
+        pool: subprogress
+    #
+    rez:
+        extend_packages: []
+#
+option_hooks:
+    # render-file
+    - 'rsv-task-methods/asset/katana/combination-render-scene-create': {
+        inherit_keys: [
+            'render_file',
+            'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
+            'shot', 'shot_asset',
+            'render_asset_frames', 'render_shot_frames', 'render_output_directory'
+        ]
+    }
+    - 'rsv-task-methods/asset/katana/combination-render-create': {
+        dependencies: ['./combination-render-scene-create'],
+        inherit_keys: [
+            'render_file',
+            'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
+            'shot', 'shot_asset',
+            'render_asset_frames', 'render_shot_frames', 'render_output_directory'
+        ]
+    }

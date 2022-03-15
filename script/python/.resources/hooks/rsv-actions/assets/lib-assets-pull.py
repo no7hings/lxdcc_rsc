@@ -144,13 +144,13 @@ def main(session):
             )
             w.set_option_group_enable()
             #
-            p = w._option_node.set_port_add(
-                prx_widgets.PrxChoosePort(
+            p = w._prx_options_node.set_port_add(
+                prx_widgets.PrxEnumeratePort_(
                     'project', 'Project'
                 )
             )
             projects = get_projects()
-            p.set(values=projects)
+            p.set(enumerate_strings=projects)
             #
             w.set_window_show()
         else:

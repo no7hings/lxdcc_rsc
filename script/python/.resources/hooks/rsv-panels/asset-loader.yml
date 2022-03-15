@@ -66,6 +66,8 @@ actions:
             - 'rsv-actions/usd/component-file-open'
             # review
             - 'rsv-actions/review-file-open'
+            # render
+            - 'rsv-actions/asset/render-submitter'
             # directory
             - 'rsv-actions/work-task-directory-open'
             - 'rsv-actions/task-directory-open'

@@ -7,7 +7,7 @@ class TestForDialog(prx_widgets.PrxToolWindow):
     def __init__(self, *args, **kwargs):
         super(TestForDialog, self).__init__(*args, **kwargs)
 
-        self._prx_node = prx_widgets.PrxNode_()
+        self._prx_node = prx_widgets.PrxNode_('asset')
         self.set_widget_add(self._prx_node)
 
         # noinspection PyUnresolvedReferences
@@ -22,7 +22,8 @@ class TestForDialog(prx_widgets.PrxToolWindow):
 
 
 def main():
-    w = TestForDialog()
+    w = prx_widgets.PrxDialogWindow1()
+    w.set_option_group_enable()
     w.set_window_show()
 
 
