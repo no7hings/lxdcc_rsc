@@ -10,7 +10,8 @@ def main(session):
     #
     import lxsession.commands as ssn_commands
     #
-    option_opt = session.option_opt
+    hook_option_opt = session.option_opt
+    option_hook_key = hook_option_opt.get('option_hook_key')
     #
     katana_render_hook_key = 'rsv-task-methods/asset/render/katana-render'
     rv_movie_convert_hook_key = 'rsv-task-methods/asset/rv/movie-convert'
@@ -32,7 +33,7 @@ def main(session):
     }
     variants_dic = collections.OrderedDict()
     for i_variable_key in variable_keys:
-        variants_dic[i_variable_key] = option_opt.get(
+        variants_dic[i_variable_key] = hook_option_opt.get(
             variable_mapper[i_variable_key], as_array=True
         )
     #
@@ -46,35 +47,40 @@ def main(session):
             i_option_hook_key = '-'.join(
                 i_variants.values()
             )
+            i_variable_name = '.'.join(
+                i_variants.values()
+            )
             i_renderer = 'renderer__{}'.format(
                 '__'.join(['{}'.format(v) for k, v in i_variants.items()])
             )
             #
             i_camera = i_variants['camera']
             if i_camera in ['shot']:
-                i_render_frames = option_opt.get('render_shot_frames')
+                i_render_frames = hook_option_opt.get('render_shot_frames')
             else:
-                i_render_frames = option_opt.get('render_asset_frames')
+                i_render_frames = hook_option_opt.get('render_asset_frames')
             #
-            i_batch_file_path = option_opt.get('batch_file')
-            i_file_path = option_opt.get('file')
-            i_user = option_opt.get('user')
-            i_time_tag = option_opt.get('time_tag')
+            i_batch_file_path = hook_option_opt.get('batch_file')
+            i_file_path = hook_option_opt.get('file')
+            i_user = hook_option_opt.get('user')
+            i_time_tag = hook_option_opt.get('time_tag')
             #
-            i_td_enable = option_opt.get('td_enable') or False
-            i_rez_beta = option_opt.get('rez_beta') or False
+            i_td_enable = hook_option_opt.get('td_enable') or False
+            i_rez_beta = hook_option_opt.get('rez_beta') or False
             #
-            i_render_output_directory_path = option_opt.get('render_output_directory')
+            i_render_output_directory_path = hook_option_opt.get('render_output_directory')
 
-            i_render_file_path = option_opt.get('render_file')
+            i_render_file_path = hook_option_opt.get('render_file')
 
             i_image_file_path = '{}/main/{}/beauty.####.exr'.format(
-                i_render_output_directory_path, i_option_hook_key
+                i_render_output_directory_path, i_variable_name
             )
             i_movie_file_path = '{}/main/{}.mov'.format(
-                i_render_output_directory_path, i_option_hook_key
+                i_render_output_directory_path, i_variable_name
             )
-
+            i_katana_render_hook_key = '{}/{}'.format(
+                katana_render_hook_key, i_option_hook_key
+            )
             i_katana_render_hook_option_opt = bsc_core.KeywordArgumentsOpt(
                 dict(
                     option_hook_key=katana_render_hook_key,
@@ -94,6 +100,8 @@ def main(session):
                     render_frames=i_render_frames,
                     #
                     option_hook_key_extend=[i_option_hook_key],
+                    #
+                    dependencies=[option_hook_key],
                 )
             )
             #
@@ -116,10 +124,12 @@ def main(session):
                         image_file=i_image_file_path,
                         movie_file=i_movie_file_path,
                         #
-                        option_hook_key_extend=[i_option_hook_key],
-                        #
                         start_frame=i_render_frames[0],
                         end_frame=i_render_frames[-1],
+                        #
+                        option_hook_key_extend=[i_option_hook_key],
+                        #
+                        dependencies=[option_hook_key],
                         #
                         dependent_ddl_job_id_extend=[i_katana_render_ddl_job_id]
                     )

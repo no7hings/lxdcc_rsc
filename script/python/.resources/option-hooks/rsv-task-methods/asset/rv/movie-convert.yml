@@ -11,7 +11,7 @@ option:
         icon_name: ''
 #
 hook_option:
-    engine: 'rv-movie-convert'
+    engine: 'python'
     #
     script:
         # scene file-path
@@ -36,4 +36,4 @@ hook_option:
         pool: subprogress
     #
     rez:
-        extend_packages: ['pgrv']
+        extend_packages: []
