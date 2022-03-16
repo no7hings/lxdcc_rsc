@@ -29,7 +29,7 @@ hook_option:
         #
         vriable_name: ''
         #
-        job_name_extend: []
+        option_hook_key_extend: []
     #
     deadline:
         #

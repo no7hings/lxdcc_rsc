@@ -27,7 +27,7 @@ hook_option:
         start_frame: 0
         end_frame: 0
 
-        job_name_extend: []
+        option_hook_key_extend: []
     #
     deadline:
         #
