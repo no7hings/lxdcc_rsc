@@ -3,15 +3,16 @@
 
 def main(session):
     import collections
-
+    #
     from lxbasic import bsc_core
-
+    #
     import lxsession.commands as ssn_commands
-
+    #
     option_opt = session.option_opt
-
-    katana_render_hook_key = 'rsv-task-renders/asset/katana-render'
-
+    #
+    katana_render_hook_key = 'rsv-task-methods/asset/render/katana-render'
+    rv_movie_convert_hook_key = 'rsv-task-methods/asset/rv/movie-convert'
+    #
     variable_keys = [
         'camera',
         'layer',
@@ -19,7 +20,7 @@ def main(session):
         'look_pass',
         'quality'
     ]
-
+    #
     variable_mapper = {
         'camera': 'cameras',
         'layer': 'layers',
@@ -32,44 +33,92 @@ def main(session):
         variants_dic[i_variable_key] = option_opt.get(
             variable_mapper[i_variable_key], as_array=True
         )
-
+    #
     combinations = bsc_core.VariablesMtd.get_all_combinations(
         variants_dic
     )
     for i_seq, i_variants in enumerate(combinations):
-        print i_variants
+        i_variable_name = '.'.join(
+            i_variants.values()
+        )
         i_renderer = 'renderer__{}'.format(
             '__'.join(['{}'.format(v) for k, v in i_variants.items()])
         )
         camera = i_variants['camera']
         if camera in ['shot']:
-            render_frames = option_opt.get('render_shot_frames')
+            i_render_frames = option_opt.get('render_shot_frames')
         else:
-            render_frames = option_opt.get('render_asset_frames')
+            i_render_frames = option_opt.get('render_asset_frames')
+        #
+        i_batch_file_path = option_opt.get('batch_file')
+        i_file_path = option_opt.get('file')
+        i_user = option_opt.get('user')
+        i_time_tag = option_opt.get('time_tag')
+        #
+        i_td_enable = option_opt.get('td_enable') or False
+        i_rez_beta = option_opt.get('rez_beta') or False
+        #
+        i_render_output_directory_path = option_opt.get('render_output_directory')
 
-        i_render_option_opt = bsc_core.KeywordArgumentsOpt(
+        i_render_file_path = option_opt.get('render_file')
+
+        i_image_file_path = '{}/main/{}/beauty.####.exr'.format(
+            i_render_output_directory_path, i_variable_name
+        )
+        i_movie_file_path = '{}/main/{}.mov'.format(
+            i_render_output_directory_path, i_variable_name
+        )
+
+        i_katana_render_hook_option_opt = bsc_core.KeywordArgumentsOpt(
             dict(
                 option_hook_key=katana_render_hook_key,
                 #
-                batch_file=option_opt.get('batch_file'),
+                batch_file=i_batch_file_path,
                 # python option
-                file=option_opt.get('file'),
+                file=i_file_path,
                 #
-                user=option_opt.get('user'), time_tag=option_opt.get('time_tag'),
+                user=i_user, time_tag=i_time_tag,
                 #
-                td_enable=option_opt.get('td_enable') or False,
-                rez_beta=option_opt.get('rez_beta') or False,
+                td_enable=i_td_enable, rez_beta=i_rez_beta,
                 #
-                render_file=option_opt.get('render_file'),
-                render_output_directory=option_opt.get('render_output_directory'),
+                render_file=i_render_file_path,
+                render_output_directory=i_render_output_directory_path,
                 renderer=i_renderer,
                 #
-                render_frames=render_frames
+                render_frames=i_render_frames,
+                #
+                job_name_extend=[i_variable_name],
             )
         )
+        #
+        i_katana_render_session = ssn_commands.set_option_hook_execute_by_deadline(
+            i_katana_render_hook_option_opt.to_string()
+        )
 
+        i_katana_render_ddl_job_id = i_katana_render_session.get_ddl_job_id()
+
+        i_rv_movie_convert_hook_option_opt = bsc_core.KeywordArgumentsOpt(
+            option=dict(
+                option_hook_key=rv_movie_convert_hook_key,
+                #
+                file=i_file_path,
+                #
+                user=i_user, time_tag=i_time_tag,
+                td_enable=i_td_enable, rez_beta=i_rez_beta,
+                #
+                image_file=i_image_file_path,
+                movie_file=i_movie_file_path,
+                #
+                job_name_extend=[i_variable_name],
+                #
+                start_frame=i_render_frames[0],
+                end_frame=i_render_frames[-1],
+                #
+                dependent_ddl_job_id_extend=[i_katana_render_ddl_job_id]
+            )
+        )
         ssn_commands.set_option_hook_execute_by_deadline(
-            i_render_option_opt.to_string()
+            i_rv_movie_convert_hook_option_opt.to_string()
         )
 
 

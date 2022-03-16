@@ -1,0 +1,41 @@
+option:
+    type: rsv-task-method
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: 'katana'
+        #
+        name: 'Katana Render'
+        icon_name: 'application/katana'
+#
+hook_option:
+    engine: katana-render
+    #
+    script:
+        # scene file-path
+        batch_file: ''
+        #
+        file: ''
+        # file use for render
+        render_file: ''
+        #
+        render_output_directory: ''
+        #
+        render_frames: []
+        #
+        renderer: ''
+        #
+        vriable_name: ''
+        #
+        job_name_extend: []
+    #
+    deadline:
+        #
+        group: all
+        #
+        pool: emergency
+    #
+    rez:
+        extend_packages: []

@@ -1,0 +1,39 @@
+option:
+    type: rsv-task-method
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: ''
+        #
+        name: ''
+        icon_name: ''
+#
+hook_option:
+    engine: 'rv-movie-convert'
+    #
+    script:
+        # scene file-path
+        batch_file: ''
+        #
+        file: ''
+        #
+        image_file: ''
+        movie_file: ''
+        movie_file_name: ''
+
+        lut_directory: '/l/packages/pg/third_party/ocio/aces/1.0.3/baked/maya/sRGB_for_ACEScg_Maya.csp'
+        start_frame: 0
+        end_frame: 0
+
+        job_name_extend: []
+    #
+    deadline:
+        #
+        group: subprogress
+        #
+        pool: subprogress
+    #
+    rez:
+        extend_packages: ['pgrv']
