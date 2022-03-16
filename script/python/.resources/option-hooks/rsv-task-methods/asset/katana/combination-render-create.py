@@ -103,29 +103,30 @@ def main(session):
 
             i_katana_render_ddl_job_id = i_katana_render_session.get_ddl_job_id()
 
-            i_rv_movie_convert_hook_option_opt = bsc_core.KeywordArgumentsOpt(
-                option=dict(
-                    option_hook_key=rv_movie_convert_hook_key,
-                    #
-                    file=i_file_path,
-                    #
-                    user=i_user, time_tag=i_time_tag,
-                    td_enable=i_td_enable, rez_beta=i_rez_beta,
-                    #
-                    image_file=i_image_file_path,
-                    movie_file=i_movie_file_path,
-                    #
-                    option_hook_key_extend=[i_option_hook_key],
-                    #
-                    start_frame=i_render_frames[0],
-                    end_frame=i_render_frames[-1],
-                    #
-                    dependent_ddl_job_id_extend=[i_katana_render_ddl_job_id]
+            if i_katana_render_ddl_job_id:
+                i_rv_movie_convert_hook_option_opt = bsc_core.KeywordArgumentsOpt(
+                    option=dict(
+                        option_hook_key=rv_movie_convert_hook_key,
+                        #
+                        file=i_file_path,
+                        #
+                        user=i_user, time_tag=i_time_tag,
+                        td_enable=i_td_enable, rez_beta=i_rez_beta,
+                        #
+                        image_file=i_image_file_path,
+                        movie_file=i_movie_file_path,
+                        #
+                        option_hook_key_extend=[i_option_hook_key],
+                        #
+                        start_frame=i_render_frames[0],
+                        end_frame=i_render_frames[-1],
+                        #
+                        dependent_ddl_job_id_extend=[i_katana_render_ddl_job_id]
+                    )
                 )
-            )
-            ssn_commands.set_option_hook_execute_by_deadline(
-                i_rv_movie_convert_hook_option_opt.to_string()
-            )
+                ssn_commands.set_option_hook_execute_by_deadline(
+                    i_rv_movie_convert_hook_option_opt.to_string()
+                )
 
 
 if __name__ == '__main__':

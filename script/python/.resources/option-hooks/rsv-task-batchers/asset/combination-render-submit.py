@@ -27,7 +27,7 @@ def main(session):
     rsv_task_properties = r.get_rsv_task_properties_by_any_scene_file_path(render_file_path)
     rsv_task = r.get_rsv_task_by_any_file_path(render_file_path)
     metadata_file_unit = rsv_task.get_rsv_unit(
-        keyword='asset-output-metadata-yaml-file'
+        keyword='asset-output-render-info-yaml-file'
     )
     metadata_file_path = metadata_file_unit.get_result(
         version=rsv_task_properties.get('version')
