@@ -21,6 +21,7 @@ def main(session):
     _ = fnmatch.filter(shot_paths, '*/{}'.format(shot_name))
     if _:
         shot_geometries_node_opt.set('options.shot', _[0])
+    shot_geometries_node_opt.set_port_execute('usd.create')
 
     render_settings_node_opt = ktn_core.NGObjOpt('render_settings')
     render_output_directory_path = hook_option_opt.get('render_output_directory')
