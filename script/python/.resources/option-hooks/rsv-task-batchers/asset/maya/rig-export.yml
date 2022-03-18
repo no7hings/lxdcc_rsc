@@ -38,26 +38,11 @@ option_hooks:
     - 'rsv-task-methods/asset/maya/geometry-export': {
         dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create']
     }
-    - 'rsv-task-methods/asset/maya/look-export': {
-        dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create']
-    }
     # create usd
     - 'rsv-task-methods/asset/usd/gen-usd-create': {
         dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create', 'rsv-task-methods/asset/maya/geometry-export', 'rsv-task-methods/asset/maya/look-export']
     }
+    # create shotgun
     - 'rsv-task-methods/asset/shotgun/shotgun-export': {
         dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create', 'rsv-task-methods/asset/maya/scene-export', 'rsv-task-methods/asset/maya/geometry-export', 'rsv-task-methods/asset/usd/gen-usd-create']
-    }
-    # camera
-    - 'rsv-task-methods/asset/maya/camera-create': {
-        dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create']
-    }
-    # katana method(s)
-    - 'rsv-task-methods/asset/katana/scene-export': {
-        dependencies: ['../usd/gen-usd-create'],
-        create_scene_src: True
-    }
-    - 'rsv-task-methods/asset/katana/look-export': {
-        dependencies: ['./scene-export'],
-        with_look_ass: False
     }

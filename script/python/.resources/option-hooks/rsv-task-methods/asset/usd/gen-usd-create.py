@@ -50,13 +50,14 @@ def set_component_usd_create(rsv_task, rsv_scene_properties):
         keyword=keyword
     )
     #
-    rsv_set_usd_directory_path = rsv_set_usd_directory_unit.get_result(
+    set_usd_directory_path = rsv_set_usd_directory_unit.get_result(
         version=rsv_scene_properties.get('version')
     )
     #
     key_map_dict = dict(
         mod='usda/set/model',
-        srf='usda/set/surface'
+        srf='usda/set/surface',
+        rig='usda/set/rig',
     )
     if step in key_map_dict:
         key = key_map_dict[step]
@@ -76,12 +77,18 @@ def set_component_usd_create(rsv_task, rsv_scene_properties):
                 **c.value
             )
             i_usda_file_path = '{}/{}'.format(
-                rsv_set_usd_directory_path, v
+                set_usd_directory_path, v
             )
             #
             utl_dcc_objects.OsFile(i_usda_file_path).set_write(
                 i_raw
             )
+        #
+        if workspace in ['publish']:
+            # noinspection PyUnresolvedReferences
+            import production.gen.record_set_registry as pgs
+            register_file_path = '{}/registry.usda'.format(set_usd_directory_path)
+            pgs.run(register_file_path)
 
 
 if __name__ == '__main__':
