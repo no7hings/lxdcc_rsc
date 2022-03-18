@@ -10,8 +10,16 @@ def main(session):
     #
     import lxsession.commands as ssn_commands
     #
+    import lxresolver.commands as rsv_commands
+    #
+    resolver = rsv_commands.get_resolver()
+    #
     hook_option_opt = session.option_opt
     option_hook_key = hook_option_opt.get('option_hook_key')
+    #
+    file_path = hook_option_opt.get('file')
+    rsv_scene_properties = resolver.get_rsv_scene_properties_by_any_scene_file_path(file_path)
+    rsv_task = resolver.get_rsv_task_by_any_file_path(file_path)
     #
     katana_render_hook_key = 'rsv-task-methods/asset/render/katana-render'
     rv_movie_convert_hook_key = 'rsv-task-methods/asset/rv/movie-convert'

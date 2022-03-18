@@ -31,9 +31,9 @@ hook_option:
     #
     deadline:
         #
-        group: subprogress
+        group: all
         #
-        pool: subprogress
+        pool: emergency
     #
     rez:
         extend_packages: []

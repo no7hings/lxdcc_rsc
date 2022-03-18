@@ -11,6 +11,11 @@ import lxutil_gui.proxy.widgets as prx_widgets
 
 import lxsession.commands as ssn_commands
 
+bsc_core.EnvironMtd.set_add(
+    'PXR_AR_DEFAULT_SEARCH_PATH',
+    bsc_core.StoragePathMtd.set_map_to_platform('/l/prod')
+)
+
 
 class AppKit(prx_widgets.PrxToolWindow):
     def __init__(self, *args, **kwargs):

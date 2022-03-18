@@ -19,20 +19,17 @@ hook_option:
         #
         file: ''
         #
-        render_file: ''
-        #
-        cameras: []
-        layers: []
-        light_passes: []
-        look_passes: []
-        qualities: []
+        cameras: ['full_body']
+        layers: ['master']
+        light_passes: ['all']
+        look_passes: ['plastic']
+        qualities: ['low']
         #
         shot: ''
         shot_asset: ''
         #
-        render_asset_frames: []
-        render_shot_frames: []
-        render_output_directory: ''
+        render_asset_frames: [1001]
+        render_shot_frames: [1001]
     #
     deadline:
         #
@@ -44,20 +41,29 @@ hook_option:
         extend_packages: []
 #
 option_hooks:
+    # list, item is option-hook-key
+    - 'rsv-task-methods/asset/maya/gen-geometry-export': {
+        with_geometry_usd: True
+    }
+    - 'rsv-task-methods/asset/usd/gen-usd-create': {
+        dependencies: ['rsv-task-methods/asset/maya/gen-geometry-export'],
+        with_component_usd: True
+    }
     # create scene-file
-    - 'rsv-task-methods/asset/katana/combination-render-scene-create': {
-        inherit_keys: [
-            'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
-            'shot', 'shot_asset',
-            'render_file', 'render_output_directory', 'render_asset_frames', 'render_shot_frames'
-        ]
-    }
-    #
-    - 'rsv-task-methods/asset/katana/combination-render-create': {
-        dependencies: ['./combination-render-scene-create'],
-        inherit_keys: [
-            'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
-            'shot', 'shot_asset',
-            'render_file', 'render_output_directory', 'render_asset_frames', 'render_shot_frames'
-        ]
-    }
+#    - 'rsv-task-methods/asset/katana/combination-render-scene-create': {
+#        dependencies: ['rsv-task-methods/asset/maya/gen-geometry-export'],
+#        inherit_keys: [
+#            'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
+#            'shot', 'shot_asset',
+#            'render_file', 'render_output_directory', 'render_asset_frames', 'render_shot_frames'
+#        ]
+#    }
+#    #
+#    - 'rsv-task-methods/asset/katana/combination-render-create': {
+#        dependencies: ['./combination-render-scene-create'],
+#        inherit_keys: [
+#            'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
+#            'shot', 'shot_asset',
+#            'render_file', 'render_output_directory', 'render_asset_frames', 'render_shot_frames'
+#        ]
+#    }

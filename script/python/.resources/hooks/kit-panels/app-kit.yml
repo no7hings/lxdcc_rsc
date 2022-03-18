@@ -20,16 +20,6 @@ option:
     packages:
         - 'lxdcc'
 #
-hook_option:
-    engine: maya-python
-    #
-    script: {}
-    #
-    deadline: {}
-    #
-    rez:
-        extend_packages: []
-#
 app:
     hooks:
         - 'rsv-panels/asset-loader'

@@ -1,0 +1,18 @@
+# coding:utf-8
+
+
+def main(session):
+    from lxutil_gui.qt import utl_gui_qt_core
+
+    import lxutil_gui.panel.utl_pnl_widgets as utl_pnl_widgets
+    file_path = session.rsv_unit.get_result(
+        version='latest'
+    )
+    if file_path:
+        w = utl_pnl_widgets.AssetRenderSubmitter(file_path=file_path)
+        w.set_window_show()
+
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    main(session)
