@@ -33,7 +33,8 @@ option_hooks:
     - 'rsv-task-methods/asset/shotgun/shotgun-create'
     - 'rsv-task-methods/asset/maya/scene-export': {
         dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create'],
-        create_review_link: True
+        create_review_link: True,
+        with_texture: True,
     }
     - 'rsv-task-methods/asset/maya/geometry-export': {
         dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create']
