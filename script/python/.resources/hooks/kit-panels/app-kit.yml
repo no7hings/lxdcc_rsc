@@ -37,3 +37,4 @@ app:
         - 'applications/katana-5-cjd'
 
         - 'tool-panels/test-for-dialog'
+        - 'tool-panels/test-for-render-submitter'

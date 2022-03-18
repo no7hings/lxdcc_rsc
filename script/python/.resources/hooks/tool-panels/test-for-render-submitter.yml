@@ -1,0 +1,18 @@
+option:
+    type: 'tool-panel'
+    # config used system
+    systems:
+        - '*-python'
+        #
+        - '*-maya'
+        - '*-houdini'
+        - '*-katana'
+    #
+    gui:
+        name: 'Test for Render Submitter'
+        group_name: 'Tool(s)'
+        #
+        icon_name: ''
+        tool_tip: 'use for test'
+        #
+        size: [640, 640]

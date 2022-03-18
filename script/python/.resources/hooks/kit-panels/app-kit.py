@@ -1,6 +1,26 @@
 # coding:utf-8
 from lxbasic import bsc_core
 
+bsc_core.EnvironMtd.set_add(
+    'PYTHONPATH',
+    bsc_core.StoragePathMtd.set_map_to_platform('/l/packages/pg/third_party/app/usd/20.11/platform-linux/lib/python')
+)
+
+bsc_core.EnvironMtd.set_add(
+    'LD_LIBRARY_PATH',
+    bsc_core.StoragePathMtd.set_map_to_platform('/l/packages/pg/third_party/app/usd/20.11/platform-linux/lib')
+)
+
+bsc_core.EnvironMtd.set_add(
+    'LD_LIBRARY_PATH',
+    bsc_core.StoragePathMtd.set_map_to_platform('/l/packages/pg/third_party/app/usd/20.11/platform-linux/lib64')
+)
+
+bsc_core.EnvironMtd.set_add(
+    'PXR_AR_DEFAULT_SEARCH_PATH',
+    bsc_core.StoragePathMtd.set_map_to_platform('/l/prod')
+)
+
 from lxutil import utl_core
 
 from lxutil_gui import utl_gui_core
@@ -10,11 +30,6 @@ from lxutil_gui.qt import utl_gui_qt_core
 import lxutil_gui.proxy.widgets as prx_widgets
 
 import lxsession.commands as ssn_commands
-
-bsc_core.EnvironMtd.set_add(
-    'PXR_AR_DEFAULT_SEARCH_PATH',
-    bsc_core.StoragePathMtd.set_map_to_platform('/l/prod')
-)
 
 
 class AppKit(prx_widgets.PrxToolWindow):
