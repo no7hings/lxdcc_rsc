@@ -25,7 +25,7 @@ resolver:
     #
     task_unit:
         keywords:
-            - '{branch}-set-usd-file'
+            - '{branch}-set-dress-usd-file'
 #
 actions:
     task: ''

@@ -13,11 +13,6 @@ def post_method_fnc_(file_path_):
     from lxkatana import commands
     #
     ktn_fnc_creators.LookWorkspaceCreator().set_run()
-    task_properties = rsv_commands.get_resolver().get_task_properties_by_any_scene_file_path(
-        file_path_
-    )
-    if task_properties:
-        commands.set_asset_work_set_usd_import(task_properties)
 
 
 file_path = session.rsv_unit.get_result(

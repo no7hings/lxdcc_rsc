@@ -2,21 +2,6 @@
 from lxbasic import bsc_core
 
 bsc_core.EnvironMtd.set_add(
-    'PYTHONPATH',
-    bsc_core.StoragePathMtd.set_map_to_platform('/l/packages/pg/third_party/app/usd/20.11/platform-linux/lib/python')
-)
-
-bsc_core.EnvironMtd.set_add(
-    'LD_LIBRARY_PATH',
-    bsc_core.StoragePathMtd.set_map_to_platform('/l/packages/pg/third_party/app/usd/20.11/platform-linux/lib')
-)
-
-bsc_core.EnvironMtd.set_add(
-    'LD_LIBRARY_PATH',
-    bsc_core.StoragePathMtd.set_map_to_platform('/l/packages/pg/third_party/app/usd/20.11/platform-linux/lib64')
-)
-
-bsc_core.EnvironMtd.set_add(
     'PXR_AR_DEFAULT_SEARCH_PATH',
     bsc_core.StoragePathMtd.set_map_to_platform('/l/prod')
 )

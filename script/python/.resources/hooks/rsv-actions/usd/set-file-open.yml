@@ -27,6 +27,6 @@ variants:
 #
 resolver:
     rsv_unit:
-        keyword: '{branch}-set-usd-file'
+        keyword: '{branch}-set-dress-usd-file'
         version: latest
 

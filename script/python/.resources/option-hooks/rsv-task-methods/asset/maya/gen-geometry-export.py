@@ -24,6 +24,10 @@ def main(session):
                 with_geometry_usd = hook_option_opt.get('with_geometry_usd') or False
                 if with_geometry_usd is True:
                     set_geometry_usd_export(rsv_task, rsv_scene_properties)
+                #
+                with_geometry_uv_map_usd = hook_option_opt.get('with_geometry_uv_map_usd') or False
+                if with_geometry_uv_map_usd is True:
+                    set_geometry_uv_map_usd_export(rsv_task, rsv_scene_properties)
             else:
                 raise RuntimeError
         else:
@@ -71,10 +75,10 @@ def set_geometry_usd_export(rsv_task, rsv_scene_properties):
             for i_location_name in location_names:
                 g_p.set_update()
                 #
-                i_rsv_geometry_usd_var_file_unit = rsv_task.get_rsv_unit(
+                i_geometry_usd_var_file_rsv_unit = rsv_task.get_rsv_unit(
                     keyword=keyword
                 )
-                i_rsv_geometry_usd_var_file_path = i_rsv_geometry_usd_var_file_unit.get_result(
+                i_geometry_usd_var_file_path = i_geometry_usd_var_file_rsv_unit.get_result(
                     version=version, extend_variants=dict(var=i_location_name)
                 )
                 #
@@ -87,7 +91,7 @@ def set_geometry_usd_export(rsv_task, rsv_scene_properties):
                 sub_root_mya_obj = mya_dcc_objects.Group(i_mya_sub_root_dag_path.path)
                 if sub_root_mya_obj.get_is_exists() is True:
                     mya_fnc_exporters.GeometryUsdExporter_(
-                        file_path=i_rsv_geometry_usd_var_file_path,
+                        file_path=i_geometry_usd_var_file_path,
                         root=i_location,
                         option=dict(
                             default_prim_path=root,
@@ -96,6 +100,52 @@ def set_geometry_usd_export(rsv_task, rsv_scene_properties):
                             use_override=False
                         )
                     ).set_run()
+
+
+def set_geometry_uv_map_usd_export(rsv_task, rsv_scene_properties):
+    from lxbasic import bsc_core
+
+    import lxusd.fnc.exporters as usd_fnc_exporters
+    #
+    step = rsv_scene_properties.get('step')
+    workspace = rsv_scene_properties.get('workspace')
+    version = rsv_scene_properties.get('version')
+    root = rsv_scene_properties.get('dcc.root')
+    #
+    if workspace == 'work':
+        keyword_0 = 'asset-work-geometry-usd-var-file'
+        keyword_1 = 'asset-work-geometry-uv_map-usd-file'
+    elif workspace == 'publish':
+        keyword_0 = 'asset-geometry-usd-var-file'
+        keyword_1 = 'asset-geometry-uv_map-usd-file'
+    elif workspace == 'output':
+        keyword_0 = 'asset-output-geometry-usd-var-file'
+        keyword_1 = 'asset-output-geometry-uv_map-usd-file'
+    else:
+        raise TypeError()
+    #
+    geometry_usd_hi_file_rsv_unit = rsv_task.get_rsv_unit(
+        keyword=keyword_0
+    )
+    geometry_usd_var_file_path = geometry_usd_hi_file_rsv_unit.get_exists_result(
+        version=version, extend_variants=dict(var='hi')
+    )
+    if geometry_usd_var_file_path:
+        geometry_uv_map_usd_file_rsv_unit = rsv_task.get_rsv_unit(
+            keyword=keyword_1
+        )
+        geometry_uv_map_usd_file_path = geometry_uv_map_usd_file_rsv_unit.get_result(
+            version=version
+        )
+        usd_fnc_exporters.GeometryUvMapExporter(
+            file_path=geometry_uv_map_usd_file_path,
+            root=root,
+            option=dict(
+                file_0=geometry_usd_var_file_path,
+                file_1=geometry_usd_var_file_path,
+                display_color=bsc_core.TextOpt(step).to_rgb(maximum=1.0)
+            )
+        ).set_run()
 
 
 if __name__ == '__main__':
