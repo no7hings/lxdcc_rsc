@@ -1,11 +1,6 @@
 # coding:utf-8
 from lxbasic import bsc_core
 
-bsc_core.EnvironMtd.set_add(
-    'PXR_AR_DEFAULT_SEARCH_PATH',
-    bsc_core.StoragePathMtd.set_map_to_platform('/l/prod')
-)
-
 from lxutil import utl_core
 
 from lxutil_gui import utl_gui_core

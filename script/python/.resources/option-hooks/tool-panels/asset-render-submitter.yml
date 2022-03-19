@@ -1,0 +1,22 @@
+option:
+    type: tool-panel
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: 'movie'
+        #
+        name: 'open render submitter'
+        icon_name: 'application/python'
+#
+hook_option:
+    engine: lynxi
+
+    script:
+        file: ''
+    #
+    rez:
+        extend_packages: ['usd']
+        add_environs:
+            PXR_AR_DEFAULT_SEARCH_PATH: '/l/prod'

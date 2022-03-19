@@ -7,7 +7,7 @@ option:
     gui:
         group_name: 'katana'
         #
-        name: 'Katana Combination Render Scene Create'
+        name: 'General Look Export'
         icon_name: 'application/katana'
 #
 hook_option:
@@ -19,22 +19,15 @@ hook_option:
         #
         file: ''
         #
-        render_file: ''
+        open_file: True
+        save_file: False
+        # collection texture / texture-tx
+        # either "with_texture" or "with_texture_tx"
+        with_texture: False
+        with_texture_tx: False
         #
-        choice_scheme: ''
-        #
-        cameras: []
-        layers: []
-        light_passes: []
-        look_passes: []
-        qualities: []
-        #
-        shot: ''
-        shot_asset: ''
-        #
-        render_asset_frames: []
-        render_shot_frames: []
-        render_output_directory: ''
+        with_look_ass: False
+        with_look_klf: False
     #
     deadline:
         #

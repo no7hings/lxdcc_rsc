@@ -7,7 +7,7 @@ option:
     gui:
         group_name: 'katana'
         #
-        name: 'Katana Combination Render Scene Create'
+        name: 'General Geometry Export'
         icon_name: 'application/katana'
 #
 hook_option:
@@ -19,22 +19,13 @@ hook_option:
         #
         file: ''
         #
-        render_file: ''
-        #
-        choice_scheme: ''
-        #
-        cameras: []
-        layers: []
-        light_passes: []
-        look_passes: []
-        qualities: []
-        #
-        shot: ''
-        shot_asset: ''
-        #
-        render_asset_frames: []
-        render_shot_frames: []
-        render_output_directory: ''
+        open_file: True
+        save_file: False
+        # extra
+        # export geometry usd
+        with_geometry_usd: False
+        # export geometry uv-map usd
+        with_geometry_uv_map_usd: False
     #
     deadline:
         #

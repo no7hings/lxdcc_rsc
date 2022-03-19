@@ -2,8 +2,6 @@
 
 
 def main(session):
-    from lxutil_gui.qt import utl_gui_qt_core
-
     import lxutil_gui.panel.utl_pnl_widgets as utl_pnl_widgets
     file_path = session.rsv_unit.get_result(
         version='latest'
