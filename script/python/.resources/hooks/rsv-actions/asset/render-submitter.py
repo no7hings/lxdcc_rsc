@@ -9,7 +9,8 @@ def main(session):
         version='latest'
     )
     if file_path:
-        w = utl_pnl_widgets.AssetRenderSubmitter(file_path=file_path)
+        hook_option = 'file={}'.format(file_path)
+        w = utl_pnl_widgets.AssetRenderSubmitter(option=hook_option)
         w.set_window_show()
 
 

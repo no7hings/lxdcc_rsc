@@ -43,16 +43,19 @@ hook_option:
 option_hooks:
     # list, item is option-hook-key
     - 'rsv-task-methods/asset/maya/gen-geometry-export': {
+        scheme_includes: ['asset-work-maya', 'asset-work-katana'],
         with_geometry_usd: True,
         with_geometry_uv_map_usd: True
     }
     - 'rsv-task-methods/asset/usd/gen-usd-create': {
+        scheme_includes: ['asset-work-maya', 'asset-work-katana'],
         dependencies: ['rsv-task-methods/asset/maya/gen-geometry-export'],
         with_component_usd: True
     }
     # create scene-file
     - 'rsv-task-methods/asset/katana/combination-render-scene-create': {
-        dependencies: ['rsv-task-methods/asset/maya/gen-geometry-export'],
+        scheme_includes: ['asset-work-maya'],
+        dependencies: ['rsv-task-methods/asset/usd/gen-usd-create', 'rsv-task-methods/asset/maya/gen-geometry-export'],
         inherit_keys: [
             'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
             'shot', 'shot_asset',
@@ -60,11 +63,11 @@ option_hooks:
         ]
     }
     #
-#    - 'rsv-task-methods/asset/katana/combination-render-create': {
-#        dependencies: ['./combination-render-scene-create'],
-#        inherit_keys: [
-#            'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
-#            'shot', 'shot_asset',
-#            'render_file', 'render_output_directory', 'render_asset_frames', 'render_shot_frames'
-#        ]
-#    }
+    - 'rsv-task-methods/asset/katana/combination-render-create': {
+        dependencies: ['./combination-render-scene-create'],
+        inherit_keys: [
+            'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
+            'shot', 'shot_asset',
+            'render_file', 'render_output_directory', 'render_asset_frames', 'render_shot_frames'
+        ]
+    }
