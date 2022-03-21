@@ -8,7 +8,7 @@ def main(session):
     )
     if file_path:
         hook_option = 'file={}'.format(file_path)
-        w = utl_pnl_widgets.AssetRenderSubmitter(option=hook_option)
+        w = utl_pnl_widgets.AssetRenderSubmitter(hook_option=hook_option)
         w.set_window_show()
 
 
