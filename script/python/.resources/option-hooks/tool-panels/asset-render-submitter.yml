@@ -283,7 +283,7 @@ build:
 
             rez_beta:
                 widget: boolean
-                value: False
+                value: True
                 tool_tip: '...'
 
             submit:
