@@ -11,6 +11,10 @@ import lxutil_gui.proxy.widgets as prx_widgets
 
 import lxsession.commands as ssn_commands
 
+# bsc_core.EnvironMtd.set(
+#     'LYNXI_ROOT', '/temp'
+# )
+
 
 class AppKit(prx_widgets.PrxToolWindow):
     def __init__(self, *args, **kwargs):
