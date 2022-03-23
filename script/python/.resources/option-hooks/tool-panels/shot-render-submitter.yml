@@ -1,0 +1,187 @@
+option:
+    type: tool-panel
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: 'movie'
+        #
+        name: 'Shot Render Submitter'
+        icon_name: 'application/python'
+
+        size: [1280, 960]
+#
+hook_option:
+    engine: lynxi
+
+    script:
+        file: ''
+    #
+    rez:
+        extend_packages: ['usd']
+        add_environs:
+            PXR_AR_DEFAULT_SEARCH_PATH: '/l/prod'
+#
+build:
+    variables:
+        character:
+            camera: ['shot']
+            layer: ['master', 'no_hair']
+            light_pass: ['all']
+            look_pass: ['default', 'plastic', 'ambocc', 'wire']
+            quality: ['low', 'med', 'hi', 'custom']
+    #
+    scheme:
+        variables:
+            shot:
+                /: true
+                /camera/shot: true
+                /layer/master: true
+                /light_pass/all: true
+                /look_pass/default: true
+                /quality/custom: true
+    #
+    node:
+        options:
+            choice_scheme:
+                widget: 'string'
+                value: ''
+                tool_tip: '...'
+
+            task:
+                widget: 'string'
+                value: ''
+                tool_tip: '...'
+
+            version:
+                widget: 'rsv-obj'
+                value: [ ]
+                tool_tip: '...'
+
+            refresh:
+                widget: button
+                value: ''
+                tool_tip: '...'
+        #
+        schemes:
+            variables:
+                widget: enumerate
+                value: ['shot-no_hair', 'shot']
+                enable: False
+                tool_tip: '...'
+                scheme_key: 'render-submitter-variables'
+
+            save:
+                widget: button
+                value: ''
+                tool_tip: '...'
+        #
+        usd:
+            file/shot:
+                widget: file
+                value: ''
+                enable: False
+                tool_tip: '...'
+
+            variants/shot_version/animation:
+                widget: enumerate
+                value: [ 'None' ]
+                enable: False
+                tool_tip: '...'
+
+            variants/shot_version_override_enable:
+                widget: boolean
+                value: True
+                enable: False
+                tool_tip: '...'
+
+            variants/shot_version_override/animation:
+                widget: enumerate
+                value: [ 'None' ]
+                enable: False
+                tool_tip: '...'
+        #
+        settings:
+            render/frame_range:
+                widget: float2
+                value: [ 1001, 1240 ]
+                enable: False
+                tool_tip: '...'
+
+            render/frame_step:
+                widget: float
+                value: 1.0
+                enable: False
+                tool_tip: '...'
+
+            render/chunk:
+                widget: integer
+                value: 1
+                enable: False
+                tool_tip: '...'
+
+            render/motion_enable:
+                widget: boolean
+                value: True
+                enable: False
+                tool_tip: '...'
+                join_to_next: True
+
+            render/instance_enable:
+                widget: boolean
+                value: False
+                enable: False
+                tool_tip: '...'
+
+            render/background_enable:
+                widget: boolean
+                value: False
+                enable: False
+                tool_tip: '...'
+                join_to_next: True
+
+            render/bokeh_enable:
+                widget: boolean
+                value: False
+                enable: False
+                tool_tip: '...'
+
+            render/arnold/aa_sample:
+                widget: integer
+                value: 3
+                enable: False
+                tool_tip: '...'
+
+            user/description:
+                widget: script
+                value: ''
+                enable: False
+                tool_tip: '...'
+
+            user/tech_review_enable:
+                widget: boolean
+                value: False
+                enable: False
+                tool_tip: '...'
+                join_to_next: True
+
+            user/publish_enable:
+                widget: boolean
+                value: False
+                enable: False
+                tool_tip: '...'
+
+            rez_beta:
+                widget: boolean
+                value: True
+                enable: False
+                tool_tip: '...'
+
+            submit:
+                widget: button
+                value: ''
+                tool_tip: '...'
+#
+command:
+    'rez-env python pg_tools -- python /l/packages/pg/prod/pg_production_lib/9.9.9/lib/production/set/auto_set/submit_usd_render_job.py --proj="{project}" --shot="{shot}" --step="{step}" --task="{task}" --shading="{shading}" --user="{user}" --frames={render_shot_frames} --stepby={render_shot_frame_step} --motion={render_motion_enable} --instance={render_instance_enable} --bokeh={render_bokeh_enable} --bg={render_background_enable} --chunk={render_chunk} --aa={arnold_aa_sample} --publish={user_publish_enable} --tech_review={user_tech_review_enable} --playlist=0 --description="prerender"'

@@ -27,40 +27,59 @@ build:
     variables:
         character:
             camera: ['full_body', 'upper_body', 'upper_body_35', 'upper_body_50', 'close_up', 'add_0', 'add_1', 'shot']
-            layer: ['master']
+            layer: ['master', 'no_hair']
             light_pass: ['all']
             look_pass: ['default', 'plastic', 'ambocc', 'wire']
             quality: ['low', 'med', 'hi', 'custom']
     #
     scheme:
         variables:
-            asset-default:
-                /: true
-                /camera: true
-                /camera/add_0: false
-                /camera/add_1: false
+            asset:
                 /camera/close_up: true
                 /camera/full_body: true
-                /camera/shot: false
                 /camera/upper_body: true
-                /camera/upper_body_35: false
-                /camera/upper_body_50: false
-                /layer: true
                 /layer/master: true
-                /light_pass: true
                 /light_pass/all: true
-                /look_pass: true
                 /look_pass/ambocc: true
                 /look_pass/default: true
                 /look_pass/plastic: true
                 /look_pass/wire: true
-                /quality: true
                 /quality/custom: true
-                /quality/hi: false
-                /quality/low: false
-                /quality/med: false
+            #
+            model:
+                /camera/close_up: true
+                /camera/full_body: true
+                /layer/master: true
+                /light_pass/all: true
+                /look_pass/ambocc: true
+                /look_pass/default: true
+                /look_pass/plastic: true
+                /look_pass/wire: true
+                /quality/custom: true
+            #
+            surface:
+                /camera/close_up: true
+                /camera/full_body: true
+                /layer/master: true
+                /light_pass/all: true
+                /look_pass/default: true
+                /quality/custom: true
     #
     node:
+        #
+        schemes:
+            variables:
+                widget: enumerate
+                value: ['model', 'surface', 'groom', 'asset']
+                enable: False
+                tool_tip: '...'
+                scheme_key: 'render-submitter-variables'
+
+            save:
+                widget: button
+                value: ''
+                tool_tip: '...'
+        #
         options:
             choice_scheme:
                 widget: 'string'
@@ -83,60 +102,6 @@ build:
                 tool_tip: '...'
 
             refresh:
-                widget: button
-                value: ''
-                tool_tip: '...'
-        #
-        variables:
-            layer:
-                widget: enumerate
-                value: [ 'master' ]
-                enable: False
-                tool_tip: '...'
-
-            quality:
-                widget: enumerate
-                value: [ 'low', 'med', 'hi', 'custom' ]
-                enable: False
-                tool_tip: 'render use low quality.'
-
-            camera:
-                widget: enumerate
-                value: [ 'full_body', 'upper_body', 'upper_body_35', 'upper_body_50', 'close_up', 'add_0', 'add_1', 'asset_free', 'shot', 'shot_free' ]
-                enable: False
-                tool_tip: '...'
-
-            light_pass:
-                widget: enumerate
-                value: [ 'all' ]
-                enable: False
-                tool_tip: '...'
-
-            look_pass:
-                widget: enumerate
-                value: [ 'default', 'plastic', 'ambocc', 'wire' ]
-                enable: False
-                tool_tip: '...'
-
-            refresh:
-                widget: button
-                value: ''
-                tool_tip: '...'
-        #
-        schemes:
-            variables:
-                widget: enumerate
-                value: [ 'asset-default' ]
-                enable: False
-                tool_tip: '...'
-                scheme_key: 'render-submitter-variables'
-
-            reload:
-                widget: button
-                value: ''
-                tool_tip: '...'
-
-            save:
                 widget: button
                 value: ''
                 tool_tip: '...'
@@ -238,7 +203,25 @@ build:
                 enable: False
                 tool_tip: '...'
 
+            variants/shot_version/layout:
+                widget: enumerate
+                value: [ 'None' ]
+                enable: False
+                tool_tip: '...'
+
             variants/shot_version/animation:
+                widget: enumerate
+                value: [ 'None' ]
+                enable: False
+                tool_tip: '...'
+
+            variants/shot_version/simulation:
+                widget: enumerate
+                value: [ 'None' ]
+                enable: False
+                tool_tip: '...'
+
+            variants/shot_version/polish:
                 widget: enumerate
                 value: [ 'None' ]
                 enable: False
@@ -278,6 +261,12 @@ build:
             render/shot/frame_step:
                 widget: float
                 value: 1.0
+                enable: False
+                tool_tip: '...'
+
+            user/description:
+                widget: script
+                value: ''
                 enable: False
                 tool_tip: '...'
 
