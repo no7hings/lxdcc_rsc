@@ -2,12 +2,9 @@
 
 
 def main(session):
-    from lxbasic import bsc_core
+    from lxusd import usd_setup
 
-    bsc_core.EnvironMtd.set_add(
-        'PXR_AR_DEFAULT_SEARCH_PATH',
-        bsc_core.StoragePathMtd.set_map_to_platform('/l/prod')
-    )
+    usd_setup.UsdSetup.set_environs_setup()
 
     from lxutil_gui.qt import utl_gui_qt_core
 
