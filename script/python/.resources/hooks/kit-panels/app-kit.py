@@ -105,6 +105,11 @@ class AppKit(prx_widgets.PrxToolWindow):
 if __name__ == '__main__':
     import sys
     #
+    bsc_core.EnvironMtd.set_add(
+        'PXR_AR_DEFAULT_SEARCH_PATH',
+        bsc_core.StoragePathMtd.set_map_to_platform('/l/prod')
+    )
+    #
     app = utl_gui_qt_core.QtWidgets.QApplication(sys.argv)
     #
     w = AppKit()
