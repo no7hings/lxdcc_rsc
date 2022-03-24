@@ -3,7 +3,6 @@ option:
     # config used system
     systems:
         - '*-maya'
-        - '*-katana'
     #
     gui:
         name: 'Scene Cleaner'

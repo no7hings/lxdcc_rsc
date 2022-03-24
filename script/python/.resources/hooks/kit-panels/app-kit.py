@@ -1,4 +1,6 @@
 # coding:utf-8
+import os
+
 from lxbasic import bsc_core
 
 from lxutil import utl_core
@@ -32,6 +34,19 @@ class AppKit(prx_widgets.PrxToolWindow):
         self.set_loading_start(
             time=1000,
             method=self._set_tools_build_
+        )
+
+        self._tool_menu = self.set_menu_add('Debug(s)')
+        self._tool_menu.set_menu_raw(
+            [
+                ('Show Environ', None, self._set_environ_show_)
+            ]
+        )
+
+    def _set_environ_show_(self):
+        utl_core.DialogWindow.set_create(
+            'Environ',
+            content='\n'.join(['{} = {}'.format(k, v) for k, v in os.environ.items()]),
         )
 
     def _set_panel_build_(self):
