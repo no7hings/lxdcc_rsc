@@ -3,11 +3,7 @@ option:
     type: 'rsv-loader'
     #
     systems:
-        - '*-python'
-        #
-        - '*-maya'
-        - '*-houdini'
-        - '*-katana'
+        - '*-*'
     #
     gui:
         name: 'Shot Loader'
@@ -24,7 +20,7 @@ resolver:
     filter: 'branch=shot&workspace=work'
     #
     application_filter:
-        'python': 'branch=shot&workspace=work'
+        'python': 'branch=shot&workspace=work&step=plt+rlo+flo+ani+cfx+rig+lgt+dmt+efx'
         'maya': 'branch=shot&workspace=work&step=plt+rlo+flo+ani+cfx+rig+lgt+dmt'
         'houdini': 'branch=shot&workspace=work&step=cfx+efx'
         'katana': 'branch=shot&workspace=work'
@@ -59,3 +55,4 @@ actions:
             - 'rsv-actions/review-file-open'
             # directory
             - 'rsv-actions/work-task-directory-open'
+            - 'rsv-actions/task-directory-open'

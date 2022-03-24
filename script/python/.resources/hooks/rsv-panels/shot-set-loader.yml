@@ -3,11 +3,7 @@ option:
     type: 'rsv-loader'
     #
     systems:
-        - '*-python'
-        #
-        - '*-maya'
-        - '*-houdini'
-        - '*-katana'
+        - '*-*'
     #
     gui:
         name: 'Shot-set Loader'
@@ -21,7 +17,7 @@ option:
         - 'lxdcc'
 #
 resolver:
-    filter: 'project=cjd&branch=shot&workspace=publish&step=set'
+    filter: 'branch=shot&workspace=publish&step=set'
     #
     task_unit:
         keywords:

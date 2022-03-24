@@ -1,0 +1,13 @@
+option:
+    type: 'dcc-tool-panel'
+    # config used system
+    systems:
+        - '*-maya'
+        - '*-katana'
+    #
+    gui:
+        name: 'Render Submitter'
+        group_name: 'Render'
+        #
+        icon_name: ''
+        tool_tip: ''

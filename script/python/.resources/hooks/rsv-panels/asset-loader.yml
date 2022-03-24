@@ -3,11 +3,7 @@ option:
     type: 'rsv-loader'
     #
     systems:
-        - '*-python'
-        #
-        - '*-maya'
-        - '*-houdini'
-        - '*-katana'
+        - '*-*'
     #
     gui:
         name: 'Asset Loader'

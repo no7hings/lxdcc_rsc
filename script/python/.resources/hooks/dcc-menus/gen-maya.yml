@@ -1,0 +1,19 @@
+option:
+    type: 'dcc-menu'
+    # config used system
+    systems:
+        - '*-maya'
+    #
+    gui:
+        name: 'Paper Tool(s)'
+        group_name: ''
+        #
+        icon_name: 'window/app-kit'
+        tool_tip: ''
+#
+hooks:
+    - 'rsv-panels/asset-loader': {gui_parent: '/Asset'}
+    - 'rsv-panels/shot-loader': {gui_parent: '/Shot'}
+    - 'dcc-tool-panels/render-submitter': {gui_parent: '/General'}
+    - 'dcc-tool-panels/gen-tool-kit': {gui_parent: '/General'}
+    - 'dcc-tool-panels/maya/scene-cleaner': {gui_parent: '/General'}

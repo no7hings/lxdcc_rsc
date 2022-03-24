@@ -1,0 +1,13 @@
+option:
+    type: 'dcc-tool-panel'
+    # config used system
+    systems:
+        - '*-maya'
+        - '*-katana'
+    #
+    gui:
+        name: 'General Tool-kit'
+        group_name: 'Tool-kit(s)'
+        #
+        icon_name: ''
+        tool_tip: ''

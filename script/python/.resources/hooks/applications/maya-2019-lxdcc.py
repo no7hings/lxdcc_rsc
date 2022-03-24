@@ -5,7 +5,7 @@ def main(session):
     from lxutil import utl_core
     #
     utl_core.SubProcessRunner.set_run_with_result_use_thread(
-        'rez-env lxdcc mtoa maya-2019 maya_usd-0.6.0 aces-1.2 -- maya'
+        'rez-env lxdcc mtoa maya-2019 usd aces-1.2 -- maya'
     )
 
 

@@ -24,6 +24,7 @@ class AppKit(prx_widgets.PrxToolWindow):
         #
         self.set_window_title(utl_gui_configure.get('name'))
         self.set_definition_window_size(utl_gui_configure.get('size'))
+        self.set_window_icon_name(utl_gui_configure.get('icon_name'))
         #
         self._set_panel_build_()
         self.get_log_bar().set_expanded(True)
@@ -112,7 +113,12 @@ if __name__ == '__main__':
     app = utl_gui_qt_core.QtWidgets.QApplication(sys.argv)
     #
     w = AppKit()
+    #
+    tp = utl_gui_qt_core.QtWidgets.QSystemTrayIcon(w.widget)
+    # a = utl_gui_qt_core.QtWidgets.QAction('show', triggered=w.widget.show)
     w.set_window_show()
+    tp.setIcon(w.widget.windowIcon())
+    tp.show()
     #
     shell_start_m = bsc_core.EnvironMtd.get('shell_start_m')
     shell_start_s = bsc_core.EnvironMtd.get('shell_start_s')

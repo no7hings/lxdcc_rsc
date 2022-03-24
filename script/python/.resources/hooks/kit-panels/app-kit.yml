@@ -12,13 +12,17 @@ option:
         name: 'App-kit'
         group_name: ''
         #
-        icon_name: ''
+        icon_name: 'window/app-kit'
         tool_tip: ''
         #
         size: [640, 720]
     #
     packages:
         - 'lxdcc'
+#
+hook_option:
+    rez:
+        extend_packages: ['usd']
 #
 app:
     hooks:

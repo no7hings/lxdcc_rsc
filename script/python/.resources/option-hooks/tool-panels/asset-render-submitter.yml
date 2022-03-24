@@ -57,6 +57,15 @@ build:
                 /look_pass/wire: true
                 /quality/custom: true
             #
+            groom:
+                /camera/close_up: true
+                /camera/full_body: true
+                /layer/master: true
+                /light_pass/all: true
+                /look_pass/ambocc: true
+                /look_pass/default: true
+                /quality/custom: true
+            #
             surface:
                 /camera/close_up: true
                 /camera/full_body: true

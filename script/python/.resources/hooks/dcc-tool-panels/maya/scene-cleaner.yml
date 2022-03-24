@@ -1,0 +1,13 @@
+option:
+    type: 'dcc-tool-panel'
+    # config used system
+    systems:
+        - '*-maya'
+        - '*-katana'
+    #
+    gui:
+        name: 'Scene Cleaner'
+        group_name: 'Tool(s)'
+        #
+        icon_name: ''
+        tool_tip: ''
