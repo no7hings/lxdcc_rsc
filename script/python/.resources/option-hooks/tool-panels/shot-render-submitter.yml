@@ -103,9 +103,15 @@ build:
                 tool_tip: '...'
         #
         settings:
-            render/frame_range:
-                widget: float2
-                value: [ 1001, 1240 ]
+            render/look:
+                widget: enumerate
+                value: ['occ', 'std', 'srf', 'default']
+                enable: False
+                tool_tip: 'occ是occ渲染模型，std是灰模，srf是带材质，default是带毛发带材质'
+
+            render/frames:
+                widget: string
+                value: '0'
                 enable: False
                 tool_tip: '...'
 

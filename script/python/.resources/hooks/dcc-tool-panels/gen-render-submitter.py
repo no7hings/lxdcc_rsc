@@ -38,12 +38,12 @@ def main(session):
                 else:
                     content = u'step "{}" is not supported'.format(branch)
             elif branch == 'shot':
-                if step in ['ani']:
+                if step in ['rlo', 'ani', 'flo']:
                     hook_option = 'file={}'.format(any_scene_scr_file_path)
                     w = utl_pnl_widgets.ShotRenderSubmitter(hook_option=hook_option)
                     w.set_window_show()
                 else:
-                    content = u'step "{}" is not supported'.format(branch)
+                    content = u'step "{}" is not supported'.format(step)
             else:
                 content = u'branch "{}" is not supported'.format(branch)
         else:

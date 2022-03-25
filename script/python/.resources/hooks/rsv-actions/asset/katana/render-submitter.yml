@@ -1,0 +1,33 @@
+option:
+    type: unit
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: 'render'
+        #
+        name: 'Submitter Render use Work Scene-src'
+        icon_name: 'window/render'
+#
+variants:
+    project: ''
+    branch: ''
+    #
+    role: ''
+    asset: ''
+    #
+    sequence: ''
+    shot: ''
+    #
+    step: ''
+    task: ''
+    #
+    application: ''
+#
+resolver:
+    rsv_unit:
+        keyword: '{branch}-work-katana-scene-src-file'
+        version: latest
+
+    step_includes: ['srf']

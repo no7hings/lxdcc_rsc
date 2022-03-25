@@ -63,7 +63,8 @@ actions:
             # review
             - 'rsv-actions/review-file-open'
             # render
-            - 'rsv-actions/asset/render-submitter'
+            - 'rsv-actions/asset/maya/render-submitter'
+            - 'rsv-actions/asset/katana/render-submitter'
             # directory
             - 'rsv-actions/work-task-directory-open'
             - 'rsv-actions/task-directory-open'
