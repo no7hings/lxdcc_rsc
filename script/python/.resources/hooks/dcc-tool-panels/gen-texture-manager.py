@@ -9,7 +9,7 @@ def main(session):
     application = session.application
     if application == 'maya':
         import lxmaya_gui.panel.pnl_widgets as mya_pnl_widgets; mya_pnl_widgets.SceneTextureManagerPanel().set_window_show()
-    if application == 'katana':
+    elif application == 'katana':
         import lxkatana_gui.panel.pnl_widgets as ktn_pnl_widgets; ktn_pnl_widgets.SceneTextureManagerPanel().set_window_show()
     else:
         content = u'application "{}" is not supported'.format(application)
