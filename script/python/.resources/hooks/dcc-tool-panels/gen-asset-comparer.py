@@ -13,12 +13,6 @@ def main(session):
     if application == 'maya':
         import lxmaya.dcc.dcc_objects as mya_dcc_objects
         any_scene_scr_file_path = mya_dcc_objects.Scene.get_current_file_path()
-    elif application == 'katana':
-        import lxkatana.dcc.dcc_objects as ktn_dcc_objects
-        any_scene_scr_file_path = ktn_dcc_objects.Scene.get_current_file_path()
-    elif application == 'houdini':
-        import lxhoudini.dcc.dcc_objects as hou_dcc_objects
-        any_scene_scr_file_path = hou_dcc_objects.Scene.get_current_file_path()
     else:
         content = u'application "{}" is not supported'.format(application)
     #
@@ -28,22 +22,9 @@ def main(session):
         if rsv_scene_properties:
             branch = rsv_scene_properties.get('branch')
             step = rsv_scene_properties.get('step')
-            #
-            import lxutil_gui.panel.utl_pnl_widgets as utl_pnl_widgets
             if branch == 'asset':
-                if step in ['mod', 'grm']:
-                    hook_option = 'file={}'.format(any_scene_scr_file_path)
-                    w = utl_pnl_widgets.AssetRenderSubmitter(hook_option=hook_option)
-                    w.set_window_show()
-                else:
-                    content = u'step "{}" is not supported'.format(branch)
-            elif branch == 'shot':
-                if step in ['ani']:
-                    hook_option = 'file={}'.format(any_scene_scr_file_path)
-                    w = utl_pnl_widgets.ShotRenderSubmitter(hook_option=hook_option)
-                    w.set_window_show()
-                else:
-                    content = u'step "{}" is not supported'.format(branch)
+                if application == 'maya':
+                    from lxmaya_gui.panel import pnl_widgets; pnl_widgets.AssetComparerPanel().set_window_show()
             else:
                 content = u'branch "{}" is not supported'.format(branch)
         else:

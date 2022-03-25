@@ -6,7 +6,7 @@ option:
     #
     gui:
         name: 'Scene Cleaner'
-        group_name: 'Tool(s)'
+        group_name: 'Scene(s)'
         #
-        icon_name: ''
+        icon_name: 'window/cleaner'
         tool_tip: ''

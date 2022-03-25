@@ -28,29 +28,16 @@ def main(session):
         if rsv_scene_properties:
             branch = rsv_scene_properties.get('branch')
             step = rsv_scene_properties.get('step')
-            #
-            import lxutil_gui.panel.utl_pnl_widgets as utl_pnl_widgets
             if branch == 'asset':
-                if step in ['mod', 'grm']:
-                    hook_option = 'file={}'.format(any_scene_scr_file_path)
-                    w = utl_pnl_widgets.AssetRenderSubmitter(hook_option=hook_option)
-                    w.set_window_show()
-                else:
-                    content = u'step "{}" is not supported'.format(branch)
-            elif branch == 'shot':
-                if step in ['ani']:
-                    hook_option = 'file={}'.format(any_scene_scr_file_path)
-                    w = utl_pnl_widgets.ShotRenderSubmitter(hook_option=hook_option)
-                    w.set_window_show()
-                else:
-                    content = u'step "{}" is not supported'.format(branch)
-            else:
-                content = u'branch "{}" is not supported'.format(branch)
+                if application == 'maya':
+                    from lxmaya_gui.panel import pnl_widgets; pnl_widgets.SceneMethodRunnerPanel().set_window_show()
+                elif application == 'katana':
+                    from lxkatana_gui.panel import pnl_widgets; pnl_widgets.SceneMethodRunnerPanel().set_window_show()
         else:
             content = u'task file "{}" is not available'.format(any_scene_scr_file_path)
     else:
         content = u'please open a task file.'
-
+    #
     if content is not None:
         utl_core.DialogWindow.set_create(
             session.gui_name,

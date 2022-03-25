@@ -6,8 +6,8 @@ option:
         - '*-katana'
     #
     gui:
-        name: 'Tool-kit'
-        group_name: 'Tool-kit(s)'
+        name: 'Texture Manager'
+        group_name: 'Texture(s)'
         #
-        icon_name: 'window/tool-kit'
+        icon_name: 'window/texture'
         tool_tip: ''

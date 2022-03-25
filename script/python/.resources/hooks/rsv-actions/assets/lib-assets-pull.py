@@ -162,7 +162,7 @@ def main(session):
     else:
         utl_core.DialogWindow.set_create(
             window_title,
-            content='project "{}" is not support...'.format(project_src),
+            content='project "{}" is not supported...'.format(project_src),
             status=bsc_configure.GuiStatus.Error
         )
 

@@ -6,8 +6,8 @@ option:
         - '*-katana'
     #
     gui:
-        name: 'Tool-kit'
-        group_name: 'Tool-kit(s)'
+        name: 'Asset Comparer'
+        group_name: 'Comparer(s)'
         #
-        icon_name: 'window/tool-kit'
+        icon_name: 'window/render'
         tool_tip: ''

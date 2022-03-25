@@ -6,8 +6,8 @@ option:
         - '*-katana'
     #
     gui:
-        name: 'Tool-kit'
-        group_name: 'Tool-kit(s)'
+        name: 'Method Runner'
+        group_name: 'Debugger(s)'
         #
-        icon_name: 'window/tool-kit'
+        icon_name: 'window/method-runner'
         tool_tip: ''

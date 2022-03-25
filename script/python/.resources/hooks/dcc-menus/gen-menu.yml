@@ -1,0 +1,31 @@
+option:
+    type: 'dcc-menu'
+    # config used system
+    systems:
+        - '*-maya'
+    #
+    gui:
+        name: 'Paper Tool(s)'
+        group_name: ''
+        #
+        icon_name: ''
+        tool_tip: ''
+#
+hooks:
+    #
+    - 'dcc-tool-panels/gen-asset-comparer': {gui_parent: '/Asset', gui_icon_name: 'window/geometry-comparer'}
+    - 'rsv-panels/asset-loader': {gui_parent: '/Asset', gui_icon_name: 'window/loader'}
+    - 'rsv-panels/asset-proxy-loader': {gui_parent: '/Asset', gui_icon_name: 'window/loader'}
+    #
+    - 'rsv-panels/shot-loader': {gui_parent: '/Shot', gui_icon_name: 'window/loader'}
+    - 'rsv-panels/shot-camera-loader': {gui_parent: '/Shot', gui_icon_name: 'window/camera'}
+    #
+    - 'dcc-tool-panels/gen-tool-kit': {gui_parent: '/General'}
+    - 'dcc-tool-panels/maya/scene-cleaner': {gui_parent: '/General'}
+    - 'dcc-tool-panels/gen-texture-manager': {gui_parent: '/General'}
+    - 'dcc-tool-panels/gen-render-submitter': {gui_parent: '/General'}
+    # LIB
+    - 'rsv-panels/lib-asset-loader': {gui_parent: '/LIB', gui_icon_name: 'window/loader'}
+    - 'rsv-panels/lib-asset-look-loader': {gui_parent: '/LIB', gui_icon_name: 'window/loader'}
+    # TD
+    - 'dcc-tool-panels/gen-method-runner': {gui_parent: '/TD'}

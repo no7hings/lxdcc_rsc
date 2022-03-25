@@ -123,17 +123,17 @@ if __name__ == '__main__':
     #
     from lxusd import usd_setup
 
+    from lxutil_gui.qt import utl_gui_qt_core
+
     usd_setup.UsdSetup.set_environs_setup()
     #
-    app = utl_gui_qt_core.QtWidgets.QApplication(sys.argv)
-    #
-    w = AppKit()
-    #
-    tp = utl_gui_qt_core.QtWidgets.QSystemTrayIcon(w.widget)
+    # tp = utl_gui_qt_core.QtWidgets.QSystemTrayIcon(w.widget)
     # a = utl_gui_qt_core.QtWidgets.QAction('show', triggered=w.widget.show)
-    w.set_window_show()
-    tp.setIcon(w.widget.windowIcon())
-    tp.show()
+    utl_gui_qt_core.set_window_show_standalone(
+        AppKit
+    )
+    # tp.setIcon(w.widget.windowIcon())
+    # tp.show()
     #
     shell_start_m = bsc_core.EnvironMtd.get('shell_start_m')
     shell_start_s = bsc_core.EnvironMtd.get('shell_start_s')

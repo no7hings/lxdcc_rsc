@@ -1,0 +1,12 @@
+option:
+    type: 'dcc-menu'
+    # config used system
+    systems:
+        - '*-maya'
+    #
+    gui:
+        name: 'Reload Menu'
+        group_name: ''
+        #
+        icon_name: ''
+        tool_tip: ''
