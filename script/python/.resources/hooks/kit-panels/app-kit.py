@@ -7,24 +7,23 @@ from lxutil import utl_core
 
 from lxutil_gui import utl_gui_core
 
-from lxutil_gui.qt import utl_gui_qt_core
-
 import lxutil_gui.proxy.widgets as prx_widgets
 
 import lxsession.commands as ssn_commands
 
-# bsc_core.EnvironMtd.set(
-#     'LYNXI_ROOT', '/temp'
-# )
-
 
 class AppKit(prx_widgets.PrxToolWindow):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, session, *args, **kwargs):
         super(AppKit, self).__init__(*args, **kwargs)
         # noinspection PyUnresolvedReferences
         utl_gui_configure = session.utl_gui_configure
         #
         self.set_window_title(utl_gui_configure.get('name'))
+        print session.get_rez_beta()
+        if session.get_rez_beta():
+            self.set_window_title(
+                '[BETA] {}'.format(utl_gui_configure.get('name'))
+            )
         self.set_definition_window_size(utl_gui_configure.get('size'))
         self.set_window_icon_name(utl_gui_configure.get('icon_name'))
         #
@@ -67,7 +66,6 @@ class AppKit(prx_widgets.PrxToolWindow):
         #
         self.get_log_bar().set_expanded(True)
         #
-        self.set_window_title('App-kit')
         for i_key in app_hook_keys:
             i_hook_args = ssn_commands.get_hook_args(
                 i_key
@@ -118,9 +116,7 @@ class AppKit(prx_widgets.PrxToolWindow):
                     )
 
 
-if __name__ == '__main__':
-    import sys
-    #
+def main(session):
     from lxusd import usd_setup
 
     from lxutil_gui.qt import utl_gui_qt_core
@@ -130,7 +126,7 @@ if __name__ == '__main__':
     # tp = utl_gui_qt_core.QtWidgets.QSystemTrayIcon(w.widget)
     # a = utl_gui_qt_core.QtWidgets.QAction('show', triggered=w.widget.show)
     utl_gui_qt_core.set_window_show_standalone(
-        AppKit
+        AppKit, session=session
     )
     # tp.setIcon(w.widget.windowIcon())
     # tp.show()
@@ -144,11 +140,14 @@ if __name__ == '__main__':
         utl_core.Log.set_module_result_trace(
             'window show',
             'cost: {}s'.format(
-                (end_m-int(shell_start_m))*60 + (end_s-int(shell_start_s))
+                (end_m - int(shell_start_m)) * 60 + (end_s - int(shell_start_s))
             )
         )
     #
     hook_start_m = bsc_core.EnvironMtd.get('hook_start_m')
     hook_start_s = bsc_core.EnvironMtd.get('hook_start_s')
-    #
-    sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    main(session)

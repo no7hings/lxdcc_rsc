@@ -53,6 +53,8 @@ actions:
             - 'rsv-actions/usd/set-file-open'
             # review
             - 'rsv-actions/review-file-open'
+            # render
+            - 'rsv-actions/shot/maya/render-submitter'
             # directory
             - 'rsv-actions/work-task-directory-open'
             - 'rsv-actions/task-directory-open'
