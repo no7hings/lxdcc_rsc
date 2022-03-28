@@ -1,21 +1,17 @@
 option:
     #
-    type: 'rsv-loader'
+    type: 'rsv-loader-test'
     #
     systems:
-        - '*-python'
-        #
-        - '*-maya'
-        - '*-houdini'
-        - '*-katana'
+        - '*-*'
     #
     gui:
-        name: 'Test Loader'
+        name: 'Asset Loader'
         group_name: 'Loader(s)'
         icon_name: ''
         #
         size: [1280, 960]
-        item_frame_size: [200, 128]
+        item_frame_size: [172, 172]
     #
     packages:
         - 'lxdcc'
@@ -23,14 +19,52 @@ option:
 resolver:
     filter: 'branch=asset&workspace=work'
     #
+    application_filter:
+        'python': 'branch=asset&workspace=work'
+        'maya': 'branch=asset&workspace=work&step=mod+srf+rig+grm+cam'
+        'houdini': 'branch=asset&workspace=work&step=mod+srf'
+        'katana': 'branch=asset&workspace=work&step=mod+srf'
+    #
     task_unit:
         keywords:
-            - '{branch}-work-maya-scene-src-file'
-            - '{branch}-work-houdini-scene-src-file'
-            - '{branch}-work-katana-scene-src-file'
-            - '{branch}-work-nuke-scene-src-file'
+            - '{branch}-work-maya-scene-src-file': {systems: ['*-python', '*-maya']}
+            - '{branch}-work-houdini-scene-src-file': {systems: ['*-python', '*-houdini']}
+            - '{branch}-work-katana-scene-src-file': {systems: ['*-python', '*-katana']}
+            - '{branch}-work-nuke-scene-src-file': {systems: ['*-python', '*-nuke']}
 #
 actions:
+    asset:
+        hooks:
+            - 'rsv-actions/asset/maya/scene-build'
+    task:
+        hooks:
+            # standalone
+            - 'rsv-actions/work-maya-file-new'
+            - 'rsv-actions/work-user-maya-file-new'
+            # in dcc
+            - 'rsv-actions/maya/work-file-new'
+            - 'rsv-actions/houdini/work-file-new'
+            - 'rsv-actions/katana/work-file-new'
+            - 'rsv-actions/katana/work-surface-file-new'
+            #
+            - 'rsv-actions/review-file-upload'
+    #
     task_unit:
         hooks:
+            # scene
+            - 'rsv-actions/maya-work-file-open'
+            - 'rsv-actions/katana-work-file-open'
+            # scene
+            - 'rsv-actions/maya/work-file-open'
+            - 'rsv-actions/houdini/work-file-open'
+            - 'rsv-actions/katana/work-file-open'
+            # usd
+            - 'rsv-actions/usd/component-file-open'
+            # review
             - 'rsv-actions/review-file-open'
+            # render
+            - 'rsv-actions/asset/maya/render-submitter'
+            - 'rsv-actions/asset/katana/render-submitter'
+            # directory
+            - 'rsv-actions/work-task-directory-open'
+            - 'rsv-actions/task-directory-open'

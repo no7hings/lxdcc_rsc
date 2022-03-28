@@ -16,16 +16,15 @@ class AppKit(prx_widgets.PrxToolWindow):
     def __init__(self, session, *args, **kwargs):
         super(AppKit, self).__init__(*args, **kwargs)
         # noinspection PyUnresolvedReferences
-        utl_gui_configure = session.utl_gui_configure
+        self._utl_gui_configure = session.utl_gui_configure
         #
-        self.set_window_title(utl_gui_configure.get('name'))
-        print session.get_rez_beta()
+        self.set_window_title(self._utl_gui_configure.get('name'))
         if session.get_rez_beta():
             self.set_window_title(
-                '[BETA] {}'.format(utl_gui_configure.get('name'))
+                '[BETA] {}'.format(self._utl_gui_configure.get('name'))
             )
-        self.set_definition_window_size(utl_gui_configure.get('size'))
-        self.set_window_icon_name(utl_gui_configure.get('icon_name'))
+        self.set_definition_window_size(self._utl_gui_configure.get('size'))
+        self.set_window_icon_name(self._utl_gui_configure.get('icon_name'))
         #
         self._set_panel_build_()
         self.get_log_bar().set_expanded(True)
@@ -64,6 +63,9 @@ class AppKit(prx_widgets.PrxToolWindow):
         self._group_dict = {}
         self._list_view_dict = {}
         #
+        item_frame_size = self._utl_gui_configure.get('item_frame_size')
+        item_name_frame_size = self._utl_gui_configure.get('item_name_frame_size')
+        #
         self.get_log_bar().set_expanded(True)
         #
         for i_key in app_hook_keys:
@@ -88,9 +90,9 @@ class AppKit(prx_widgets.PrxToolWindow):
                         i_list_view = prx_widgets.PrxListView()
                         i_group.set_widget_add(i_list_view)
                         #
-                        i_list_view.set_item_frame_size(64, 128)
+                        i_list_view.set_item_frame_size(*item_frame_size)
+                        i_list_view.set_item_name_frame_size(*item_name_frame_size)
                         #
-                        i_list_view.set_item_name_frame_size(64, 64)
                         self._list_view_dict[i_group_name] = i_list_view
                     #
                     i_list_item = i_list_view.set_item_add()

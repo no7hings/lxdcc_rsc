@@ -10,7 +10,7 @@ option:
         - '*-katana'
     #
     gui:
-        name: 'asset-set Loader'
+        name: 'Asset-set Loader'
         group_name: 'Loader(s)'
         icon_name: ''
         #

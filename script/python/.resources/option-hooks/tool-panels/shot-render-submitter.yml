@@ -11,6 +11,7 @@ option:
         icon_name: 'application/python'
 
         size: [1280, 960]
+        item_frame_size: [128, 192]
 #
 hook_option:
     engine: lynxi
