@@ -13,6 +13,9 @@ def main(session):
     if application == 'maya':
         import lxmaya.dcc.dcc_objects as mya_dcc_objects
         any_scene_scr_file_path = mya_dcc_objects.Scene.get_current_file_path()
+    elif application == 'katana':
+        import lxkatana.dcc.dcc_objects as ktn_dcc_objects
+        any_scene_scr_file_path = ktn_dcc_objects.Scene.get_current_file_path()
     else:
         content = u'application "{}" is not supported'.format(application)
     #
@@ -24,7 +27,9 @@ def main(session):
             step = rsv_scene_properties.get('step')
             if branch == 'asset':
                 if application == 'maya':
-                    from lxmaya_gui.panel import pnl_widgets; pnl_widgets.AssetComparerPanel().set_window_show()
+                    import lxmaya_gui.panel.pnl_widgets as mya_pnl_widgets; mya_pnl_widgets.AssetComparerPanel().set_window_show()
+                elif application == 'katana':
+                    import lxkatana_gui.panel.pnl_widgets as ktn_pnl_widgets; ktn_pnl_widgets.AssetComparerPanel().set_window_show()
             else:
                 content = u'branch "{}" is not supported'.format(branch)
         else:

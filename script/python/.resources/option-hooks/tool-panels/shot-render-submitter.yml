@@ -30,7 +30,7 @@ build:
             camera: ['shot']
             layer: ['master', 'no_hair']
             light_pass: ['all']
-            look_pass: ['default', 'plastic', 'ambocc', 'wire']
+            look_pass: ['default', 'plastic', 'ambocc', 'wire', 'white']
             quality: ['low', 'med', 'hi', 'custom']
     #
     scheme:

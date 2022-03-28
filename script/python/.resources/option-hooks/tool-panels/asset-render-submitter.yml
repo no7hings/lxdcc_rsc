@@ -30,7 +30,7 @@ build:
             camera: ['full_body', 'upper_body', 'upper_body_35', 'upper_body_50', 'close_up', 'add_0', 'add_1', 'shot']
             layer: ['master', 'no_hair']
             light_pass: ['all']
-            look_pass: ['default', 'plastic', 'ambocc', 'wire']
+            look_pass: ['default', 'plastic', 'ambocc', 'wire', 'white']
             quality: ['low', 'med', 'hi', 'custom']
     #
     scheme:
@@ -54,8 +54,8 @@ build:
                 /light_pass/all: true
                 /look_pass/ambocc: true
                 /look_pass/default: true
-                /look_pass/plastic: true
                 /look_pass/wire: true
+                /look_pass/white: true
                 /quality/custom: true
             #
             groom:
