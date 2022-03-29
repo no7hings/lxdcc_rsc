@@ -274,6 +274,12 @@ build:
                 enable: False
                 tool_tip: '...'
 
+            render/arnold/aa:
+                widget: integer
+                value: 8
+                enable: False
+                tool_tip: '...'
+
             user/description:
                 widget: script
                 value: ''
