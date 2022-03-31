@@ -7,7 +7,7 @@ option:
     gui:
         group_name: 'render'
         #
-        name: 'Combination Render Submit'
+        name: 'General Combination Render Submit'
         icon_name: 'application/python'
 #
 hook_option:
@@ -15,7 +15,7 @@ hook_option:
     #
     script:
         # scheme
-        choice_scheme: 'asset-maya-output'
+        choice_scheme: 'asset-model-maya-output'
         # scene file-path
         batch_file: ''
         #
@@ -44,38 +44,56 @@ hook_option:
 #
 option_hooks:
     # list, item is option-hook-key
-    # branch maya
-    - 'rsv-task-methods/asset/maya/gen-geometry-export': {
-        choice_scheme_includes: ['asset-maya-output'],
-        with_geometry_usd: True,
-        with_geometry_uv_map_usd: True
+    # maya scene export
+    - 'rsv-task-methods/asset/maya/gen-scene-export': {
+        choice_scheme_includes: ['asset-*-maya-output'],
+        dependencies: ['../shotgun/shotgun-create'],
+        with_texture_tx: True,
+        with_scene: True,
     }
-    # branch katana
-    - 'rsv-task-methods/asset/katana/gen-geometry-export': {
-        choice_scheme_includes: ['asset-katana-output'],
+    # maya geometry export
+    - 'rsv-task-methods/asset/maya/gen-geometry-export': {
+        choice_scheme_includes: ['asset-*-maya-output'],
         with_geometry_usd: True,
-        with_geometry_uv_map_usd: True
+        with_geometry_uv_map_usd: True,
+    }
+    # katana geometry export
+    - 'rsv-task-methods/asset/katana/gen-geometry-export': {
+        choice_scheme_includes: ['asset-surface-katana-output'],
+        with_geometry_usd: True,
+        with_geometry_uv_map_usd: True,
+    }
+    # maya hair export
+    - 'rsv-task-methods/asset/maya/gen-hair-export': {
+        choice_scheme_includes: ['asset-groom-maya-output'],
+        dependencies: ['../shotgun/shotgun-create', '../maya/gen-scene-export'],
+        with_hair_xgen: True,
+        with_hair_xgen_usd: True,
     }
     #
     - 'rsv-task-methods/asset/katana/gen-look-export': {
-        choice_scheme_includes: ['asset-katana-output'],
+        choice_scheme_includes: ['asset-surface-katana-output'],
         with_texture_tx: True,
         with_look_ass: True,
-        with_look_klf: True
+        with_look_klf: True,
     }
     # branch general
     - 'rsv-task-methods/asset/usd/gen-usd-create': {
-        choice_scheme_includes: ['asset-maya-output', 'asset-katana-output'],
+        choice_scheme_includes: ['asset-*-maya-output', 'asset-*-katana-output'],
         dependencies: [
-            'rsv-task-methods/asset/maya/gen-geometry-export',
-            'rsv-task-methods/asset/katana/gen-geometry-export',
-            'rsv-task-methods/asset/katana/gen-look-export',
+            # maya
+            '../maya/gen-scene-export',
+            '../maya/gen-geometry-export',
+            '../maya/gen-hair-export',
+            #
+            '../katana/gen-geometry-export',
+            '../katana/gen-look-export',
         ],
         with_component_usd: True
     }
     # create scene-file
     - 'rsv-task-methods/asset/katana/combination-render-scene-create': {
-        dependencies: ['rsv-task-methods/asset/usd/gen-usd-create'],
+        dependencies: ['../usd/gen-usd-create'],
         inherit_keys: [
             'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
             'shot', 'shot_asset',

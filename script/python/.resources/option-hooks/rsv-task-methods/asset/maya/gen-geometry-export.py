@@ -29,7 +29,7 @@ def main(session):
                 if with_geometry_uv_map_usd is True:
                     set_geometry_uv_map_usd_export(rsv_task, rsv_scene_properties)
             else:
-                raise RuntimeError
+                raise RuntimeError()
         else:
             raise RuntimeError()
     else:

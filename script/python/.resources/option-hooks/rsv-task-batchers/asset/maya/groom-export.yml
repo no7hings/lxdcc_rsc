@@ -34,6 +34,6 @@ option_hooks:
     #
     - 'rsv-task-methods/asset/maya/scene-export': {dependencies: ['../shotgun/shotgun-create'], create_review_link: True}
     - 'rsv-task-methods/asset/maya/geometry-export': {dependencies: ['../shotgun/shotgun-create']}
-    - 'rsv-task-methods/asset/maya/xgen-export': {dependencies: ['../shotgun/shotgun-create', '../scene-export']}
+    - 'rsv-task-methods/asset/maya/xgen-export': {dependencies: ['../shotgun/shotgun-create', '../maya/scene-export']}
     #
     - 'rsv-task-methods/asset/maya/camera-create': {dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create']}

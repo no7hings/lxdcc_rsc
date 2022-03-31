@@ -1,0 +1,89 @@
+option:
+    type: rsv-task-batcher
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: 'maya'
+        #
+        name: 'General Surface Export'
+        icon_name: 'application/maya'
+#
+hook_option:
+    engine: python
+    #
+    script:
+        # scheme
+        choice_scheme: 'asset-maya-publish'
+        version_scheme: 'new'
+        # scene file-path
+        batch_file: ''
+        #
+        file: ''
+    #
+    deadline:
+        #
+        group: subprogress
+        #
+        pool: subprogress
+    #
+    rez:
+        extend_packages: []
+#
+option_hooks:
+    # create shot gun task fist
+    - 'rsv-task-methods/asset/shotgun/shotgun-create': {
+        choice_scheme_includes: ['asset-maya-publish', 'asset-katana-publish'],
+    }
+    # maya scene export
+    - 'rsv-task-methods/asset/maya/gen-scene-export': {
+        choice_scheme_includes: ['asset-maya-publish', 'asset-maya-output'],
+        dependencies: ['../shotgun/shotgun-create'],
+        with_texture_tx: True,
+        with_scene: True,
+        #
+        with_snapshot_preview: True,
+        create_review_link: True,
+    }
+    # maya geometry export
+    - 'rsv-task-methods/asset/maya/gen-geometry-export': {
+        choice_scheme_includes: ['asset-maya-publish', 'asset-maya-output'],
+        dependencies: ['../shotgun/shotgun-create'],
+        with_geometry_usd: True,
+        with_geometry_uv_map_usd: True,
+    }
+    # katana geometry export
+    - 'rsv-task-methods/asset/katana/gen-geometry-export': {
+        choice_scheme_includes: ['asset-katana-publish', 'asset-katana-output'],
+        dependencies: ['../shotgun/shotgun-create'],
+        with_geometry_usd: True,
+        with_geometry_uv_map_usd: True
+    }
+    # katana look export
+    - 'rsv-task-methods/asset/katana/gen-look-export': {
+        choice_scheme_includes: ['asset-katana-publish', 'asset-katana-output'],
+        dependencies: ['../shotgun/shotgun-create'],
+        with_texture_tx: True,
+        with_look_ass: True,
+        with_look_klf: True
+    }
+    # usd create
+    - 'rsv-task-methods/asset/usd/gen-usd-create': {
+        choice_scheme_includes: ['asset-maya-publish', 'asset-maya-output'],
+        dependencies: [
+            '../shotgun/shotgun-create',
+            # maya
+            '../maya/gen-geometry-export',
+            '../maya/look-export',
+            # katana
+            '../katana/gen-geometry-export',
+            '../katana/gen-look-export',
+        ],
+        with_component_usd: True,
+    }
+    # shotgun
+    - 'rsv-task-methods/asset/shotgun/shotgun-export': {
+        choice_scheme_includes: ['asset-maya-publish', 'asset-katana-publish'],
+        dependencies: ['../shotgun/shotgun-create', '../maya/gen-scene-export', '../maya/gen-geometry-export', '../usd/gen-usd-create'],
+    }

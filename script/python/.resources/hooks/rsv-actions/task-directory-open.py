@@ -1,9 +1,15 @@
 # coding:utf-8
-import lxutil.dcc.dcc_objects as utl_dcc_objects
-#
-dir_path = session.rsv_unit.get_result(
-    version='latest'
-)
-#
-if dir_path:
-    utl_dcc_objects.OsDirectory_(dir_path).set_open()
+
+def main(session):
+    from lxbasic import bsc_core
+    #
+    directory_path = session.rsv_unit.get_result(
+        version='latest'
+    )
+    if directory_path:
+        bsc_core.StoragePathOpt(directory_path).set_open_in_system()
+
+
+if __name__ == '__main__':
+    # noinspection PyUnresolvedReferences
+    main(session)

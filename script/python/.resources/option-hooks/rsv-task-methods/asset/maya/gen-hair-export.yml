@@ -7,7 +7,7 @@ option:
     gui:
         group_name: maya
         #
-        name: 'Xgen Export'
+        name: 'General Hair Export'
         icon_name: 'application/maya'
 #
 hook_option:
@@ -22,7 +22,9 @@ hook_option:
         open_file: True
         save_file: False
         #
-        with_hair_xgen: True
+        with_hair_xgen: False
+        #
+        with_hair_xgen_usd: False
     #
     deadline:
         #

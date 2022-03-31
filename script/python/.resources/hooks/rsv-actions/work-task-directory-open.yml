@@ -2,10 +2,7 @@ option:
     type: unit
     #
     systems:
-        - '*-python'
-        - '*-maya'
-        - '*-houdini'
-        - '*-katana'
+        - '*-*'
     #
     gui:
         group_name: directory
@@ -32,4 +29,3 @@ resolver:
     rsv_unit:
         keyword: '{branch}-work-task-dir'
         version: latest
-

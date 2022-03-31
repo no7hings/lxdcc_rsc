@@ -58,6 +58,7 @@ def set_component_usd_create(rsv_task, rsv_scene_properties):
         mod='usda/set/model',
         srf='usda/set/surface',
         rig='usda/set/rig',
+        grm='usda/set/groom',
     )
     if step in key_map_dict:
         key = key_map_dict[step]
@@ -79,10 +80,11 @@ def set_component_usd_create(rsv_task, rsv_scene_properties):
             i_usda_file_path = '{}/{}'.format(
                 set_usd_directory_path, v
             )
-            #
-            utl_dcc_objects.OsFile(i_usda_file_path).set_write(
-                i_raw
-            )
+            i_file = utl_dcc_objects.OsFile(i_usda_file_path)
+            if i_file.get_is_exists() is False:
+                utl_dcc_objects.OsFile(i_usda_file_path).set_write(
+                    i_raw
+                )
         #
         if workspace in ['publish']:
             # noinspection PyUnresolvedReferences

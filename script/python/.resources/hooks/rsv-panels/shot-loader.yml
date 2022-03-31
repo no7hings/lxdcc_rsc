@@ -58,3 +58,4 @@ actions:
             # directory
             - 'rsv-actions/work-task-directory-open'
             - 'rsv-actions/task-directory-open'
+            - 'rsv-actions/output-task-directory-open'

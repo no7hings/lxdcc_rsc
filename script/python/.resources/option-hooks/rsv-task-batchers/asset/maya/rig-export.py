@@ -19,8 +19,8 @@ def main(session):
     if file_.get_is_exists() is False:
         raise IOError(
             utl_core.Log.set_module_error_trace(
-                'rsv-task-batcher run',
-                'file="{}" is non-exists.'.format(file_path)
+                'option-hook execute',
+                u'file="{}" is non-exists.'.format(file_path)
             )
         )
 

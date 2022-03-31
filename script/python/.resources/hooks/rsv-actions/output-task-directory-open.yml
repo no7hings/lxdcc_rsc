@@ -7,7 +7,7 @@ option:
     gui:
         group_name: directory
         #
-        name: 'Open Task Publish Directory'
+        name: 'Open Task Output Directory'
         icon_name: 'file/folder'
 #
 variants:
@@ -27,6 +27,5 @@ variants:
 #
 resolver:
     rsv_unit:
-        keyword: '{branch}-version-dir'
+        keyword: '{branch}-output-task-dir'
         version: latest
-
