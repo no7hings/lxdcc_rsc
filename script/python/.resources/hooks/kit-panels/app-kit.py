@@ -101,7 +101,7 @@ class AppKit(prx_widgets.PrxToolWindow):
                     i_tool_tip = i_gui_configure.get('tool_tip')
                     i_list_item.set_name(i_name)
                     if i_icon_name:
-                        i_list_item.set_image_by_file(utl_gui_core.Icons.get(i_icon_name))
+                        i_list_item.set_image_by_file(utl_gui_core.RscIconFile.get(i_icon_name))
                     else:
                         i_list_item.set_image_by_name(i_name)
                     #

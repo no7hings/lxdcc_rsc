@@ -11,7 +11,7 @@ option:
         icon_name: 'application/python'
 
         size: [1280, 960]
-        item_frame_size: [128, 192]
+        item_frame_size: [128, 224]
 #
 hook_option:
     engine: lynxi
@@ -63,7 +63,7 @@ build:
                 /camera/full_body: true
                 /layer/master: true
                 /light_pass/all: true
-                /look_pass/ambocc: true
+                /look_pass/plastic: true
                 /look_pass/default: true
                 /quality/custom: true
             #
@@ -277,6 +277,12 @@ build:
             render/arnold/aa:
                 widget: integer
                 value: 8
+                enable: False
+                tool_tip: '...'
+
+            user/background_color:
+                widget: rgb
+                value: [255, 255, 255]
                 enable: False
                 tool_tip: '...'
 
