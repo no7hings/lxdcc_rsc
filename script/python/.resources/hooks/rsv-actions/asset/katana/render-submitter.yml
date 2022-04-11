@@ -7,7 +7,7 @@ option:
     gui:
         group_name: 'render'
         #
-        name: 'Submitter Render use Work Scene-src'
+        name: 'Open PG Render'
         icon_name: 'window/render'
 #
 variants:
