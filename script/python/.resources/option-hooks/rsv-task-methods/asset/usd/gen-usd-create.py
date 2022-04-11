@@ -40,9 +40,9 @@ def set_component_usd_create(rsv_task, rsv_scene_properties):
     if workspace == 'work':
         keyword = 'asset-work-comp-usd-dir'
     elif workspace == 'publish':
-        keyword = 'asset-comp-usd-dir'
+        keyword = 'asset-component-usd-dir'
     elif workspace == 'output':
-        keyword = 'asset-output-comp-usd-dir'
+        keyword = 'asset-output-component-usd-dir'
     else:
         raise TypeError()
     #

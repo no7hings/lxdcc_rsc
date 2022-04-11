@@ -30,7 +30,7 @@ def main(session):
         'RSV_SCENE_FILE', file_path
     )
 
-    rsv_application = utl_ssn_objects.RsvApplication()
+    rsv_application = utl_ssn_objects.SsnRsvApplication()
     choice_scheme = hook_option_opt.get('choice_scheme')
     if bsc_core.TextOpt(choice_scheme).get_filter_by_pattern('asset-*-output'):
         # pre export use workspace: "output"

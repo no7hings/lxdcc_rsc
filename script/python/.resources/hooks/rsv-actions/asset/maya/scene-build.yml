@@ -9,18 +9,3 @@ option:
         #
         name: 'Build Scene'
         icon_name: 'application/maya'
-#
-variants:
-    project: ''
-    branch: ''
-    #
-    role: ''
-    asset: ''
-    #
-    sequence: ''
-    shot: ''
-    #
-    step: ''
-    task: ''
-    #
-    application: ''

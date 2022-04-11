@@ -292,10 +292,10 @@ build:
                 enable: False
                 tool_tip: '...'
 
-            rez_beta:
-                widget: boolean
-                value: True
-                tool_tip: '...'
+#            rez_beta:
+#                widget: boolean
+#                value: True
+#                tool_tip: '...'
 
             submit:
                 widget: button

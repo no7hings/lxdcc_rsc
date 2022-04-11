@@ -30,12 +30,12 @@ build:
             camera: ['shot']
             layer: ['master', 'no_hair']
             light_pass: ['all']
-            look_pass: ['default', 'plastic', 'ambocc', 'wire', 'white']
+            look_pass: ['default']
             quality: ['low', 'med', 'hi', 'custom']
     #
     scheme:
         variables:
-            shot:
+            animation:
                 /: true
                 /camera/shot: true
                 /layer/master: true
@@ -68,7 +68,7 @@ build:
         schemes:
             variables:
                 widget: enumerate
-                value: ['shot-no_hair', 'shot']
+                value: ['animation']
                 enable: False
                 tool_tip: '...'
                 scheme_key: 'render-submitter-variables'
@@ -82,6 +82,12 @@ build:
             file/shot:
                 widget: file
                 value: ''
+                enable: False
+                tool_tip: '...'
+
+            variants/shot_version_enable:
+                widget: boolean
+                value: True
                 enable: False
                 tool_tip: '...'
 
@@ -108,10 +114,10 @@ build:
                 widget: enumerate
                 value: ['occ', 'std', 'srf', 'default']
                 enable: False
-                tool_tip: 'occ是occ渲染模型，std是灰模，srf是带材质，default是带毛发带材质'
+                tool_tip: ['occ是occ渲染模型', 'std是灰模', 'srf是带材质', 'default是带毛发带材质']
 
             render/frames:
-                widget: string
+                widget: frames
                 value: '0'
                 enable: False
                 tool_tip: '...'
@@ -179,16 +185,16 @@ build:
                 enable: False
                 tool_tip: '...'
 
-            rez_beta:
-                widget: boolean
-                value: True
-                enable: False
-                tool_tip: '...'
+#            rez_beta:
+#                widget: boolean
+#                value: True
+#                enable: False
+#                tool_tip: '...'
 
             submit:
                 widget: button
                 value: ''
-                tool_tip: '...'
+                tool_tip: ['"LMB-click" to submit render...']
 #
 command:
-    'rez-env python pg_tools -- python /l/packages/pg/prod/pg_production_lib/9.9.9/lib/production/set/auto_set/submit_usd_render_job.py --proj="{project}" --shot="{shot}" --step="{step}" --task="{task}" --shading="{shading}" --user="{user}" --frames="{render_shot_frames}" --stepby={render_shot_frame_step} --motion={render_motion_enable} --instance={render_instance_enable} --bokeh={render_bokeh_enable} --bg={render_background_enable} --chunk={render_chunk} --aa={arnold_aa_sample} --publish={user_publish_enable} --tech_review={user_tech_review_enable} --playlist=0 --description="prerender"'
+    'rez-env python pg_tools -- python /l/packages/pg/prod/pg_production_lib/9.9.9/lib/production/set/auto_set/submit_usd_render_job.py --proj="{project}" --shot="{shot}" --step="{step}" --task="{task}" --shading="{render_look}" --user="{user}" --frames="{render_shot_frames}" --stepby={render_shot_frame_step} --motion={render_motion_enable} --instance={render_instance_enable} --bokeh={render_bokeh_enable} --bg={render_background_enable} --chunk={render_chunk} --aa={render_arnold_aa_sample} --publish={user_publish_enable} --tech_review={user_tech_review_enable} --playlist=0 --description="prerender"'

@@ -27,6 +27,6 @@ variants:
 #
 resolver:
     rsv_unit:
-        keyword: '{branch}-version-dir'
+        keyword: '{branch}-task-dir'
         version: latest
 

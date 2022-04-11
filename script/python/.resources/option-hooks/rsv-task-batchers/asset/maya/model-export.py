@@ -28,7 +28,7 @@ def main(session):
         'RSV_SCENE_FILE', file_path
     )
 
-    rsv_application = utl_ssn_objects.RsvApplication()
+    rsv_application = utl_ssn_objects.SsnRsvApplication()
 
     scene_src_file_path = rsv_application.get_scene_src_file()
 

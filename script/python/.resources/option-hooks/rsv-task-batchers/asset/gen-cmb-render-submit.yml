@@ -38,6 +38,8 @@ hook_option:
         group: subprogress
         #
         pool: subprogress
+        #
+        error_limit: 1
     #
     rez:
         extend_packages: []
@@ -47,7 +49,6 @@ option_hooks:
     # maya scene export
     - 'rsv-task-methods/asset/maya/gen-scene-export': {
         choice_scheme_includes: ['asset-*-maya-output'],
-        dependencies: ['../shotgun/shotgun-create'],
         with_texture_tx: True,
         with_scene: True,
     }
@@ -66,7 +67,7 @@ option_hooks:
     # maya hair export
     - 'rsv-task-methods/asset/maya/gen-hair-export': {
         choice_scheme_includes: ['asset-groom-maya-output'],
-        dependencies: ['../shotgun/shotgun-create', '../maya/gen-scene-export'],
+        dependencies: ['../maya/gen-scene-export'],
         with_hair_xgen: True,
         with_hair_xgen_usd: True,
     }

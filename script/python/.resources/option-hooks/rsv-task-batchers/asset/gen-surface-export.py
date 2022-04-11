@@ -28,7 +28,7 @@ def main(session):
         'RSV_SCENE_FILE', file_path
     )
     #
-    rsv_application = utl_ssn_objects.RsvApplication()
+    rsv_application = utl_ssn_objects.SsnRsvApplication()
     choice_scheme = hook_option_opt.get('choice_scheme')
     version_scheme = hook_option_opt.get('version_scheme')
     utl_core.Log.set_module_result_trace(

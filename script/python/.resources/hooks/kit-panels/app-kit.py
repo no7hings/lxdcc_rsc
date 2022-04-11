@@ -44,7 +44,7 @@ class AppKit(prx_widgets.PrxToolWindow):
     def _set_environ_show_(self):
         utl_core.DialogWindow.set_create(
             'Environ',
-            content='\n'.join(['{} = {}'.format(k, v) for k, v in os.environ.items()]),
+            content=u'\n'.join([u'{} = {}'.format(k, v) for k, v in os.environ.items()]),
         )
 
     def _set_panel_build_(self):
