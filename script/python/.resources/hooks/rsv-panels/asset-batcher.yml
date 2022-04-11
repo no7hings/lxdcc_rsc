@@ -11,7 +11,7 @@ option:
     #
     gui:
         name: 'Asset Batcher'
-        group_name: 'Loader(s)'
+        group_name: 'Batcher(s)'
         icon_name: ''
         #
         size: [1280, 960]

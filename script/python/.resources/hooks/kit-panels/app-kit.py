@@ -58,7 +58,7 @@ class AppKit(prx_widgets.PrxToolWindow):
         # noinspection PyUnresolvedReferences
         configure = session.configure
         #
-        app_hook_keys = configure.get('app.hooks')
+        app_hook_keys = configure.get('app.hooks') or []
         #
         self._group_dict = {}
         self._list_view_dict = {}
@@ -67,6 +67,8 @@ class AppKit(prx_widgets.PrxToolWindow):
         item_name_frame_size = self._utl_gui_configure.get('item_name_frame_size')
         #
         self.get_log_bar().set_expanded(True)
+        #
+        self._group_dict = {}
         #
         for i_key in app_hook_keys:
             i_hook_args = ssn_commands.get_hook_args(
@@ -94,6 +96,8 @@ class AppKit(prx_widgets.PrxToolWindow):
                         i_list_view.set_item_name_frame_size(*item_name_frame_size)
                         #
                         self._list_view_dict[i_group_name] = i_list_view
+                        #
+                        self._group_dict[i_group_name] = i_group
                     #
                     i_list_item = i_list_view.set_item_add()
                     i_name = i_gui_configure.get('name')
@@ -116,6 +120,11 @@ class AppKit(prx_widgets.PrxToolWindow):
                             ('edit yaml-file', None, i_session.set_hook_yaml_file_open),
                         ]
                     )
+        #
+        collapse_groups = configure.get('app.collapse_groups') or []
+        for i in collapse_groups:
+            if i in self._group_dict:
+                self._group_dict[i].set_expanded(False)
 
 
 def main(session):
