@@ -120,70 +120,71 @@ build:
                 widget: frames
                 value: '0'
                 enable: False
-                tool_tip: '...'
+                tool_tip: '输入渲染帧，示例：1 / 1,5 / 1-2 / 1-2,10'
 
             render/frame_step:
                 widget: float
                 value: 1.0
                 enable: False
-                tool_tip: '...'
+                tool_tip: '输入渲染帧间隔'
 
             render/chunk:
                 widget: integer
                 value: 1
                 enable: False
-                tool_tip: '...'
+                tool_tip: '保持默认值'
 
             render/motion_enable:
                 widget: boolean
                 value: True
                 enable: False
-                tool_tip: '...'
+                tool_tip: '点击打开/关闭运动模糊'
                 join_to_next: True
 
             render/instance_enable:
                 widget: boolean
                 value: False
                 enable: False
-                tool_tip: '...'
+                tool_tip: '点击打开/关闭代理'
 
             render/background_enable:
                 widget: boolean
                 value: False
                 enable: False
-                tool_tip: '...'
+                tool_tip: '点击打开/关闭背景'
                 join_to_next: True
 
             render/bokeh_enable:
                 widget: boolean
                 value: False
                 enable: False
-                tool_tip: '...'
+                tool_tip: '点击打开/关闭焦外成像效果'
 
             render/arnold/aa_sample:
                 widget: integer
-                value: 3
+                label: 'AA sample'
+                value: 6
                 enable: False
-                tool_tip: '...'
+                tool_tip: 'Arnold渲染采样值，越高越渲染越清晰，但是需要花费更多的时间'
 
             user/description:
                 widget: script
                 value: ''
                 enable: False
-                tool_tip: '...'
+                tool_tip: '暂不可用'
 
             user/tech_review_enable:
                 widget: boolean
                 value: False
                 enable: False
-                tool_tip: '...'
+                tool_tip: '保持默认值'
                 join_to_next: True
 
             user/publish_enable:
                 widget: boolean
                 value: False
                 enable: False
-                tool_tip: '...'
+                tool_tip: '保持默认值'
 
 #            rez_beta:
 #                widget: boolean
@@ -194,7 +195,7 @@ build:
             submit:
                 widget: button
                 value: ''
-                tool_tip: ['"LMB-click" to submit render...']
+                tool_tip: ['点击发布渲染']
 #
 command:
     'rez-env python pg_tools -- python /l/packages/pg/prod/pg_production_lib/9.9.9/lib/production/set/auto_set/submit_usd_render_job.py --proj="{project}" --shot="{shot}" --step="{step}" --task="{task}" --shading="{render_look}" --user="{user}" --frames="{render_shot_frames}" --stepby={render_shot_frame_step} --motion={render_motion_enable} --instance={render_instance_enable} --bokeh={render_bokeh_enable} --bg={render_background_enable} --chunk={render_chunk} --aa={render_arnold_aa_sample} --publish={user_publish_enable} --tech_review={user_tech_review_enable} --playlist=0 --description="prerender"'
