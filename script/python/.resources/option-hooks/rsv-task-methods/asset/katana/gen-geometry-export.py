@@ -39,7 +39,7 @@ def main(session):
 def set_geometry_usd_export(rsv_task, rsv_scene_properties):
     import lxutil.dcc.dcc_objects as utl_dcc_objects
 
-    import lxkatana.fnc.builders as ktn_fnc_builders
+    import lxkatana.dcc.dcc_objects as ktn_dcc_objects
     #
     workspace = rsv_scene_properties.get('workspace')
     version = rsv_scene_properties.get('version')
@@ -60,7 +60,7 @@ def set_geometry_usd_export(rsv_task, rsv_scene_properties):
         version=version, extend_variants=dict(var='hi')
     )
     #
-    geometry_uv_map_usd_source_file_path = ktn_fnc_builders.AssetWorkspaceBuilder().get_geometry_uv_map_usd_source_file()
+    geometry_uv_map_usd_source_file_path = ktn_dcc_objects.AssetWorkspace().get_geometry_uv_map_usd_source_file()
     if geometry_uv_map_usd_source_file_path:
         utl_dcc_objects.OsFile(geometry_uv_map_usd_source_file_path).set_copy_to_file(
             geometry_usd_var_file_path

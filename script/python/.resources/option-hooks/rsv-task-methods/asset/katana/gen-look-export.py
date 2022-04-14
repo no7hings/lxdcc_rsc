@@ -72,7 +72,7 @@ def set_look_klf_export(rsv_task, rsv_scene_properties):
     look_klf_file_path = look_klf_file_rsv_unit.get_result(
         version=version
     )
-    asset_workspace = ktn_fnc_builders.AssetWorkspaceBuilder()
+    asset_workspace = ktn_dcc_objects.AssetWorkspace()
     #
     ktn_dcc_objects.Node('rootNode').get_port('variables.camera').set('asset_free')
     #
@@ -90,7 +90,7 @@ def set_look_ass_export(rsv_task, rsv_scene_properties, force=False):
     #
     import lxkatana.fnc.exporters as ktn_fnc_exporters
     #
-    import lxkatana.fnc.builders as ktn_fnc_builders
+    import lxkatana.dcc.dcc_objects as ktn_dcc_objects
     #
     workspace = rsv_scene_properties.get('workspace')
     version = rsv_scene_properties.get('version')
@@ -104,51 +104,35 @@ def set_look_ass_export(rsv_task, rsv_scene_properties, force=False):
         keyword_1 = 'asset-output-look-ass-sub-file'
     else:
         raise TypeError()
-    #
-    default_look_ass_file_rsv_unit = rsv_task.get_rsv_unit(
-        keyword=keyword_0
-    )
-    default_look_ass_file_path = default_look_ass_file_rsv_unit.get_result(
-        version=version
-    )
-    default_look_ass_file = utl_dcc_objects.OsFile(default_look_ass_file_path)
-    if default_look_ass_file.get_is_exists() is False or force is True:
-        ktn_fnc_exporters.LookAssExporter(
-            file_path=default_look_ass_file_path,
-            root='/master',
-            option=dict(
-                output_obj='/rootNode/default__property_assigns_merge'
-            )
-        ).set_run()
-    else:
-        utl_core.Log.set_module_warning_trace(
-            'katana-look-ass export',
-            u'file="{}" is exists'.format(default_look_ass_file_path)
-        )
-    #
-    ktn_workspace = ktn_fnc_builders.AssetWorkspaceBuilder()
+    ktn_workspace = ktn_dcc_objects.AssetWorkspace()
     look_pass_names = ktn_workspace.get_look_pass_names()
     #
     for i_look_pass_name in look_pass_names:
-        if i_look_pass_name != 'default':
-            i_look_ass_file_rsv_unit = rsv_task.get_rsv_unit(
-                keyword=keyword_1
-            )
+        if i_look_pass_name == 'default':
+            i_look_ass_file_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_0)
+            i_look_ass_file_path = i_look_ass_file_rsv_unit.get_result(version=version)
+        else:
+            i_look_ass_file_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_1)
             i_look_ass_file_path = i_look_ass_file_rsv_unit.get_result(
-                look_pass=i_look_pass_name, version=version
+                version=version, extend_variants=dict(look_pass=i_look_pass_name)
             )
-            #
-            i_look_ass_file = utl_dcc_objects.OsFile(i_look_ass_file_path)
-            if i_look_ass_file.get_is_exists() is False or force is True:
-                i_look_pass_source_obj = ktn_workspace.get_pass_source_obj(i_look_pass_name)
-                if i_look_pass_source_obj is not None:
-                    ktn_fnc_exporters.LookAssExporter(
-                        file_path=i_look_ass_file_path,
-                        root=root,
-                        option=dict(
-                            output_obj=i_look_pass_source_obj.path
-                        )
-                    ).set_run()
+        #
+        i_look_ass_file = utl_dcc_objects.OsFile(i_look_ass_file_path)
+        if i_look_ass_file.get_is_exists() is False or force is True:
+            i_look_pass_source_obj = ktn_workspace.get_pass_source_obj(i_look_pass_name)
+            if i_look_pass_source_obj is not None:
+                ktn_fnc_exporters.LookAssExporter(
+                    file_path=i_look_ass_file_path,
+                    root=root,
+                    option=dict(
+                        output_obj=i_look_pass_source_obj.path
+                    )
+                ).set_run()
+        else:
+            utl_core.Log.set_module_warning_trace(
+                'look-ass export',
+                u'file="{}" is exists'.format(i_look_ass_file_path)
+            )
 
 
 if __name__ == '__main__':

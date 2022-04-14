@@ -1,0 +1,48 @@
+option:
+    type: rsv-task-method
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: 'katana'
+        #
+        name: 'Katana Combination Render Create'
+        icon_name: 'application/katana'
+#
+hook_option:
+    engine: katana
+    #
+    script:
+        # scene file-path
+        batch_file: ''
+        #
+        file: ''
+        #
+        render_file: ''
+        #
+        with_scene_create: False
+        #
+        cameras: []
+        layers: []
+        light_passes: []
+        look_passes: []
+        qualities: []
+        #
+        shot: ''
+        shot_asset: ''
+        #
+        render_asset_frames: []
+        render_shot_frames: []
+        render_output_directory: ''
+    #
+    deadline:
+        #
+        group: all
+        #
+        pool: emergency
+        #
+        error_limit: 1
+    #
+    rez:
+        extend_packages: []
