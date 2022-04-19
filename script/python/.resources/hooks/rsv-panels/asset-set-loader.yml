@@ -34,5 +34,6 @@ actions:
             - 'rsv-actions/usd/set-file-open'
             - 'rsv-actions/review-file-open'
             # directory
-            - 'rsv-actions/work-task-directory-open'
-            - 'rsv-actions/task-directory-open'
+            - 'rsv-actions/work-task-directory-open': {gui_parent: '/Open Task Directory', gui_name: 'Work'}
+            - 'rsv-actions/task-directory-open': {gui_parent: '/Open Task Directory', gui_name: 'Publish'}
+            - 'rsv-actions/output-task-directory-open': {gui_parent: '/Open Task Directory', gui_name: 'Output'}

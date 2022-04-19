@@ -12,8 +12,6 @@ def main(session):
     #
     import lxsession.commands as ssn_commands
     #
-    import lxresolver.commands as rsv_commands
-    #
     hook_option_opt = session.option_opt
 
     file_path = hook_option_opt.get('file')
@@ -32,11 +30,13 @@ def main(session):
 
     rsv_application = utl_ssn_objects.SsnRsvApplication()
     choice_scheme = hook_option_opt.get('choice_scheme')
-    if bsc_core.TextOpt(choice_scheme).get_filter_by_pattern('asset-*-output'):
+    if bsc_core.TextOpt(choice_scheme).get_filter_by_pattern('shot-*-output'):
         # pre export use workspace: "output"
         scene_src_file_path_tgt = rsv_application.get_output_scene_src_file(
             version_scheme='new'
         )
+    elif bsc_core.TextOpt(choice_scheme).get_filter_by_pattern('shot-*-custom'):
+        scene_src_file_path_tgt = file_path
     else:
         raise RuntimeError(
             utl_core.Log.set_error_trace(

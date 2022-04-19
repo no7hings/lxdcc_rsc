@@ -11,7 +11,7 @@ option:
         icon_name: 'application/python'
 
         size: [1280, 960]
-        item_frame_size: [128, 192]
+        item_frame_size: [216, 192]
 #
 hook_option:
     engine: lynxi
@@ -36,14 +36,80 @@ build:
     scheme:
         variables:
             animation:
-                /: true
-                /camera/shot: true
-                /layer/master: true
-                /light_pass/all: true
-                /look_pass/default: true
-                /quality/custom: true
+                /: True
+                /camera/shot: True
+                /layer/master: True
+                /light_pass/all: True
+                /look_pass/default: True
+                /quality/custom: True
+            #
+            effect:
+                /: True
+                /camera/shot: True
+                /layer/master: True
+                /light_pass/all: True
+                /look_pass/default: True
+                /quality/custom: True
+            #
+            character_effect:
+                /: True
+                /camera/shot: True
+                /layer/master: True
+                /light_pass/all: True
+                /look_pass/default: True
+                /quality/custom: True
+        #
+        settings:
+            animation-default:
+                render/look: default
+                render/frames: {expression: '=self.get_frames()'}
+                render/background_enable: True
+                render/motion_enable: True
+                render/arnold/aa_sample: 4
+
+            animation-single-frame:
+                render/look: default
+                render/frames: {expression: '=self.get_single_frame()'}
+                render/background_enable: True
+                render/motion_enable: False
+                render/arnold/aa_sample: 10
+
+            animation-single-frame-no_hair:
+                render/look: srf
+                render/frames: {expression: '=self.get_single_frame()'}
+                render/background_enable: True
+                render/motion_enable: False
+                render/arnold/aa_sample: 10
+
+            character_effect-default:
+                render/frames: {expression: '=self.get_frames()'}
+
+            effect-default:
+                render/frames: {expression: '=self.get_frames()'}
+                render/layer_enable: True
     #
     node:
+        #
+        schemes:
+            variables:
+                widget: enumerate
+                value: ['animation', 'character_effect', 'effect']
+                enable: False
+                tool_tip: '...'
+                scheme_key: 'render-submitter-variables'
+
+            settings:
+                widget: enumerate
+                value: ['animation-default', 'animation-single-frame', 'animation-single-frame-no_hair', 'character_effect-default', 'effect-default']
+                enable: False
+                tool_tip: '...'
+                scheme_key: 'settings'
+
+            save:
+                widget: button
+                value: ''
+                tool_tip: '...'
+        #
         options:
             choice_scheme:
                 widget: 'string'
@@ -61,19 +127,6 @@ build:
                 tool_tip: '...'
 
             refresh:
-                widget: button
-                value: ''
-                tool_tip: '...'
-        #
-        schemes:
-            variables:
-                widget: enumerate
-                value: ['animation']
-                enable: False
-                tool_tip: '...'
-                scheme_key: 'render-submitter-variables'
-
-            save:
                 widget: button
                 value: ''
                 tool_tip: '...'
@@ -110,6 +163,11 @@ build:
                 tool_tip: '...'
         #
         settings:
+            td/test_scheme:
+                widget: enumerate
+                value: ['td_enable', 'rez_beta', 'auto']
+                tool_tip: '...'
+
             render/look:
                 widget: enumerate
                 value: ['occ', 'std', 'srf', 'default']
@@ -137,35 +195,54 @@ build:
             render/motion_enable:
                 widget: boolean
                 value: True
-                enable: False
                 tool_tip: '点击打开/关闭运动模糊'
                 join_to_next: True
 
             render/instance_enable:
                 widget: boolean
                 value: False
-                enable: False
                 tool_tip: '点击打开/关闭代理'
 
             render/background_enable:
                 widget: boolean
                 value: False
-                enable: False
                 tool_tip: '点击打开/关闭背景'
                 join_to_next: True
 
             render/bokeh_enable:
                 widget: boolean
                 value: False
-                enable: False
                 tool_tip: '点击打开/关闭焦外成像效果'
+
+            render/layer_enable:
+                widget: boolean
+                value: False
+                tool_tip: '点击打开/关闭分层渲染'
 
             render/arnold/aa_sample:
                 widget: integer
                 label: 'AA sample'
-                value: 6
+                value: 4
                 enable: False
                 tool_tip: 'Arnold渲染采样值，越高越渲染越清晰，但是需要花费更多的时间'
+
+            cache/workspace:
+                widget: enumerate
+                value: ['publish', 'output']
+                enable: False
+                tool_tip: '暂不可用'
+
+            cache/xiaov:
+                widget: enumerate
+                value: ['0-hair-cloth', '1-animation-hair']
+                enable: False
+                tool_tip: '暂不可用'
+
+            user/background_color:
+                widget: rgb
+                value: [255, 255, 255]
+                enable: False
+                tool_tip: '暂不可用'
 
             user/description:
                 widget: script
@@ -180,17 +257,11 @@ build:
                 tool_tip: '保持默认值'
                 join_to_next: True
 
-            user/publish_enable:
+            user/upload_shotgun_enable:
                 widget: boolean
                 value: False
                 enable: False
                 tool_tip: '保持默认值'
-
-#            rez_beta:
-#                widget: boolean
-#                value: True
-#                enable: False
-#                tool_tip: '...'
 
             submit:
                 widget: button
@@ -198,4 +269,4 @@ build:
                 tool_tip: ['点击发布渲染']
 #
 command:
-    'rez-env python pg_tools -- python /l/packages/pg/prod/pg_production_lib/9.9.9/lib/production/set/auto_set/submit_usd_render_job.py --proj="{project}" --shot="{shot}" --step="{step}" --task="{task}" --shading="{render_look}" --user="{user}" --frames="{render_shot_frames}" --stepby={render_shot_frame_step} --motion={render_motion_enable} --instance={render_instance_enable} --bokeh={render_bokeh_enable} --bg={render_background_enable} --chunk={render_chunk} --aa={render_arnold_aa_sample} --publish={user_publish_enable} --tech_review={user_tech_review_enable} --playlist=0 --description="prerender"'
+    'rez-env python pg_tools -- python /l/packages/pg/prod/pg_production_lib/9.9.9/lib/production/set/auto_set/submit_usd_render_job.py --proj="{project}" --shot="{shot}" --step="{step}" --task="{task}" --shading="{render_look}" --user="{user}" --frames="{render_shot_frames}" --stepby={render_shot_frame_step} --motion={render_motion_enable} --instance={render_instance_enable} --bokeh={render_bokeh_enable} --bg={render_background_enable} --chunk={render_chunk} --aa={render_arnold_aa_sample} --publish={user_upload_shotgun_enable} --tech_review={user_tech_review_enable} --playlist=0 --description="prerender"'

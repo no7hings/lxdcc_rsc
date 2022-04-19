@@ -11,7 +11,7 @@ option:
         icon_name: 'application/python'
 
         size: [1280, 960]
-        item_frame_size: [128, 224]
+        item_frame_size: [136, 224]
 #
 hook_option:
     engine: lynxi
@@ -36,44 +36,44 @@ build:
     scheme:
         variables:
             asset:
-                /camera/close_up: true
-                /camera/full_body: true
-                /camera/upper_body: true
-                /layer/master: true
-                /light_pass/all: true
-                /look_pass/ambocc: true
-                /look_pass/default: true
-                /look_pass/plastic: true
-                /look_pass/wire: true
-                /quality/custom: true
+                /camera/close_up: True
+                /camera/full_body: True
+                /camera/upper_body: True
+                /layer/master: True
+                /light_pass/all: True
+                /look_pass/ambocc: True
+                /look_pass/default: True
+                /look_pass/plastic: True
+                /look_pass/wire: True
+                /quality/custom: True
             #
             model:
-                /camera/close_up: true
-                /camera/full_body: true
-                /layer/master: true
-                /light_pass/all: true
-                /look_pass/ambocc: true
-                /look_pass/default: true
-                /look_pass/wire: true
-                /look_pass/white_disp: true
-                /quality/custom: true
+                /camera/close_up: True
+                /camera/full_body: True
+                /layer/master: True
+                /light_pass/all: True
+                /look_pass/ambocc: True
+                /look_pass/default: True
+                /look_pass/wire: True
+                /look_pass/white_disp: True
+                /quality/custom: True
             #
             groom:
-                /camera/close_up: true
-                /camera/full_body: true
-                /layer/master: true
-                /light_pass/all: true
-                /look_pass/plastic: true
-                /look_pass/default: true
-                /quality/custom: true
+                /camera/close_up: True
+                /camera/full_body: True
+                /layer/master: True
+                /light_pass/all: True
+                /look_pass/plastic: True
+                /look_pass/default: True
+                /quality/custom: True
             #
             surface:
-                /camera/close_up: true
-                /camera/full_body: true
-                /layer/master: true
-                /light_pass/all: true
-                /look_pass/default: true
-                /quality/custom: true
+                /camera/close_up: True
+                /camera/full_body: True
+                /layer/master: True
+                /light_pass/all: True
+                /look_pass/default: True
+                /quality/custom: True
     #
     node:
         #
@@ -83,8 +83,13 @@ build:
                 value: ['model', 'surface', 'groom', 'asset']
                 enable: False
                 tool_tip: '...'
-                scheme_key: 'render-submitter-variables'
-
+                scheme_key: 'variables'
+            settings:
+                widget: enumerate
+                value: ['default']
+                enable: False
+                tool_tip: '...'
+                scheme_key: 'settings'
             save:
                 widget: button
                 value: ''
@@ -250,6 +255,11 @@ build:
                 tool_tip: '...'
         #
         settings:
+            td/test_scheme:
+                widget: enumerate
+                value: ['td_enable', 'rez_beta', 'auto']
+                tool_tip: '...'
+
             render/asset/frame_range:
                 widget: float2
                 value: [ 1001, 1240 ]
@@ -274,8 +284,9 @@ build:
                 enable: False
                 tool_tip: '...'
 
-            render/arnold/aa:
+            render/arnold/aa_sample:
                 widget: integer
+                label: 'AA sample'
                 value: 8
                 enable: False
                 tool_tip: '...'
@@ -291,11 +302,6 @@ build:
                 value: ''
                 enable: False
                 tool_tip: '...'
-
-#            rez_beta:
-#                widget: boolean
-#                value: True
-#                tool_tip: '...'
 
             submit:
                 widget: button

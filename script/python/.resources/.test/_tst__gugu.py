@@ -1,26 +1,6 @@
 # coding:utf-8
 
 
-def main(session):
-    from lxutil import utl_core
-
-    hook_option_opt = session.option_opt
-
-    cmd = '/opt/rv/bin/rvio "{image_file}" -overlay frameburn .4 1.0 30.0 -dlut "{lut_directory}" -o "{movie_file}" -comment "{user}" -outparams timecode={start_frame}'.format(
-        **hook_option_opt.get_raw()
-    )
-
-    utl_core.SubProcessRunner.set_run_with_result(
-        cmd
-    )
-
-    user = hook_option_opt.get('user')
-
-    file_path = hook_option_opt.get('movie_file')
-
-    set_send_to_gugu(user, file_path)
-
-
 def set_send_to_gugu(user, file_path):
     import urllib
 
@@ -60,5 +40,6 @@ def set_send_to_gugu(user, file_path):
 
 
 if __name__ == '__main__':
-    # noinspection PyUnresolvedReferences
-    main(session)
+    user = 'dongchangbao'
+    file_path = '/l/prod/cgm/output/assets/chr/nn_4y_test/mod/modeling/nn_4y_test.mod.modeling.v012/render/katana-images/main/close_up.master.all.white_disp.custom.mov'
+    set_send_to_gugu(user, file_path)

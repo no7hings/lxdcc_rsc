@@ -27,7 +27,7 @@ variants:
 #
 resolver:
     rsv_unit:
-        keyword: '{branch}-work-maya-scene-src-file'
+        keyword: '{branch}-work-houdini-scene-src-file'
         version: latest
 
-    step_includes: ['mod', 'grm']
+    step_includes: ['efx', 'cfx']

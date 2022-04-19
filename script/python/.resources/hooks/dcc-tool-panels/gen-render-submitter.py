@@ -31,12 +31,12 @@ def main(session):
             #
             import lxutil_gui.panel.utl_pnl_widgets as utl_pnl_widgets
             if branch == 'asset':
-                if step in ['mod', 'grm']:
+                if step in ['mod', 'grm', 'srf']:
                     hook_option = 'file={}'.format(any_scene_scr_file_path)
                     w = utl_pnl_widgets.AssetRenderSubmitter(hook_option=hook_option)
                     w.set_window_show()
                 else:
-                    content = u'step "{}" is not supported'.format(branch)
+                    content = u'step "{}" is not supported'.format(step)
             elif branch == 'shot':
                 if step in ['rlo', 'ani', 'flo']:
                     hook_option = 'file={}'.format(any_scene_scr_file_path)

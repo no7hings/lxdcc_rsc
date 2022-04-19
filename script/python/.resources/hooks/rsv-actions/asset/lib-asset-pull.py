@@ -104,7 +104,7 @@ def main(session):
         )
         w.set_option_group_enable()
         #
-        p = w._prx_options_node.set_port_add(
+        p = w._options_prx_node.set_port_add(
             prx_widgets.PrxEnumeratePort_(
                 'project', 'Project'
             )

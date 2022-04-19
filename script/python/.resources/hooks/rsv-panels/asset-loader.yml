@@ -63,9 +63,9 @@ actions:
             # review
             - 'rsv-actions/review-file-open'
             # render
-            - 'rsv-actions/asset/maya/render-submitter'
-            - 'rsv-actions/asset/katana/render-submitter'
+            - 'rsv-actions/asset/maya/render-submitter': {gui_name: 'Open PG Render (maya)'}
+            - 'rsv-actions/asset/katana/render-submitter': {gui_name: 'Open PG Render (katana)'}
             # directory
-            - 'rsv-actions/work-task-directory-open'
-            - 'rsv-actions/task-directory-open'
-            - 'rsv-actions/output-task-directory-open'
+            - 'rsv-actions/work-task-directory-open': {gui_parent: '/Open Task Directory', gui_name: 'Work'}
+            - 'rsv-actions/task-directory-open': {gui_parent: '/Open Task Directory', gui_name: 'Publish'}
+            - 'rsv-actions/output-task-directory-open': {gui_parent: '/Open Task Directory', gui_name: 'Output'}

@@ -7,7 +7,7 @@ option:
     gui:
         group_name: 'render'
         #
-        name: 'Open PG Render'
+        name: 'Open Render Submitter'
         icon_name: 'window/render'
 #
 variants:
@@ -30,4 +30,4 @@ resolver:
         keyword: '{branch}-work-maya-scene-src-file'
         version: latest
 
-    step_includes: ['rlo', 'ani', 'flo']
+    step_includes: ['rlo', 'ani', 'flo', 'cfx']

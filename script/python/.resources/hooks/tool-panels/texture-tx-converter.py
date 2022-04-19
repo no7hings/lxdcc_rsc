@@ -11,6 +11,8 @@ import lxutil.dcc.dcc_objects as utl_dcc_objects
 
 from lxutil_gui import utl_gui_core
 
+from lxutil_gui.qt import utl_gui_qt_core
+
 import lxutil_gui.proxy.widgets as prx_widgets
 
 import lxutil_gui.proxy.operators as prx_operators
@@ -49,7 +51,7 @@ class TextureTxConverter(prx_widgets.PrxToolWindow):
             [('Name(s)', 4)],
             self.get_definition_window_size()[0] - 16
         )
-        self._tree_view_add_opt = prx_operators.PrxStgObjTreeViewAddOpt(
+        self._tree_view_add_opt = prx_operators.PrxStgTextureTreeViewAddOpt(
             self._tree_view,
             prx_tree_item_cls=prx_widgets.PrxStgObjTreeItem,
         )
@@ -66,9 +68,7 @@ class TextureTxConverter(prx_widgets.PrxToolWindow):
                 'directory', 'Directory'
             )
         )
-        self._directory_port.set(
-            '/depts/lookdev/YZQ/to'
-        )
+        self._directory_port.entry_widget.set_history_show_latest()
         #
         self._name_patterns_port = self._configure_node.set_port_add(
             prx_widgets.PrxStringPort(
@@ -101,7 +101,7 @@ class TextureTxConverter(prx_widgets.PrxToolWindow):
         self._convert_port.set(
             self._set_convert_run_
         )
-
+    @utl_gui_qt_core.set_prx_window_waiting
     def _set_data_update_(self):
         array_dict = collections.OrderedDict()
         self._file_dict = collections.OrderedDict()
@@ -172,20 +172,24 @@ class TextureTxConverter(prx_widgets.PrxToolWindow):
         for i_k, i_v in self._file_dict.items():
             i_texture = utl_dcc_objects.OsTexture(i_k)
 
-            _, i_texture_gui = self._tree_view_add_opt.set_item_prx_add_as(i_texture, mode='list')
+            _, i_prx_item = self._tree_view_add_opt.set_item_prx_add_as(
+                i_texture,
+                mode='list',
+                use_show_thread=True
+            )
 
-            if i_texture.get_tx_is_exists() is False:
-                i_texture_gui.set_state(utl_gui_core.State.WARNING)
+            # if i_texture.get_tx_is_exists() is False:
+            #     i_prx_item.set_state(utl_gui_core.State.WARNING)
 
     def _set_texture_guis_refresh_(self):
         for k, v in self._tree_view._item_dict.items():
-            i_texture_gui = v
-            i_texture = i_texture_gui.get_gui_dcc_obj(namespace='storage-file')
+            i_prx_item = v
+            i_texture = i_prx_item.get_gui_dcc_obj(namespace='storage-file')
             if i_texture is not None:
                 if i_texture.get_tx_is_exists() is False:
-                    i_texture_gui.set_state(utl_gui_core.State.WARNING)
+                    i_prx_item.set_state(utl_gui_core.State.WARNING)
                 else:
-                    i_texture_gui.set_state(utl_gui_core.State.NORMAL)
+                    i_prx_item.set_state(utl_gui_core.State.NORMAL)
 
     def _get_checked_textures_(self):
         lis = []

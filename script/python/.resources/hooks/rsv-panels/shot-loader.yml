@@ -31,6 +31,9 @@ resolver:
             - '{branch}-work-houdini-scene-src-file': {systems: ['*-python', '*-houdini']}
             - '{branch}-work-katana-scene-src-file': {systems: ['*-python', '*-katana']}
             - '{branch}-work-nuke-scene-src-file': {systems: ['*-python', '*-nuke']}
+            #
+            - '{branch}-component-usd-file': {systems: ['*-python']}
+            - '{branch}-output-component-usd-file': {systems: ['*-python']}
 #
 actions:
     task:
@@ -54,8 +57,10 @@ actions:
             # review
             - 'rsv-actions/review-file-open'
             # render
-            - 'rsv-actions/shot/maya/render-submitter'
+            - 'rsv-actions/shot/maya/render-submitter': {gui_name: 'Open PG Render (maya)'}
+            - 'rsv-actions/shot/houdini/render-submitter': {gui_name: 'Open PG Render (houdini)'}
+            - 'rsv-actions/shot/katana/render-submitter': {gui_name: 'Open PG Render (katana)'}
             # directory
-            - 'rsv-actions/work-task-directory-open'
-            - 'rsv-actions/task-directory-open'
-            - 'rsv-actions/output-task-directory-open'
+            - 'rsv-actions/work-task-directory-open': {gui_parent: '/Open Task Directory', gui_name: 'Work'}
+            - 'rsv-actions/task-directory-open': {gui_parent: '/Open Task Directory', gui_name: 'Publish'}
+            - 'rsv-actions/output-task-directory-open': {gui_parent: '/Open Task Directory', gui_name: 'Output'}

@@ -40,7 +40,7 @@ def main(session):
                     hook_option_opt.set(
                         'component_usd_file', component_usd_file_path
                     )
-                    cmd_pattern = 'rez-env python pg_tools -- python /l/packages/pg/prod/pg_production_lib/9.9.9/lib/production/set/auto_set/submit_usd_render_job.py --usd="{component_usd_file}" --proj="{project}" --shot="{shot}" --step="{step}" --task="{task}" --shading="{render_look}" --user="{user}" --frames="{render_frames}" --stepby={render_frame_step} --motion={render_motion_enable} --instance={render_instance_enable} --bokeh={render_bokeh_enable} --bg={render_background_enable} --chunk={render_chunk} --aa={render_arnold_aa_sample} --publish={user_publish_enable} --tech_review={user_tech_review_enable} --playlist=0 --description="prerender"'
+                    cmd_pattern = 'rez-env python pg_tools -- python /l/packages/pg/prod/pg_production_lib/9.9.9/lib/production/set/auto_set/submit_usd_render_job.py --usd="{component_usd_file}" --proj="{project}" --shot="{shot}" --step="{step}" --task="{task}" --shading="{render_look}" --user="{user}" --frames="{render_frames}" --stepby={render_frame_step} --motion={render_motion_enable} --instance={render_instance_enable} --bokeh={render_bokeh_enable} --bg={render_background_enable} --chunk={render_chunk} --aa={render_arnold_aa_sample} --publish={user_upload_shotgun_enable} --tech_review={user_tech_review_enable} --playlist=0 --description="prerender"'
                     cmd = cmd_pattern.format(
                         **hook_option_opt.value
                     )
