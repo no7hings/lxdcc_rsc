@@ -9,6 +9,7 @@ option:
         name: 'Shot Loader'
         group_name: 'Loader(s)'
         icon_name: ''
+        tool_tip: 'Shot Manager Tool'
         #
         size: [1280, 960]
         item_frame_size: [200, 128]
