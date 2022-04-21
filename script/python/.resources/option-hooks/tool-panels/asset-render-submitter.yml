@@ -260,6 +260,11 @@ build:
                 value: ['td_enable', 'rez_beta', 'auto']
                 tool_tip: '...'
 
+            td/publish_camera:
+                widget: button
+                value: ''
+                tool_tip: '...'
+
             render/asset/frame_range:
                 widget: float2
                 value: [ 1001, 1240 ]
