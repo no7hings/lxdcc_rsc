@@ -122,6 +122,8 @@ option_hooks:
         choice_scheme_includes: ['shot-effect-*-custom'],
         dependencies: ['./maya/tmp-scene-export', './maya/tmp-camera-export', './maya/tmp-cache-export'],
         inherit_keys: [
+            'usd_effect_components',
+            #
             'choice_scheme',
             #
             'cache_workspace',
