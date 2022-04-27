@@ -23,7 +23,7 @@ class TestForDialog(prx_widgets.PrxToolWindow):
 
 def main():
     w = prx_widgets.PrxDialogWindow1()
-    w.set_option_group_enable()
+    w.set_options_group_enable()
     w.set_window_show()
 
 

@@ -56,7 +56,7 @@ def main(session):
         window_size=(480, 320),
         use_exec=False
     )
-    # w.set_option_group_enable()
+    # w.set_options_group_enable()
 
 
 if __name__ == '__main__':

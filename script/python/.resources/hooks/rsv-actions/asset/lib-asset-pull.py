@@ -31,7 +31,7 @@ def main(session):
             #
             method.set_run_with_deadline()
         #
-        _kwargs = w.get_option_as_kwargs()
+        _kwargs = w.get_options_as_kwargs()
         _project_tgt = _kwargs['project']
         _asset_tgt = asset_src
         #
@@ -102,7 +102,7 @@ def main(session):
             show=False,
             use_exec=False
         )
-        w.set_option_group_enable()
+        w.set_options_group_enable()
         #
         p = w._options_prx_node.set_port_add(
             prx_widgets.PrxEnumeratePort_(
