@@ -1,0 +1,37 @@
+option:
+    type: rsv-task-method
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: shotgun
+        #
+        name: 'Shotgun Export'
+        icon_name: 'application/shotgun'
+#
+hook_option:
+    engine: shotgun
+    #
+    script:
+        # scene file-path
+        batch_file: ''
+        #
+        file: ''
+        #
+        with_version: False
+        #
+        with_link: False
+        #
+        with_publish_file: False
+        #
+        with_dependents: False
+    #
+    deadline:
+        #
+        group: subprogress
+        #
+        pool: subprogress
+    #
+    rez:
+        extend_packages: []

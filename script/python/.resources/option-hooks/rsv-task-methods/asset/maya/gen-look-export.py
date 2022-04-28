@@ -26,14 +26,14 @@ def main(session):
                 # texture
                 with_texture = hook_option_opt.get('with_texture') or False
                 if with_texture is True:
-                    mya_rsv_objects.RsvTexture(rsv_scene_properties).set_texture_export(
+                    mya_rsv_objects.RsvDccTextureHookOpt(rsv_scene_properties).set_texture_export(
                         location=root, use_tx=False
                     )
                 else:
                     # texture-tx
                     with_texture_tx = hook_option_opt.get('with_texture_tx') or False
                     if with_texture_tx is True:
-                        mya_rsv_objects.RsvTexture(rsv_scene_properties).set_texture_export(
+                        mya_rsv_objects.RsvDccTextureHookOpt(rsv_scene_properties).set_texture_export(
                             location=root, use_tx=True
                         )
                 #

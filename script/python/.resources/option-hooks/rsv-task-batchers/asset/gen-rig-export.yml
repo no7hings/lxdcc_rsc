@@ -1,0 +1,75 @@
+option:
+    type: rsv-task-batcher
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: 'maya'
+        #
+        name: 'Model Export'
+        icon_name: 'application/maya'
+#
+hook_option:
+    engine: python
+    #
+    script:
+        choice_scheme: 'asset-maya-publish'
+        version_scheme: 'new'
+        # scene file-path
+        batch_file: ''
+        #
+        file: ''
+        #
+        ext_extras: ['qdraw']
+    #
+    deadline:
+        #
+        group: subprogress
+        #
+        pool: subprogress
+    #
+    rez:
+        extend_packages: []
+#
+option_hooks:
+    # create shotgun task fist
+    - 'rsv-task-methods/asset/shotgun/shotgun-create'
+    # maya scene export
+    - 'rsv-task-methods/asset/maya/gen-scene-export': {
+        choice_scheme_includes: ['asset-maya-publish', 'asset-maya-output'],
+        dependencies: ['../shotgun/shotgun-create'],
+        inherit_keys: ['ext_extras'],
+        #
+        refresh_root_property: True,
+        with_texture: True,
+        with_scene: True,
+        #
+        with_snapshot_preview: True,
+        create_review_link: True,
+    }
+    # maya geometry export
+    - 'rsv-task-methods/asset/maya/gen-geometry-export': {
+        choice_scheme_includes: ['asset-maya-publish', 'asset-maya-output'],
+        dependencies: ['../shotgun/shotgun-create'],
+        #
+        with_geometry_usd: True,
+        with_geometry_uv_map_usd: True,
+    }
+    # create usd
+    - 'rsv-task-methods/asset/usd/gen-usd-create': {
+        dependencies: [
+            'rsv-task-methods/asset/shotgun/shotgun-create',
+            'rsv-task-methods/asset/maya/geometry-export',
+            'rsv-task-methods/asset/maya/look-export'
+        ]
+    }
+    # create shotgun
+    - 'rsv-task-methods/asset/shotgun/shotgun-export': {
+        dependencies: [
+            'rsv-task-methods/asset/shotgun/shotgun-create',
+            'rsv-task-methods/asset/maya/gen-scene-export',
+            'rsv-task-methods/asset/maya/geometry-export',
+            'rsv-task-methods/asset/usd/gen-usd-create'
+        ]
+    }

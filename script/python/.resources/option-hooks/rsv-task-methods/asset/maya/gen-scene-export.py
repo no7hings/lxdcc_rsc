@@ -23,57 +23,44 @@ def main(session):
             if rsv_scene_properties:
                 rsv_task = resolver.get_rsv_task_by_any_file_path(any_scene_file_path)
                 root = rsv_scene_properties.get('dcc.root')
+                refresh_root_property = hook_option_opt.get('refresh_root_property') or False
+                if refresh_root_property:
+                    mya_rsv_objects.RsvDccSceneHookOpt(
+                        rsv_scene_properties,
+                        hook_option_opt,
+                    ).set_root_property_refresh()
                 # texture
                 with_texture = hook_option_opt.get('with_texture') or False
                 if with_texture is True:
-                    mya_rsv_objects.RsvTexture(rsv_scene_properties).set_texture_export(
+                    mya_rsv_objects.RsvDccTextureHookOpt(
+                        rsv_scene_properties,
+                        hook_option_opt,
+                    ).set_texture_export(
                         location=root, use_tx=False
                     )
                 else:
                     # texture-tx
                     with_texture_tx = hook_option_opt.get('with_texture_tx') or False
                     if with_texture_tx is True:
-                        mya_rsv_objects.RsvTexture(rsv_scene_properties).set_texture_export(
+                        mya_rsv_objects.RsvDccTextureHookOpt(
+                            rsv_scene_properties,
+                            hook_option_opt,
+                        ).set_texture_export(
                             location=root, use_tx=True
                         )
                 # scene
                 with_scene = hook_option_opt.get('with_scene') or False
                 if with_scene is True:
-                    set_scene_export(rsv_task, rsv_scene_properties)
+                    mya_rsv_objects.RsvDccSceneHookOpt(
+                        rsv_scene_properties,
+                        hook_option_opt,
+                    ).set_scene_export()
             else:
                 raise RuntimeError()
         else:
             raise RuntimeError()
     else:
         raise RuntimeError()
-
-
-def set_scene_export(rsv_task, rsv_scene_properties):
-    import lxmaya.fnc.exporters as mya_fnc_exporters
-    #
-    workspace = rsv_scene_properties.get('workspace')
-    version = rsv_scene_properties.get('version')
-    root = rsv_scene_properties.get('dcc.root')
-    #
-    if workspace == 'publish':
-        keyword_0 = 'asset-maya-scene-file'
-    elif workspace == 'output':
-        keyword_0 = 'asset-output-maya-scene-file'
-    else:
-        raise TypeError()
-    #
-    maya_scene_file_rsv_unit = rsv_task.get_rsv_unit(
-        keyword=keyword_0
-    )
-    maya_scene_file_path = maya_scene_file_rsv_unit.get_result(version=version)
-    mya_fnc_exporters.SceneExporter(
-        file_path=maya_scene_file_path,
-        root=root,
-        option=dict(
-            with_xgen_collection=True
-        )
-    ).set_run()
-    return maya_scene_file_path
 
 
 if __name__ == '__main__':

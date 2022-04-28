@@ -48,19 +48,19 @@ option_hooks:
     # list, item is option-hook-key
     # maya scene export
     - 'rsv-task-methods/asset/maya/gen-scene-export': {
-        choice_scheme_includes: ['asset-*-maya-output'],
+        choice_scheme_includes: ['asset-model-maya-output', 'asset-model-rig-output'],
         with_texture_tx: True,
         with_scene: True,
     }
     # maya geometry export
     - 'rsv-task-methods/asset/maya/gen-geometry-export': {
-        choice_scheme_includes: ['asset-*-maya-output'],
+        choice_scheme_includes: ['asset-model-maya-output'],
         with_geometry_usd: True,
         with_geometry_uv_map_usd: True,
     }
     #
     - 'rsv-task-methods/asset/maya/gen-look-export': {
-        choice_scheme_includes: [ 'asset-*-maya-output' ],
+        choice_scheme_includes: ['asset-model-maya-output'],
         with_texture_tx: True,
         with_look_ass: True,
     }
@@ -86,7 +86,7 @@ option_hooks:
     }
     # branch general
     - 'rsv-task-methods/asset/usd/gen-usd-create': {
-        choice_scheme_includes: ['asset-*-maya-output', 'asset-*-katana-output'],
+        choice_scheme_includes: ['asset-*-maya-output', 'asset-*-houdini-output', 'asset-*-katana-output'],
         dependencies: [
             # maya
             '../maya/gen-scene-export',

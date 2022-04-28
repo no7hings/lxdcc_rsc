@@ -24,6 +24,8 @@ hook_option:
         # extra
         # if enable use exists data create new scene-src file
         create_scene_src: False
+        # root attribute
+        refresh_root_property: False
         # collection texture / texture-tx
         # either "with_texture" or "with_texture_tx"
         with_texture: False
@@ -36,6 +38,8 @@ hook_option:
         with_render_preview: False
         # link preview to review
         create_review_link: False
+        #
+        ext_extras: []
     #
     deadline:
         #

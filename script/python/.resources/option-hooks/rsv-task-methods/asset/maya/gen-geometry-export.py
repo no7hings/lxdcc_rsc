@@ -23,13 +23,13 @@ def main(session):
             if rsv_scene_properties:
                 with_geometry_usd = hook_option_opt.get('with_geometry_usd') or False
                 if with_geometry_usd is True:
-                    mya_rsv_objects.RsvGeometry(
+                    mya_rsv_objects.RsvDccGeometryHookOpt(
                         rsv_scene_properties
                     ).set_geometry_usd_export()
                 #
                 with_geometry_uv_map_usd = hook_option_opt.get('with_geometry_uv_map_usd') or False
                 if with_geometry_uv_map_usd is True:
-                    mya_rsv_objects.RsvGeometry(
+                    mya_rsv_objects.RsvDccGeometryHookOpt(
                         rsv_scene_properties
                     ).set_geometry_uv_map_usd_export()
             else:
