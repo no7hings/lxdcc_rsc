@@ -30,7 +30,7 @@ build:
             camera: ['full_body', 'upper_body', 'upper_body_35', 'upper_body_50', 'close_up', 'add_0', 'add_1', 'shot']
             layer: ['master', 'no_hair']
             light_pass: ['all']
-            look_pass: ['default', 'plastic', 'ambocc', 'wire', 'white', 'white_disp']
+            look_pass: ['default', 'plastic', 'ambocc', 'wire', 'white', 'white_disp', 'white_zbrush']
             quality: ['low', 'med', 'hi', 'custom']
     #
     scheme:

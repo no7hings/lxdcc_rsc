@@ -58,7 +58,12 @@ def set_scene_create(rsv_task, rsv_scene_properties, hook_option_opt):
     # create workspace
     ktn_fnc_creators.LookWorkspaceCreator().set_run()
     #
-    set_white_disp_create(rsv_task, rsv_scene_properties)
+    look_pass_names = hook_option_opt.get('look_passes')
+    if 'white_disp' in look_pass_names:
+        set_white_disp_create(rsv_task, rsv_scene_properties)
+
+    if 'white_zbrush' in look_pass_names:
+        set_white_zbrush_create(rsv_task, rsv_scene_properties)
     #
     shot_name = hook_option_opt.get('shot')
     if shot_name:
@@ -118,6 +123,31 @@ def set_white_disp_create(rsv_task, rsv_scene_properties):
                 file=look_ass_file_path,
                 auto_white_disp_assign=True,
                 look_pass='white_disp'
+            )
+        ).set_run()
+
+
+def set_white_zbrush_create(rsv_task, rsv_scene_properties):
+    import lxkatana.fnc.importers as ktn_fnc_importers
+
+    workspace = rsv_scene_properties.get('workspace')
+    version = rsv_scene_properties.get('version')
+
+    if workspace == 'publish':
+        keyword_0 = 'asset-look-ass-file'
+    elif workspace == 'output':
+        keyword_0 = 'asset-output-look-ass-file'
+    else:
+        raise TypeError()
+
+    look_ass_file_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_0)
+    look_ass_file_path = look_ass_file_rsv_unit.get_exists_result(version=version)
+    if look_ass_file_path:
+        ktn_fnc_importers.LookAssImporter(
+            option=dict(
+                file=look_ass_file_path,
+                auto_white_zbrush_assign=True,
+                look_pass='white_zbrush'
             )
         ).set_run()
 
