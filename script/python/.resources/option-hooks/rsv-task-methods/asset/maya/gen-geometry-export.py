@@ -32,6 +32,12 @@ def main(session):
                     mya_rsv_objects.RsvDccGeometryHookOpt(
                         rsv_scene_properties
                     ).set_geometry_uv_map_usd_export()
+                #
+                with_geometry_abc = hook_option_opt.get('with_geometry_abc') or False
+                if with_geometry_abc is True:
+                    mya_rsv_objects.RsvDccGeometryHookOpt(
+                        rsv_scene_properties
+                    ).set_geometry_abc_export()
             else:
                 raise RuntimeError()
         else:

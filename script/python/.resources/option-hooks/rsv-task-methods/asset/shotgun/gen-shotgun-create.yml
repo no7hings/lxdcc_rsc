@@ -7,7 +7,7 @@ option:
     gui:
         group_name: shotgun
         #
-        name: 'Shotgun Export'
+        name: 'General Shotgun Create'
         icon_name: 'application/shotgun'
 #
 hook_option:
@@ -18,12 +18,10 @@ hook_option:
         batch_file: ''
         #
         file: ''
+        # auto create shotgun task if task is non-exists do create
+        create_shotgun_task: False
         #
-        with_shotgun_version: False
-        with_shotgun_dependency: False
-        with_shotgun_file: False
-        #
-        with_link: False
+        create_shotgun_version: False
     #
     deadline:
         #

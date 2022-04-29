@@ -46,18 +46,24 @@ build:
                 /look_pass/plastic: True
                 /look_pass/wire: True
                 /quality/custom: True
-            #
+            # model
             model:
                 /camera/close_up: True
                 /camera/full_body: True
                 /layer/master: True
                 /light_pass/all: True
-                /look_pass/ambocc: True
                 /look_pass/default: True
-                /look_pass/wire: True
                 /look_pass/white_disp: True
                 /quality/custom: True
-            #
+
+            model_zbrush:
+                /camera/close_up: True
+                /camera/full_body: True
+                /layer/master: True
+                /light_pass/all: True
+                /look_pass/white_zbrush: True
+                /quality/custom: True
+            # groom
             groom:
                 /camera/close_up: True
                 /camera/full_body: True
@@ -72,7 +78,7 @@ build:
                 /layer/master: True
                 /light_pass/all: True
                 /look_pass/default: True
-                /look_pass/white: True
+                /look_pass/plastic: True
                 /look_pass/wire: True
                 /quality/custom: True
             #
@@ -89,7 +95,7 @@ build:
         schemes:
             variables:
                 widget: enumerate
-                value: ['model', 'groom', 'rig', 'surface', 'asset']
+                value: ['model', 'model_zbrush', 'groom', 'rig', 'surface', 'asset']
                 enable: False
                 tool_tip: '...'
                 scheme_key: 'variables'

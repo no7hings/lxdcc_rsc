@@ -16,7 +16,7 @@ def main(session):
             )
         else:
             bsc_core.SubProcessMtd.set_run_with_result(
-                'pgrv "{}"'.format(file_path)
+                'pgrv {}'.format(file_path)
             )
 
 

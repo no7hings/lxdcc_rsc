@@ -23,7 +23,7 @@ def main(session):
         #
         utl_dcc_objects.OsFile(file_path_).set_copy_to_file(_qc_review_file_path)
         #
-        _qc_stg_rsv_task_opt = stg_rsv_objects.StgRsvTaskOpt(qc_rsv_task_)
+        _qc_stg_rsv_task_opt = stg_rsv_objects.RsvStgTaskOpt(qc_rsv_task_)
         #
         _qc_stg_rsv_task_opt.set_stg_version_create(
             version=_qc_version,

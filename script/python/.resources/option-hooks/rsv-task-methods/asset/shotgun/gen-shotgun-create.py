@@ -17,35 +17,19 @@ def main(session):
             resolver = rsv_commands.get_resolver()
             rsv_scene_properties = resolver.get_rsv_scene_properties_by_any_scene_file_path(any_scene_file_path)
             if rsv_scene_properties:
-                with_shotgun_version = hook_option_opt.get('with_shotgun_version') or False
-                if with_shotgun_version is True:
+                create_shotgun_task = hook_option_opt.get('create_shotgun_task') or False
+                if create_shotgun_task is True:
                     rsv_stg_objects.RsvShotgunHookOpt(
                         rsv_scene_properties,
                         hook_option_opt
-                    ).set_version_export()
+                    ).set_task_create()
 
-                with_link = hook_option_opt.get('with_link') or False
-                if with_link is True:
+                create_shotgun_version = hook_option_opt.get('create_shotgun_version') or False
+                if create_shotgun_version is True:
                     rsv_stg_objects.RsvShotgunHookOpt(
                         rsv_scene_properties,
                         hook_option_opt
-                    ).set_link_export()
-
-                with_shotgun_file = hook_option_opt.get('with_shotgun_file') or False
-                if with_shotgun_file is True:
-                    rsv_stg_objects.RsvShotgunHookOpt(
-                        rsv_scene_properties,
-                        hook_option_opt
-                    ).set_publish_file_export()
-
-                with_shotgun_dependency = hook_option_opt.get('with_shotgun_dependency') or False
-                if with_shotgun_dependency is True:
-                    rsv_stg_objects.RsvShotgunHookOpt(
-                        rsv_scene_properties,
-                        hook_option_opt
-                    ).set_dependency_export()
-            else:
-                raise RuntimeError()
+                    ).set_version_create()
         else:
             raise RuntimeError()
     else:
