@@ -23,11 +23,11 @@ def main(session):
                 #
                 with_geometry_usd = hook_option_opt.get('with_geometry_usd') or False
                 if with_geometry_usd is True:
-                    set_geometry_usd_export(rsv_task, rsv_scene_properties)
+                    set_asset_geometry_usd_export(rsv_task, rsv_scene_properties)
                 #
                 with_geometry_uv_map_usd = hook_option_opt.get('with_geometry_uv_map_usd') or False
                 if with_geometry_uv_map_usd is True:
-                    set_geometry_uv_map_usd_export(rsv_task, rsv_scene_properties)
+                    set_asset_geometry_uv_map_usd_export(rsv_task, rsv_scene_properties)
             else:
                 raise RuntimeError
         else:
@@ -36,7 +36,7 @@ def main(session):
         raise RuntimeError()
 
 
-def set_geometry_usd_export(rsv_task, rsv_scene_properties):
+def set_asset_geometry_usd_export(rsv_task, rsv_scene_properties):
     import lxutil.dcc.dcc_objects as utl_dcc_objects
 
     import lxkatana.dcc.dcc_objects as ktn_dcc_objects
@@ -67,7 +67,7 @@ def set_geometry_usd_export(rsv_task, rsv_scene_properties):
         )
 
 
-def set_geometry_uv_map_usd_export(rsv_task, rsv_scene_properties):
+def set_asset_geometry_uv_map_usd_export(rsv_task, rsv_scene_properties):
     from lxbasic import bsc_core
 
     import lxusd.fnc.exporters as usd_fnc_exporters

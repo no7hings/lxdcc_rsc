@@ -16,8 +16,8 @@ option:
         tool_tip: ''
         #
         size: [640, 720]
-        item_frame_size: [48, 120]
-        item_name_frame_size: [48, 72]
+        item_frame_size: [72, 144]
+        item_name_frame_size: [72, 72]
     #
     packages:
         - 'lxdcc'

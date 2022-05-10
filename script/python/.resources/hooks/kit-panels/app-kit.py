@@ -69,6 +69,8 @@ class AppKit(prx_widgets.PrxToolWindow):
         self.get_log_bar().set_expanded(True)
         #
         self._group_dict = {}
+
+        i_tab_view = prx_widgets.PrxTabView()
         #
         for i_key in app_hook_keys:
             i_hook_args = ssn_commands.get_hook_args(
@@ -83,21 +85,27 @@ class AppKit(prx_widgets.PrxToolWindow):
                     if i_group_name in self._list_view_dict:
                         i_list_view = self._list_view_dict[i_group_name]
                     else:
-                        #
-                        i_group = prx_widgets.PrxExpandedGroup()
-                        self.set_widget_add(i_group)
-                        i_group.set_name(i_group_name)
-                        i_group.set_expanded(True)
-                        #
+                        # i_group = prx_widgets.PrxExpandedGroup()
+                        # self.set_widget_add(i_group)
+                        # i_group.set_name(i_group_name)
+                        # i_group.set_expanded(True)
+                        # #
                         i_list_view = prx_widgets.PrxListView()
-                        i_group.set_widget_add(i_list_view)
+                        # i_group.set_widget_add(i_list_view)
+                        #
+                        self.set_widget_add(i_tab_view)
+                        i_tab_view.set_item_add(
+                            i_list_view,
+                            name=i_group_name,
+                            icon_name_text=i_group_name,
+                        )
                         #
                         i_list_view.set_item_frame_size(*item_frame_size)
                         i_list_view.set_item_name_frame_size(*item_name_frame_size)
                         #
                         self._list_view_dict[i_group_name] = i_list_view
                         #
-                        self._group_dict[i_group_name] = i_group
+                        self._group_dict[i_group_name] = i_tab_view
                     #
                     i_list_item = i_list_view.set_item_add()
                     i_name = i_gui_configure.get('name')
@@ -121,10 +129,10 @@ class AppKit(prx_widgets.PrxToolWindow):
                         ]
                     )
         #
-        collapse_groups = configure.get('app.collapse_groups') or []
-        for i in collapse_groups:
-            if i in self._group_dict:
-                self._group_dict[i].set_expanded(False)
+        # collapse_groups = configure.get('app.collapse_groups') or []
+        # for i in collapse_groups:
+        #     if i in self._group_dict:
+        #         self._group_dict[i].set_expanded(False)
 
 
 def main(session):

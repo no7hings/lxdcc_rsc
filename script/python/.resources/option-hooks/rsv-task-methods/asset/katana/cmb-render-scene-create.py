@@ -73,7 +73,35 @@ def set_scene_create(rsv_task, rsv_scene_properties, hook_option_opt):
         if _:
             shot_geometries_node_opt.set('options.shot', _[0])
         shot_geometries_node_opt.set_port_execute('usd.create')
-
+    #
+    render_arnold_aov_enable = hook_option_opt.get('render_arnold_aov_enable')
+    qualities = hook_option_opt.get('qualities', as_array=True)
+    for i_quality in qualities:
+        i_quality_dcc_node = ktn_dcc_objects.Node('{}__quality'.format(i_quality))
+        #
+        i_quality_dcc_node.set('lynxi_variants.arnold.aov_enable', render_arnold_aov_enable)
+    #
+    render_override_enable = hook_option_opt.get('render_override_enable')
+    if render_override_enable is True:
+        render_override_percent = hook_option_opt.get('render_override_percent')
+        #
+        qualities = hook_option_opt.get('qualities', as_array=True)
+        for i_quality in qualities:
+            i_quality_dcc_node = ktn_dcc_objects.Node('{}__quality'.format(i_quality))
+            #
+            i_quality_dcc_node.set('lynxi_variants.percent', render_override_percent)
+    #
+    render_arnold_override_enable = hook_option_opt.get('render_arnold_override_enable')
+    if render_arnold_override_enable is True:
+        render_arnold_override_aa_sample = hook_option_opt.get('render_arnold_override_aa_sample')
+        #
+        qualities = hook_option_opt.get('qualities', as_array=True)
+        for i_quality in qualities:
+            i_quality_dcc_node = ktn_dcc_objects.Node('{}__quality'.format(i_quality))
+            #
+            i_quality_dcc_node.set('lynxi_variants.arnold_override_enable', True)
+            i_quality_dcc_node.set('lynxi_variants.arnold_override.aa_sample', render_arnold_override_aa_sample)
+    #
     render_settings_node_opt = ktn_core.NGObjOpt('render_settings')
     render_output_directory_path = hook_option_opt.get('render_output_directory')
     render_output_file_path = '{}/main/<camera>.<layer>.<light-pass>.<look-pass>.<quality>/<render-pass>.####.exr'.format(

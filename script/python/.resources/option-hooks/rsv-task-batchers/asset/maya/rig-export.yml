@@ -37,13 +37,14 @@ option_hooks:
         with_texture: True,
     }
     - 'rsv-task-methods/asset/maya/geometry-export': {
-        dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create']
+        dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create'],
     }
     # create usd
     - 'rsv-task-methods/asset/usd/gen-usd-create': {
-        dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create', 'rsv-task-methods/asset/maya/geometry-export', 'rsv-task-methods/asset/maya/look-export']
+        dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create', 'rsv-task-methods/asset/maya/geometry-export', 'rsv-task-methods/asset/maya/look-export'],
+        with_component_usd: True,
     }
     # create shotgun
     - 'rsv-task-methods/asset/shotgun/shotgun-export': {
-        dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create', 'rsv-task-methods/asset/maya/scene-export', 'rsv-task-methods/asset/maya/geometry-export', 'rsv-task-methods/asset/usd/gen-usd-create']
+        dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create', 'rsv-task-methods/asset/maya/scene-export', 'rsv-task-methods/asset/maya/geometry-export', 'rsv-task-methods/asset/usd/gen-usd-create'],
     }

@@ -22,10 +22,14 @@ resolver:
     filter: 'branch=asset&workspace=work'
     #
     application_filter:
-        'python': 'branch=asset&workspace=work'
-        'maya': 'branch=asset&workspace=work&step=mod+srf+rig+grm+cam'
-        'houdini': 'branch=asset&workspace=work&step=mod+srf'
-        'katana': 'branch=asset&workspace=work&step=mod+srf'
+        python: 'branch=asset&workspace=work'
+        maya: 'branch=asset&workspace=work&step=mod+srf+rig+grm+cam'
+        houdini: 'branch=asset&workspace=work&step=mod+srf'
+        katana: 'branch=asset&workspace=work&step=mod+srf'
+    #
+    filter_scheme:
+        all: ''
+        default: ''
     #
     task_unit:
         keywords:

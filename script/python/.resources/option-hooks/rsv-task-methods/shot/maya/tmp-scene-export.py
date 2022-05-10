@@ -25,7 +25,7 @@ def main(session):
                 # scene
                 with_scene = hook_option_opt.get('with_scene') or False
                 if with_scene is True:
-                    set_scene_export(rsv_task, rsv_scene_properties)
+                    set_asset_scene_export(rsv_task, rsv_scene_properties)
             else:
                 raise RuntimeError()
         else:
@@ -34,7 +34,7 @@ def main(session):
         raise RuntimeError()
 
 
-def set_scene_export(rsv_task, rsv_scene_properties):
+def set_asset_scene_export(rsv_task, rsv_scene_properties):
     from lxbasic import bsc_core
 
     import lxbasic.objects as bsc_objects

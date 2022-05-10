@@ -43,7 +43,8 @@ option_hooks:
     }
     # create usd
     - 'rsv-task-methods/asset/usd/gen-usd-create': {
-        dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create', 'rsv-task-methods/asset/maya/geometry-export', 'rsv-task-methods/asset/maya/look-export']
+        dependencies: ['rsv-task-methods/asset/shotgun/shotgun-create', 'rsv-task-methods/asset/maya/geometry-export', 'rsv-task-methods/asset/maya/look-export'],
+        with_component_usd: True
     }
     #
     - 'rsv-task-methods/asset/shotgun/shotgun-export': {

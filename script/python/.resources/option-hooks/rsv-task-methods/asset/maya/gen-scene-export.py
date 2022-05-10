@@ -28,7 +28,7 @@ def main(session):
                     mya_rsv_objects.RsvDccSceneHookOpt(
                         rsv_scene_properties,
                         hook_option_opt,
-                    ).set_root_property_refresh()
+                    ).set_asset_root_property_refresh()
                 # texture
                 with_texture = hook_option_opt.get('with_texture') or False
                 if with_texture is True:
@@ -36,7 +36,8 @@ def main(session):
                         rsv_scene_properties,
                         hook_option_opt,
                     ).set_texture_export(
-                        location=root, use_tx=False
+                        location=root,
+                        use_tx=False
                     )
                 else:
                     # texture-tx
@@ -46,7 +47,8 @@ def main(session):
                             rsv_scene_properties,
                             hook_option_opt,
                         ).set_texture_export(
-                            location=root, use_tx=True
+                            location=root,
+                            use_tx=True
                         )
                 # scene
                 with_scene = hook_option_opt.get('with_scene') or False
@@ -54,7 +56,7 @@ def main(session):
                     mya_rsv_objects.RsvDccSceneHookOpt(
                         rsv_scene_properties,
                         hook_option_opt,
-                    ).set_scene_export()
+                    ).set_asset_scene_export()
             else:
                 raise RuntimeError()
         else:

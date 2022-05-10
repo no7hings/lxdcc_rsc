@@ -33,7 +33,9 @@ hook_option:
         shot_asset: ''
         #
         render_asset_frames: []
+        render_asset_frame_step: 1.0
         render_shot_frames: []
+        render_shot_frame_step: 1.0
         render_output_directory: ''
     #
     deadline:

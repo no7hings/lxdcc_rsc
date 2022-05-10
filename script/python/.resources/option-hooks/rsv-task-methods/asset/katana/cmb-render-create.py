@@ -65,8 +65,18 @@ def main(session):
             i_camera = i_variants['camera']
             if i_camera in ['shot']:
                 i_render_frames = hook_option_opt.get('render_shot_frames')
+                i_render_frame_step = int(hook_option_opt.get('render_shot_frame_step'))
             else:
                 i_render_frames = hook_option_opt.get('render_asset_frames')
+                i_render_frame_step = int(hook_option_opt.get('render_asset_frame_step'))
+            #
+            if i_render_frame_step > 1:
+                render_frame_range = bsc_core.TextOpt(i_render_frames).to_frame_range()
+                i_render_frames_ = bsc_core.FrameRangeMtd.get(
+                    render_frame_range, i_render_frame_step
+                )
+            else:
+                i_render_frames_ = bsc_core.TextOpt(i_render_frames).to_frames()
             #
             i_batch_file_path = hook_option_opt.get('batch_file')
             i_file_path = hook_option_opt.get('file')
@@ -86,9 +96,6 @@ def main(session):
             i_movie_file_path = '{}/main/{}.mov'.format(
                 i_render_output_directory_path, i_variable_name
             )
-            i_katana_render_hook_key = '{}/{}'.format(
-                katana_render_hook_key, i_option_hook_key
-            )
             i_katana_render_hook_option_opt = bsc_core.KeywordArgumentsOpt(
                 dict(
                     option_hook_key=katana_render_hook_key,
@@ -105,7 +112,7 @@ def main(session):
                     render_output_directory=i_render_output_directory_path,
                     renderer=i_renderer,
                     #
-                    render_frames=i_render_frames,
+                    render_frames=i_render_frames_,
                     #
                     option_hook_key_extend=[i_option_hook_key],
                     #

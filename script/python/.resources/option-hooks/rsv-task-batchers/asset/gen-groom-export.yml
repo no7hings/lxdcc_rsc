@@ -35,16 +35,19 @@ option_hooks:
     # create shotgun task fist
     - 'rsv-task-methods/asset/shotgun/gen-shotgun-create': {
         choice_scheme_includes: [
-            'asset-maya-publish'
+            'asset-*-publish',
         ],
+        create_shotgun_task: True,
+        create_shotgun_version: True,
     }
     # maya scene export
     - 'rsv-task-methods/asset/maya/gen-scene-export': {
         choice_scheme_includes: [
-            'asset-maya-publish',
-            'asset-maya-output'
+            'asset-maya-*',
         ],
-        dependencies: ['../shotgun/gen-shotgun-create'],
+        dependencies: [
+            '../shotgun/gen-shotgun-create',
+        ],
         with_texture_tx: True,
         with_scene: True,
         #
@@ -53,28 +56,46 @@ option_hooks:
     }
     # maya geometry export
     - 'rsv-task-methods/asset/maya/gen-geometry-export': {
-        choice_scheme_includes: ['asset-maya-publish', 'asset-maya-output'],
-        dependencies: ['../shotgun/gen-shotgun-create'],
+        choice_scheme_includes: [
+            'asset-maya-*',
+        ],
+        dependencies: [
+            '../shotgun/gen-shotgun-create',
+        ],
         with_geometry_usd: True,
         with_geometry_uv_map_usd: True,
     }
     # maya hair export
     - 'rsv-task-methods/asset/maya/gen-hair-export': {
-        choice_scheme_includes: ['asset-maya-publish', 'asset-maya-output'],
-        dependencies: ['../shotgun/gen-shotgun-create', '../maya/gen-scene-export'],
+        choice_scheme_includes: [
+            'asset-maya-*',
+        ],
+        dependencies: [
+            '../shotgun/gen-shotgun-create',
+            '../maya/gen-scene-export',
+        ],
         with_hair_xgen: True,
         with_hair_xgen_usd: True,
 
     }
     # usd create
     - 'rsv-task-methods/asset/usd/gen-usd-create': {
-        choice_scheme_includes: ['asset-maya-publish', 'asset-maya-output'],
-        dependencies: ['../shotgun/gen-shotgun-create', '../maya/gen-geometry-export', '../maya/gen-hair-export', '../maya/look-export'],
+        choice_scheme_includes: [
+            'asset-maya-*',
+        ],
+        dependencies: [
+            '../shotgun/gen-shotgun-create',
+            '../maya/gen-geometry-export',
+            '../maya/gen-hair-export',
+            '../maya/look-export',
+        ],
         with_component_usd: True,
     }
     #
     - 'rsv-task-methods/asset/shotgun/gen-shotgun-export': {
-        choice_scheme_includes: ['asset-maya-publish'],
+        choice_scheme_includes: [
+            'asset-*-publish',
+        ],
         dependencies: [
             '../shotgun/gen-shotgun-create',
             '../maya/gen-scene-export',

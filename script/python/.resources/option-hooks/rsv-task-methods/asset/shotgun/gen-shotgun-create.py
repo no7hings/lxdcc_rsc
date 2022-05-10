@@ -17,6 +17,7 @@ def main(session):
             resolver = rsv_commands.get_resolver()
             rsv_scene_properties = resolver.get_rsv_scene_properties_by_any_scene_file_path(any_scene_file_path)
             if rsv_scene_properties:
+                #
                 create_shotgun_task = hook_option_opt.get('create_shotgun_task') or False
                 if create_shotgun_task is True:
                     rsv_stg_objects.RsvShotgunHookOpt(

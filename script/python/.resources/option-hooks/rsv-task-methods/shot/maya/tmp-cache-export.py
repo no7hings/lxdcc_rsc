@@ -39,11 +39,11 @@ def main(session):
                     # usd
                     with_geometry_usd = hook_option_opt.get('with_geometry_usd') or False
                     if with_geometry_usd is True:
-                        set_geometry_usd_export(rsv_task, rsv_scene_properties, frame_range)
+                        set_asset_geometry_usd_export(rsv_task, rsv_scene_properties, frame_range)
                     # abc
                     with_geometry_abc = hook_option_opt.get('with_geometry_abc') or False
                     if with_geometry_abc is True:
-                        set_geometry_abc_export(rsv_task, rsv_scene_properties, frame_range)
+                        set_asset_geometry_abc_export(rsv_task, rsv_scene_properties, frame_range)
                     #
                     with_override_usd = hook_option_opt.get('with_override_usd') or False
                     if with_override_usd is True:
@@ -60,7 +60,7 @@ def main(session):
         raise RuntimeError()
 
 
-def set_geometry_usd_export(rsv_task, rsv_scene_properties, frame_range):
+def set_asset_geometry_usd_export(rsv_task, rsv_scene_properties, frame_range):
     workspace = rsv_scene_properties.get('workspace')
     version = rsv_scene_properties.get('version')
     root = rsv_scene_properties.get('dcc.root')
@@ -146,7 +146,7 @@ def set_geometry_usd_export_(rsv_task, rsv_scene_properties, frame_range):
         )
 
 
-def set_geometry_abc_export(rsv_task, rsv_scene_properties, frame_range):
+def set_asset_geometry_abc_export(rsv_task, rsv_scene_properties, frame_range):
     from lxbasic import bsc_core
 
     import lxbasic.objects as bsc_objects

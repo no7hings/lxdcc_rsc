@@ -89,26 +89,32 @@ build:
                 /light_pass/all: True
                 /look_pass/default: True
                 /quality/custom: True
+        settings:
+            asset: {}
+            asset-fast:
+                render/arnold/aov_enable: False
+                render/override_enable: True
+                render/override/percent: '50%'
+                render/arnold_override_enable: True
+                render/arnold_override/aa_sample: 4
     #
     node:
         #
         schemes:
             variables:
                 widget: enumerate
-                value: ['model', 'model_zbrush', 'groom', 'rig', 'surface', 'asset']
+                value: ['asset', 'model', 'model_zbrush', 'groom', 'rig', 'surface']
+                current: 'asset'
                 enable: False
                 tool_tip: '...'
                 scheme_key: 'variables'
             settings:
                 widget: enumerate
-                value: ['default']
+                value: ['asset', 'asset-fast']
+                current: 'asset'
                 enable: False
                 tool_tip: '...'
                 scheme_key: 'settings'
-#            save:
-#                widget: button
-#                value: ''
-#                tool_tip: '...'
         #
         options:
             choice_scheme:
@@ -151,7 +157,8 @@ build:
 
             variants/shot_asset:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
@@ -163,31 +170,35 @@ build:
 
             variants/asset_version/model:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
             variants/asset_version/groom:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
             variants/asset_version/rig:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
             variants/asset_version/effect:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
                 enable: False
                 tool_tip: '...'
 
             variants/asset_version/surface:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
@@ -199,31 +210,36 @@ build:
 
             variants/asset_version_override/model:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
             variants/asset_version_override/groom:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
             variants/asset_version_override/rig:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
             variants/asset_version_override/effect:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
             variants/asset_version_override/surface:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
@@ -235,25 +251,29 @@ build:
 
             variants/shot_version/layout:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
             variants/shot_version/animation:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
             variants/shot_version/simulation:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
             variants/shot_version/polish:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
 
@@ -265,7 +285,8 @@ build:
 
             variants/shot_version_override/animation:
                 widget: enumerate
-                value: [ 'None' ]
+                value: ['None']
+                current: 'None'
                 enable: False
                 tool_tip: '...'
         #
@@ -273,6 +294,7 @@ build:
             td/test_scheme:
                 widget: enumerate
                 value: ['td_enable', 'rez_beta', 'auto']
+                current: 'auto'
                 tool_tip: '...'
 
             td/publish_camera:
@@ -280,23 +302,23 @@ build:
                 value: ''
                 tool_tip: '...'
 
-            render/asset/frame_range:
-                widget: float2
-                value: [ 1001, 1240 ]
+            render/asset/frames:
+                widget: frames
+                value: '1001-1240'
                 enable: False
-                tool_tip: '...'
+                tool_tip: 'etc: "1" / "1,5" / "1-2" / "1-2,10"'
 
             render/asset/frame_step:
                 widget: float
-                value: 10.0
+                value: 1.0
                 enable: False
                 tool_tip: '...'
 
-            render/shot/frame_range:
-                widget: float2
-                value: [ 1001, 1240 ]
+            render/shot/frames:
+                widget: frames
+                value: '1001-1240'
                 enable: False
-                tool_tip: '...'
+                tool_tip: 'etc: "1" / "1,5" / "1-2" / "1-2,10"'
 
             render/shot/frame_step:
                 widget: float
@@ -304,10 +326,42 @@ build:
                 enable: False
                 tool_tip: '...'
 
-            render/arnold/aa_sample:
-                widget: integer
+            render/arnold/aov_enable:
+                widget: boolean
+                label: 'AOV enable'
+                value: True
+                enable: False
+                tool_tip: '...'
+
+            render/override_enable:
+                widget: boolean
+                value: False
+                enable: False
+                tool_tip: '...'
+
+            render/override/percent:
+                widget: enumerate
+                value: ['25%', '50%', '75%', '100%', '125%', '150%', '175%', '200%']
+                current: '100%'
+                enable: False
+                tool_tip: '...'
+
+            render/arnold_override_enable:
+                widget: boolean
+                value: False
+                enable: False
+                tool_tip: '...'
+
+            render/arnold_override/aa_sample:
+                widget: float
                 label: 'AA sample'
-                value: 8
+                value: 6
+                enable: False
+                tool_tip: '...'
+
+            deadline/priority:
+                widget: float
+                value: 50
                 enable: False
                 tool_tip: '...'
 

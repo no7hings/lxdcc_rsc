@@ -27,13 +27,11 @@ hook_option:
         #
         renderer: ''
         #
-        vriable_name: ''
-        #
         option_hook_key_extend: []
     #
     deadline:
         #
-        group: all
+        group: b
         #
         pool: emergency
     #
