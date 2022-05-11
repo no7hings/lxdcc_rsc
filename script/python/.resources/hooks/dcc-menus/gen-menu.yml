@@ -14,6 +14,7 @@ option:
 hooks:
     #
     - 'dcc-tool-panels/gen-asset-comparer': {gui_parent: '/Asset', gui_icon_name: 'window/geometry-comparer'}
+    - 'dcc-tool-panels/gen-asset-builder': {gui_parent: '/Asset', gui_icon_name: 'window/geometry-comparer'}
     - 'rsv-panels/asset-loader': {gui_parent: '/Asset', gui_icon_name: 'window/loader'}
     - 'rsv-panels/asset-proxy-loader': {gui_parent: '/Asset', gui_icon_name: 'window/loader'}
     #

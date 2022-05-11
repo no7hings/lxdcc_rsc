@@ -6,8 +6,8 @@ option:
         - '*-katana'
     #
     gui:
-        name: 'Asset Comparer'
-        group_name: 'Comparer(s)'
+        name: 'Asset Builder'
+        group_name: 'Builder(s)'
         #
         icon_name: 'window/geometry-comparer'
         tool_tip: ''

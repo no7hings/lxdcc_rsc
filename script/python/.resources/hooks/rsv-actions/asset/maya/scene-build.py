@@ -13,10 +13,14 @@ def main(session):
         option=dict(
             project=project,
             asset=asset,
+            #
             with_model_geometry=True,
-            with_surface_geometry_uv_map=True,
-            with_groom_geometry=True,
-            with_surface_look=True
+            with_groom_geometry=True, with_groom_grow_geometry=True,
+            with_surface_look=True, with_surface_geometry_uv_map=True,
+            with_camera=True,
+            with_light=True,
+            save_scene=True,
+            render_resolution=(2048, 2048),
         )
     ).set_run()
 

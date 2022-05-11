@@ -8,7 +8,12 @@ def main(session):
     if file_path:
         import lxmaya.fnc.importers as mya_fnc_importers
 
-        mya_fnc_importers.CameraAbcImporter(file_path, '/cameras').set_run()
+        mya_fnc_importers.CameraAbcImporter(
+            option=dict(
+                file=file_path,
+                location='/cameras'
+            )
+        ).set_run()
 
 
 if __name__ == '__main__':
