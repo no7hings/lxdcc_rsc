@@ -2,6 +2,8 @@
 
 
 def main(session):
+    from lxbasic import bsc_core
+
     from lxutil import utl_core
 
     import lxsession.commands as ssn_commands
@@ -11,10 +13,15 @@ def main(session):
     configure = session.configure
 
     application = session.application
+
+    gui_name = session.gui_name
+    if session.get_rez_beta() is True:
+        gui_name = '[BETA]{}'.format(gui_name)
+
     if application == 'maya':
         from lxmaya import ma_core, ma_setup
         menu = ma_setup.MayaMenuSetup.get_menu(
-            session.gui_name
+            gui_name
         )
         if ma_core._get_is_ui_mode_() is False:
             utl_core.Log.set_module_warning_trace(
@@ -24,7 +31,7 @@ def main(session):
     elif application == 'katana':
         from lxkatana import ktn_core, ktn_setup
         menu = ktn_setup.KatanaMenuSetup.get_menu(
-            session.gui_name
+            gui_name
         )
         if ktn_core._get_is_ui_mode_() is False:
             utl_core.Log.set_module_warning_trace(
