@@ -5,7 +5,7 @@ option:
         - '*-python'
     #
     gui:
-        group_name: scene
+        group_name: 'maya'
         #
         name: 'New Work Maya File'
         icon_name: 'application/maya'

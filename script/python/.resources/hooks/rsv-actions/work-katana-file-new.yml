@@ -1,0 +1,11 @@
+option:
+    type: task
+    #
+    systems:
+        - '*-python'
+    #
+    gui:
+        group_name: 'katana'
+        #
+        name: 'New Work Katna File'
+        icon_name: 'application/katana'

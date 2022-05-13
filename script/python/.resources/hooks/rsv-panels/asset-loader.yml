@@ -27,10 +27,6 @@ resolver:
         houdini: 'branch=asset&workspace=work&step=mod+srf'
         katana: 'branch=asset&workspace=work&step=mod+srf'
     #
-    filter_scheme:
-        all: ''
-        default: ''
-    #
     task_unit:
         keywords:
             - '{branch}-work-maya-scene-src-file': {systems: ['*-python', '*-maya']}
@@ -39,16 +35,29 @@ resolver:
             - '{branch}-work-nuke-scene-src-file': {systems: ['*-python', '*-nuke']}
             #
             - '{branch}-component-usd-file': {systems: ['*-python']}
+    #
+    filters:
+        camera: 'branch=asset&workspace=work&step=cam'
+        model: 'branch=asset&workspace=work&step=mod'
+        groom: 'branch=asset&workspace=work&step=grm'
+        rig: 'branch=asset&workspace=work&step=rig'
+        surface: 'branch=asset&workspace=work&step=srf'
+        #
+        all: 'branch=asset&workspace=work'
+        #
+        auto: ''
 #
 actions:
     asset:
         hooks:
-            - 'rsv-actions/asset/maya/scene-build'
+            - 'rsv-actions/python/asset-maya-build': {gui_parent: '/Run Method', gui_name: 'for Build Scene'}
+            - 'rsv-actions/python/asset-camera-create-or-publish': {gui_parent: '/Run Method', gui_name: 'for Create or Publish Asset Camera'}
     task:
         hooks:
             # standalone
-            - 'rsv-actions/work-maya-file-new'
-            - 'rsv-actions/work-user-maya-file-new'
+            - 'rsv-actions/work-maya-file-new': {gui_parent: '/New File', gui_name: 'for Maya Work'}
+            - 'rsv-actions/work-user-maya-file-new': {gui_parent: '/New File', gui_name: 'for Maya Work as User'}
+            - 'rsv-actions/work-katana-file-new': {gui_parent: '/New File', gui_name: 'for Katana Work'}
             # in dcc
             - 'rsv-actions/maya/work-file-new'
             - 'rsv-actions/houdini/work-file-new'

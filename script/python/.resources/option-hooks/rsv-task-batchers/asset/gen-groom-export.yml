@@ -98,9 +98,11 @@ option_hooks:
         ],
         dependencies: [
             '../shotgun/gen-shotgun-create',
+            #
             '../maya/gen-scene-export',
             '../maya/gen-geometry-export',
             '../maya/gen-hair-export',
+            #
             '../usd/gen-usd-create'
         ],
         #

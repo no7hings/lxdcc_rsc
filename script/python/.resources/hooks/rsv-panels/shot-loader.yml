@@ -35,6 +35,14 @@ resolver:
             #
             - '{branch}-component-usd-file': {systems: ['*-python']}
             - '{branch}-output-component-usd-file': {systems: ['*-python']}
+    filters:
+        layout: 'branch=shot&workspace=work&step=rlo'
+        animation: 'branch=shot&workspace=work&step=rlo+ani+flo'
+        simulation: 'branch=shot&workspace=work&step=cfx'
+        effect: 'branch=shot&workspace=work&step=efx'
+        light: 'branch=shot&workspace=work&step=lgt'
+        all: 'branch=shot&workspace=work'
+        auto: ''
 #
 actions:
     task:

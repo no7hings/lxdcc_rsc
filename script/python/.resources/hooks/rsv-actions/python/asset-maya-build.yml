@@ -7,6 +7,6 @@ option:
     gui:
         group_name: 'build'
         #
-        name: 'Build Scene'
+        name: 'Build Asset'
         #
-        icon_name: 'application/maya'
+        icon_name: 'application/python'

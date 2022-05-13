@@ -2,6 +2,8 @@
 
 
 def main(session):
+    from lxutil import utl_core
+
     import lxsession.commands as ssn_commands
 
     from lxutil_gui.qt import utl_gui_qt_core
@@ -10,15 +12,25 @@ def main(session):
 
     application = session.application
     if application == 'maya':
-        from lxmaya import ma_setup
+        from lxmaya import ma_core, ma_setup
         menu = ma_setup.MayaMenuSetup.get_menu(
             session.gui_name
         )
+        if ma_core._get_is_ui_mode_() is False:
+            utl_core.Log.set_module_warning_trace(
+                'dcc menu build', 'ignore for "batch" mode'
+            )
+            return
     elif application == 'katana':
-        from lxkatana import ktn_setup
+        from lxkatana import ktn_core, ktn_setup
         menu = ktn_setup.KatanaMenuSetup.get_menu(
             session.gui_name
         )
+        if ktn_core._get_is_ui_mode_() is False:
+            utl_core.Log.set_module_warning_trace(
+                'dcc menu build', 'ignore for "batch" mode'
+            )
+            return
     else:
         raise NotImplementedError()
 

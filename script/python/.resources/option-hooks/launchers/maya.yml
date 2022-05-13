@@ -1,0 +1,26 @@
+option:
+    type: launcher
+    #
+    systems:
+        - '*-python'
+    #
+    gui:
+        group_name: 'Launcher(s)'
+        #
+        name: 'Maya'
+        icon_name: 'application/maya'
+        #
+        tool_tip: '"LMB-click" to open open maya, "RMB-click" to show more actions'
+#
+hook_option:
+    script:
+        project: 'cgm'
+
+    extra:
+        cgm:
+            script: { project: 'cgm', gui_name: 'Open Maya for "CGM"' }
+        xkt:
+            script: { project: 'xkt', gui_name: 'Open Maya for "XKT"' }
+        cjd:
+            script: { project: 'cjd', gui_name: 'Open Maya for "CJD"' }
+

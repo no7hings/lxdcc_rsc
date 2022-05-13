@@ -30,4 +30,4 @@ resolver:
         keyword: '{branch}-work-maya-scene-src-file'
         version: latest
 
-    step_includes: ['mod', 'grm']
+    step_includes: ['mod', 'grm', 'rig']

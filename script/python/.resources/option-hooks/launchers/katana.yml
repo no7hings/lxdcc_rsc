@@ -1,0 +1,25 @@
+option:
+    type: launcher
+    #
+    systems:
+        - '*-python'
+    #
+    gui:
+        group_name: 'Launcher(s)'
+        #
+        name: 'Katana'
+        icon_name: 'application/katana'
+        #
+        tool_tip: '"LMB-click" to open open maya, "RMB-click" to show more actions'
+#
+hook_option:
+    script:
+        project: 'cgm'
+    #
+    extra:
+        cgm:
+            script: { project: 'cgm', gui_name: 'Open Katana for "CGM"' }
+        xkt:
+            script: { project: 'xkt', gui_name: 'Open Katana for "XKT"' }
+        cjd:
+            script: { project: 'cjd', gui_name: 'Open Katana for "CJD"' }

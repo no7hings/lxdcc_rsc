@@ -21,26 +21,16 @@ def main(session):
             resolver = rsv_commands.get_resolver()
             rsv_scene_properties = resolver.get_rsv_scene_properties_by_any_scene_file_path(any_scene_file_path)
             if rsv_scene_properties:
-                with_geometry_usd = hook_option_opt.get('with_geometry_usd') or False
-                if with_geometry_usd is True:
-                    mya_rsv_objects.RsvDccGeometryHookOpt(
+                with_camera_main_abc = hook_option_opt.get('with_camera_main_abc') or False
+                if with_camera_main_abc is True:
+                    mya_rsv_objects.RsvDccCameraHookOpt(
                         rsv_scene_properties,
                         hook_option_opt,
-                    ).set_asset_geometry_usd_export()
+                    ).set_asset_camera_main_abc_export()
                 #
-                with_geometry_uv_map_usd = hook_option_opt.get('with_geometry_uv_map_usd') or False
-                if with_geometry_uv_map_usd is True:
-                    mya_rsv_objects.RsvDccGeometryHookOpt(
-                        rsv_scene_properties,
-                        hook_option_opt,
-                    ).set_asset_geometry_uv_map_usd_export()
-                #
-                with_geometry_abc = hook_option_opt.get('with_geometry_abc') or False
-                if with_geometry_abc is True:
-                    mya_rsv_objects.RsvDccGeometryHookOpt(
-                        rsv_scene_properties,
-                        hook_option_opt,
-                    ).set_asset_geometry_abc_export()
+                create_camera_persp_abc = hook_option_opt.get('create_camera_persp_abc') or False
+                if create_camera_persp_abc is True:
+                    pass
             else:
                 raise RuntimeError()
         else:
