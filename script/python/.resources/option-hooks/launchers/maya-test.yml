@@ -1,0 +1,22 @@
+option:
+    type: launcher
+    #
+    systems:
+        - '*-python'
+    #
+    gui:
+        group_name: 'Launcher(s)'
+        #
+        name: 'Maya for Test'
+        icon_name: 'application/maya'
+        #
+        tool_tip: '"LMB-click" to open open maya, "RMB-click" to show more actions'
+#
+hook_option:
+    script:
+        cmd: 'rez-env lxdcc usd mtoa maya-2019 aces-1.2 -- maya'
+
+    extra:
+        lxdcc:
+            script: { cmd: 'rez-env lxdcc usd mtoa maya-2019 aces-1.2 -- maya', gui_name: 'Open Maya for "LXDCC"' }
+

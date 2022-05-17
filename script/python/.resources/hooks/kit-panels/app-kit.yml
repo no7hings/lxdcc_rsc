@@ -44,3 +44,4 @@ app:
     option-hooks:
         - 'launchers/maya'
         - 'launchers/katana'
+        - 'launchers/maya-test'

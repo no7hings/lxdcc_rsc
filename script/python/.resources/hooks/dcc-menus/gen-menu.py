@@ -16,7 +16,7 @@ def main(session):
 
     gui_name = session.gui_name
     if session.get_rez_beta() is True:
-        gui_name = '[BETA]{}'.format(gui_name)
+        gui_name = '[BETA] {}'.format(gui_name)
 
     if application == 'maya':
         from lxmaya import ma_core, ma_setup

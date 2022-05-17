@@ -52,80 +52,119 @@ def main(session):
 
 
 def set_hair_xgen_export(rsv_task, rsv_scene_properties):
+    from lxbasic import bsc_core
+
+    from lxutil import utl_core
+
+    import lxmaya.dcc.dcc_objects as mya_dcc_objects
+
     import lxmaya.fnc.exporters as mya_fnc_exporters
 
     workspace = rsv_scene_properties.get('workspace')
     version = rsv_scene_properties.get('version')
     root = rsv_scene_properties.get('dcc.root')
+    pathsep = rsv_scene_properties.get('dcc.pathsep')
     location = '{}/hair'.format(root)
-
-    if workspace == 'publish':
-        keyword_0 = 'asset-version-dir'
-        keyword_1 = 'asset-geometry-xgen-collection-dir'
-        keyword_2 = 'asset-geometry-xgen-glow-dir'
-    elif workspace == 'output':
-        keyword_0 = 'asset-output-version-dir'
-        keyword_1 = 'asset-output-geometry-xgen-collection-dir'
-        keyword_2 = 'asset-output-geometry-xgen-glow-dir'
-    else:
-        raise TypeError()
-
-    version_directory_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_0)
-    version_directory_path = version_directory_rsv_unit.get_result(version=version)
-
-    xgen_collection_directory_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_1)
-    xgen_collection_directory_path = xgen_collection_directory_rsv_unit.get_result(version=version)
-
-    grow_mesh_directory_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_2)
-    grow_mesh_directory_path = grow_mesh_directory_rsv_unit.get_result(version=version)
-
-    mya_fnc_exporters.XgenExporter(
-        option=dict(
-            xgen_project_directory=version_directory_path,
-            xgen_collection_directory=xgen_collection_directory_path,
-            grow_mesh_directory=grow_mesh_directory_path,
-            #
-            location=location,
-            #
-            with_xgen_collection=True,
-            with_grow_mesh_abc=True,
+    mya_location = mya_dcc_objects.Group(
+        bsc_core.DccPathDagOpt(location).set_translate_to(
+            pathsep
         )
-    ).set_run()
+    )
+    if mya_location.get_is_exists() is True:
+        if workspace == 'publish':
+            keyword_0 = 'asset-version-dir'
+            keyword_1 = 'asset-geometry-xgen-collection-dir'
+            keyword_2 = 'asset-geometry-xgen-glow-dir'
+        elif workspace == 'output':
+            keyword_0 = 'asset-output-version-dir'
+            keyword_1 = 'asset-output-geometry-xgen-collection-dir'
+            keyword_2 = 'asset-output-geometry-xgen-glow-dir'
+        else:
+            raise TypeError()
+
+        version_directory_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_0)
+        version_directory_path = version_directory_rsv_unit.get_result(version=version)
+
+        xgen_collection_directory_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_1)
+        xgen_collection_directory_path = xgen_collection_directory_rsv_unit.get_result(version=version)
+
+        grow_mesh_directory_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_2)
+        grow_mesh_directory_path = grow_mesh_directory_rsv_unit.get_result(version=version)
+        #
+        mya_fnc_exporters.XgenExporter(
+            option=dict(
+                xgen_project_directory=version_directory_path,
+                xgen_collection_directory=xgen_collection_directory_path,
+                grow_mesh_directory=grow_mesh_directory_path,
+                #
+                location=location,
+                #
+                with_xgen_collection=True,
+                with_grow_mesh_abc=True,
+            )
+        ).set_run()
+    else:
+        raise RuntimeError(
+            utl_core.Log.set_module_error_trace(
+                'xgen export',
+                u'obj="{}" is non-exists'.format(mya_location.path)
+            )
+        )
 
 
 def set_hair_xgen_usd_export(rsv_task, rsv_scene_properties):
+    from lxbasic import bsc_core
+
+    from lxutil import utl_core
+
+    import lxmaya.dcc.dcc_objects as mya_dcc_objects
+
     import lxutil.fnc.exporters as utl_fnc_exporters
 
     workspace = rsv_scene_properties.get('workspace')
     version = rsv_scene_properties.get('version')
     root = rsv_scene_properties.get('dcc.root')
+    pathsep = rsv_scene_properties.get('dcc.pathsep')
     location = '{}/hair'.format(root)
 
-    if workspace == 'publish':
-        keyword_0 = 'asset-maya-scene-file'
-        keyword_1 = 'asset-xgen-usd-file'
-    elif workspace == 'output':
-        keyword_0 = 'asset-output-maya-scene-file'
-        keyword_1 = 'asset-output-xgen-usd-file'
-    else:
-        raise TypeError()
-
-    xgen_usd_file_rsv_unit = rsv_task.get_rsv_unit(
-        keyword=keyword_1
-    )
-    xgen_usd_file_path = xgen_usd_file_rsv_unit.get_result(
-        version=version
-    )
-    maya_scene_file_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_0)
-    maya_scene_file_path = maya_scene_file_rsv_unit.get_result(version=version)
-
-    utl_fnc_exporters.DotXgenUsdaExporter(
-        dict(
-            file=xgen_usd_file_path,
-            location=location,
-            maya_scene_file=maya_scene_file_path,
+    mya_location = mya_dcc_objects.Group(
+        bsc_core.DccPathDagOpt(location).set_translate_to(
+            pathsep
         )
-    ).set_run()
+    )
+    if mya_location.get_is_exists() is True:
+        if workspace == 'publish':
+            keyword_0 = 'asset-maya-scene-file'
+            keyword_1 = 'asset-xgen-usd-file'
+        elif workspace == 'output':
+            keyword_0 = 'asset-output-maya-scene-file'
+            keyword_1 = 'asset-output-xgen-usd-file'
+        else:
+            raise TypeError()
+
+        xgen_usd_file_rsv_unit = rsv_task.get_rsv_unit(
+            keyword=keyword_1
+        )
+        xgen_usd_file_path = xgen_usd_file_rsv_unit.get_result(
+            version=version
+        )
+        maya_scene_file_rsv_unit = rsv_task.get_rsv_unit(keyword=keyword_0)
+        maya_scene_file_path = maya_scene_file_rsv_unit.get_result(version=version)
+
+        utl_fnc_exporters.DotXgenUsdaExporter(
+            dict(
+                file=xgen_usd_file_path,
+                location=location,
+                maya_scene_file=maya_scene_file_path,
+            )
+        ).set_run()
+    else:
+        raise RuntimeError(
+            utl_core.Log.set_module_error_trace(
+                'xgen export',
+                u'obj="{}" is non-exists'.format(mya_location.path)
+            )
+        )
 
 
 if __name__ == '__main__':

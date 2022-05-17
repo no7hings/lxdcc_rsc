@@ -22,10 +22,10 @@ resolver:
     filter: 'branch=asset&workspace=work'
     #
     application_filter:
-        python: 'branch=asset&workspace=work'
-        maya: 'branch=asset&workspace=work&step=mod+srf+rig+grm+cam'
+        python: 'branch=asset&workspace=work&step=mod+srf+grm+rig+cam+lgt'
+        maya: 'branch=asset&workspace=work&step=mod+srf+grm+rig+cam+lgt'
         houdini: 'branch=asset&workspace=work&step=mod+srf'
-        katana: 'branch=asset&workspace=work&step=mod+srf'
+        katana: 'branch=asset&workspace=work&step=mod+srf+lgt'
     #
     task_unit:
         keywords:
@@ -33,8 +33,6 @@ resolver:
             - '{branch}-work-houdini-scene-src-file': {systems: ['*-python', '*-houdini']}
             - '{branch}-work-katana-scene-src-file': {systems: ['*-python', '*-katana']}
             - '{branch}-work-nuke-scene-src-file': {systems: ['*-python', '*-nuke']}
-            #
-            - '{branch}-component-usd-file': {systems: ['*-python']}
     #
     filters:
         camera: 'branch=asset&workspace=work&step=cam'
