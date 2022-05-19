@@ -172,7 +172,7 @@ class TextureTxConverter(prx_widgets.PrxToolWindow):
         for i_k, i_v in self._file_dict.items():
             i_texture = utl_dcc_objects.OsTexture(i_k)
 
-            _, i_prx_item = self._tree_view_add_opt.set_item_prx_add_as(
+            _, i_prx_item = self._tree_view_add_opt.set_prx_item_add_as(
                 i_texture,
                 mode='list',
                 use_show_thread=True
