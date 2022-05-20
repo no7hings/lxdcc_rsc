@@ -18,8 +18,15 @@ hook_option:
     #
     extra:
         cgm:
-            script: { project: 'cgm', gui_name: 'Open Katana for "CGM"' }
+            script: { project: 'cgm', use_as_launcher: True, gui_name: 'Open Katana for "CGM"' }
         xkt:
-            script: { project: 'xkt', gui_name: 'Open Katana for "XKT"' }
+            script: { project: 'xkt', use_as_launcher: True, gui_name: 'Open Katana for "XKT"' }
         cjd:
-            script: { project: 'cjd', gui_name: 'Open Katana for "CJD"' }
+            script: { project: 'cjd', use_as_launcher: True, gui_name: 'Open Katana for "CJD"' }
+        #
+        cgm_graph:
+            script: { project: 'cgm', use_as_graph: True, gui_name: 'for "CGM"', gui_parent: '/Open Rez Graph' }
+        xkt_graph:
+            script: { project: 'xkt', use_as_graph: True, gui_name: 'for "XKT"', gui_parent: '/Open Rez Graph' }
+        cjd_graph:
+            script: { project: 'cjd', use_as_graph: True, gui_name: 'for "CJD"', gui_parent: '/Open Rez Graph' }

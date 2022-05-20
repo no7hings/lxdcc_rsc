@@ -2,18 +2,14 @@
 
 
 def main(session):
-    from lxusd import usd_setup
-
-    usd_setup.UsdSetup.set_environs_setup()
-
     from lxutil_gui.qt import utl_gui_qt_core
-
-    option_opt = session.option_opt
 
     import lxutil_gui.panel.utl_pnl_widgets as utl_pnl_widgets
 
+    option_opt = session.option_opt
+
     utl_gui_qt_core.set_window_show_standalone(
-        utl_pnl_widgets.AssetRenderSubmitter,
+        utl_pnl_widgets.RezGraph,
         hook_option=option_opt.to_string()
     )
 

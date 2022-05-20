@@ -41,18 +41,40 @@ class AppKit(prx_widgets.PrxToolWindow):
             method=self._set_tools_build_
         )
 
-        self._tool_menu = self.set_menu_add('Debug(s)')
-        self._tool_menu.set_menu_raw(
+        menu = self.set_menu_add('Debug(s)')
+        menu.set_menu_raw(
             [
-                ('Show Environ', None, self._set_environ_show_)
+                ('Show Environ', None, self._set_environ_show_),
+                ('Show Rez Graph', None, self._set_rez_graph_show_),
             ]
         )
 
     def _set_environ_show_(self):
         utl_core.DialogWindow.set_create(
             'Environ',
-            content=u'\n'.join([u'{} = {}'.format(k, v) for k, v in os.environ.items()]),
+            content=u'\n'.join([u'{} = {}'.format(k, v) for k, v in bsc_core.DictMtd.set_key_sort_to(os.environ).items()]),
+            window_size=(960, 480)
         )
+
+    def _set_rez_graph_show_(self):
+        _ = os.environ.get('REZ_USED_REQUEST')
+        if _:
+            packages = _.split(' ')
+
+            from lxutil_gui.qt import utl_gui_qt_core
+
+            import lxutil_gui.panel.utl_pnl_widgets as utl_pnl_widgets
+
+            _option_opt = bsc_core.KeywordArgumentsOpt(
+                option=dict(
+                    packages=packages
+                )
+            )
+
+            utl_gui_qt_core.set_window_show_standalone(
+                utl_pnl_widgets.RezGraph,
+                hook_option=_option_opt.to_string()
+            )
 
     def _set_panel_build_(self):
         pass

@@ -9,7 +9,7 @@ option:
         - '*-katana'
     #
     gui:
-        name: 'App-kit'
+        name: 'App Kit'
         group_name: ''
         #
         icon_name: 'window/app-kit'
