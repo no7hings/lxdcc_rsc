@@ -17,26 +17,26 @@ def main(session):
         utl_core.MayaLauncher(
             project=project
         ).set_run()
+    else:
+        use_as_graph = hook_option_opt.get('use_as_graph')
+        if use_as_graph is True:
+            from lxutil_gui.qt import utl_gui_qt_core
 
-    use_as_graph = hook_option_opt.get('use_as_graph')
-    if use_as_graph is True:
-        from lxutil_gui.qt import utl_gui_qt_core
+            import lxutil_gui.panel.utl_pnl_widgets as utl_pnl_widgets
 
-        import lxutil_gui.panel.utl_pnl_widgets as utl_pnl_widgets
-
-        _option_opt = bsc_core.KeywordArgumentsOpt(
-            option=dict(
-                option_hook_key='tool-panels/rez-graph',
-                packages=utl_core.MayaLauncher(
-                    project=project
-                ).get_rez_packages()
+            _option_opt = bsc_core.KeywordArgumentsOpt(
+                option=dict(
+                    option_hook_key='tool-panels/rez-graph',
+                    packages=utl_core.MayaLauncher(
+                        project=project
+                    ).get_rez_packages()
+                )
             )
-        )
 
-        utl_gui_qt_core.set_window_show_standalone(
-            utl_pnl_widgets.RezGraph,
-            hook_option=_option_opt.to_string()
-        )
+            utl_gui_qt_core.set_window_show_standalone(
+                utl_pnl_widgets.RezGraph,
+                hook_option=_option_opt.to_string()
+            )
 
 
 if __name__ == '__main__':
