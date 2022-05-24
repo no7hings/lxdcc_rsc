@@ -1,0 +1,34 @@
+option:
+    type: rsv-task-method
+    #
+    systems:
+        - '*-*'
+    #
+    gui:
+        group_name: 'katana'
+        #
+        name: 'General Scene Create'
+        icon_name: 'application/katana'
+#
+hook_option:
+    engine: katana
+    #
+    script:
+        # scene file-path
+        batch_file: ''
+        #
+        file: ''
+        #
+        open_file: True
+        save_file: False
+        # if enable use exists data create new scene-src file
+        create_scene_src: False
+    #
+    deadline:
+        #
+        group: subprogress
+        #
+        pool: subprogress
+    #
+    rez:
+        extend_packages: []

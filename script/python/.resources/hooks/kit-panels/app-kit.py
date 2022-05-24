@@ -232,7 +232,7 @@ def main(session):
         utl_core.Log.set_module_result_trace(
             'window show',
             'cost: {}s'.format(
-                (end_m - int(shell_start_m)) * 60 + (end_s - int(shell_start_s))
+                (end_m - int(shell_start_m))*60+(end_s-int(shell_start_s))
             )
         )
     #

@@ -65,6 +65,17 @@ option_hooks:
         with_geometry_usd: True,
         with_geometry_uv_map_usd: True,
     }
+    # maya look export
+    - 'rsv-task-methods/asset/maya/gen-look-export': {
+        choice_scheme_includes: [
+            'asset-maya-*',
+        ],
+        dependencies: [
+            '../shotgun/gen-shotgun-create',
+        ],
+        with_texture_tx: True,
+        with_look_ass: True,
+    }
     # usd create
     - 'rsv-task-methods/asset/usd/gen-usd-create': {
         choice_scheme_includes: [
@@ -77,6 +88,30 @@ option_hooks:
         ],
         with_component_usd: True,
     }
+    # katana scene create
+    - 'rsv-task-methods/asset/katana/gen-scene-create': {
+        choice_scheme_includes: [
+            'asset-maya-*',
+        ],
+        dependencies: [
+            '../shotgun/gen-shotgun-create',
+            #
+            '../usd/gen-usd-create',
+        ],
+        create_scene_src: True,
+    }
+    # katana look export
+    - 'rsv-task-methods/asset/katana/gen-look-export': {
+        choice_scheme_includes: [
+                'asset-maya-*',
+        ],
+        dependencies: [
+            '../shotgun/gen-shotgun-create',
+            #
+            '../katana/gen-scene-create',
+        ],
+        with_look_klf: True,
+    }
     # shotgun
     - 'rsv-task-methods/asset/shotgun/gen-shotgun-export': {
         choice_scheme_includes: [
@@ -84,10 +119,14 @@ option_hooks:
         ],
         dependencies: [
             '../shotgun/gen-shotgun-create',
-            #
+            # maya
             '../maya/gen-scene-export',
             '../maya/gen-geometry-export',
-            #
+            '../maya/gen-look-export',
+            # katana
+            '../katana/gen-scene-create',
+            '../katana/gen-look-export',
+            # usd
             '../usd/gen-usd-create',
         ],
         #

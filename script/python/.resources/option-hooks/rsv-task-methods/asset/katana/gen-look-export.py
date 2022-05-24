@@ -15,12 +15,18 @@ def main(session):
     any_scene_file_path = hook_option_opt.get('file')
 
     if any_scene_file_path is not None:
-        if utl_dcc_objects.OsFile(any_scene_file_path).get_is_exists() is True:
-            ktn_dcc_objects.Scene.set_file_open(any_scene_file_path)
+        resolver = rsv_commands.get_resolver()
+        rsv_scene_properties = resolver.get_rsv_scene_properties_by_any_scene_file_path(any_scene_file_path)
+        if rsv_scene_properties:
+            application = rsv_scene_properties.get('application')
+            if application != 'katana':
+                any_scene_file_path = ktn_rsv_objects.RsvDccSceneHookOpt(
+                    rsv_scene_properties,
+                    hook_option_opt
+                ).get_scene_src_file_path()
             #
-            resolver = rsv_commands.get_resolver()
-            rsv_scene_properties = resolver.get_rsv_scene_properties_by_any_scene_file_path(any_scene_file_path)
-            if rsv_scene_properties:
+            if utl_dcc_objects.OsFile(any_scene_file_path).get_is_exists() is True:
+                ktn_dcc_objects.Scene.set_file_open(any_scene_file_path)
                 # texture
                 with_texture = hook_option_opt.get('with_texture') or False
                 if with_texture is True:

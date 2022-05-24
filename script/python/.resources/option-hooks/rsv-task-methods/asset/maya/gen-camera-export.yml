@@ -25,6 +25,7 @@ hook_option:
         camera_main_frame_range: [1, 124]
         # main camera alembic
         with_camera_main_abc: False
+        with_camera_front_abc: False
         #
         with_camera_customize_abc: False
         #

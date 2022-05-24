@@ -26,7 +26,7 @@ def main(session):
             #
             render_resolution=_node.get('render.resolution'),
             #
-            save_scene=_node.get('save_scene'),
+            save_scene=_node.get('build_options.save_scene'),
         )
         #
         mya_fnc_builders.AssetBuilder(

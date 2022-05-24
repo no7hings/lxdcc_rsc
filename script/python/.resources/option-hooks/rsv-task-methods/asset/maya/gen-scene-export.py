@@ -57,6 +57,13 @@ def main(session):
                         rsv_scene_properties,
                         hook_option_opt,
                     ).set_asset_scene_export()
+                #
+                with_snapshot_preview = hook_option_opt.get('with_snapshot_preview') or False
+                if with_snapshot_preview is True:
+                    mya_rsv_objects.RsvDccSceneHookOpt(
+                        rsv_scene_properties,
+                        hook_option_opt,
+                    ).set_asset_snapshot_preview_export()
             else:
                 raise RuntimeError()
         else:

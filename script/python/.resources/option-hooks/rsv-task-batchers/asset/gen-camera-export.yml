@@ -78,6 +78,7 @@ option_hooks:
             '../shotgun/gen-shotgun-create',
         ],
         with_camera_main_abc: True,
+        with_camera_front_abc: True,
         camera_main_frame_range: [1, 124],
     }
     # export shotgun
