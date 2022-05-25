@@ -9,6 +9,9 @@ def main(session):
     import lxmaya.dcc.dcc_objects as mya_dcc_objects
     #
     import lxresolver.commands as rsv_commands
+    # noinspection PyUnresolvedReferences
+    import maya.cmds as cmds
+    cmds.stackTrace(state=1)
 
     hook_option_opt = session.option_opt
 
@@ -68,7 +71,7 @@ def set_hair_xgen_export(rsv_task, rsv_scene_properties):
     mya_location = mya_dcc_objects.Group(
         bsc_core.DccPathDagOpt(location).set_translate_to(
             pathsep
-        )
+        ).to_string()
     )
     if mya_location.get_is_exists() is True:
         if workspace == 'publish':
@@ -130,7 +133,7 @@ def set_hair_xgen_usd_export(rsv_task, rsv_scene_properties):
     mya_location = mya_dcc_objects.Group(
         bsc_core.DccPathDagOpt(location).set_translate_to(
             pathsep
-        )
+        ).to_string()
     )
     if mya_location.get_is_exists() is True:
         if workspace == 'publish':

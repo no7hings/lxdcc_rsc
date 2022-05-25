@@ -6,6 +6,8 @@ def main(session):
     #
     import lxresolver.commands as rsv_commands
 
+    import lxkatana.rsv.objects as ktn_rsv_objects
+
     hook_option_opt = session.option_opt
 
     any_scene_file_path = hook_option_opt.get('file')
@@ -15,11 +17,13 @@ def main(session):
             resolver = rsv_commands.get_resolver()
             rsv_scene_properties = resolver.get_rsv_scene_properties_by_any_scene_file_path(any_scene_file_path)
             if rsv_scene_properties:
-                rsv_task = resolver.get_rsv_task_by_any_file_path(any_scene_file_path)
-
                 with_scene_create = hook_option_opt.get('with_scene_create') or False
                 if with_scene_create is True:
-                    set_scene_create(rsv_task, rsv_scene_properties, hook_option_opt)
+                    ktn_rsv_objects.RsvDccSceneHookOpt(
+                        rsv_scene_properties,
+                        hook_option_opt,
+                    ).set_asset_scene_create()
+                    # set_scene_create(rsv_task, rsv_scene_properties, hook_option_opt)
             else:
                 raise RuntimeError()
         else:
@@ -178,6 +182,10 @@ def set_white_zbrush_create(rsv_task, rsv_scene_properties):
                 look_pass='white_zbrush'
             )
         ).set_run()
+
+
+def set_front_camera():
+    pass
 
 
 if __name__ == '__main__':

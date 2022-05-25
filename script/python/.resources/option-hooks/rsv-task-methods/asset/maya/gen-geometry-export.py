@@ -9,6 +9,9 @@ def main(session):
     import lxresolver.commands as rsv_commands
 
     import lxmaya.rsv.objects as mya_rsv_objects
+    # noinspection PyUnresolvedReferences
+    import maya.cmds as cmds
+    cmds.stackTrace(state=1)
 
     hook_option_opt = session.option_opt
 
