@@ -19,10 +19,6 @@ hook_option:
         #
         file: ''
         #
-        render_file: ''
-        #
-        create_scene: False
-        #
         cameras: []
         layers: []
         light_passes: []

@@ -7,7 +7,7 @@ option:
     gui:
         group_name: maya
         #
-        name: 'camera-create'
+        name: 'General Texture Bake Create'
         icon_name: 'application/maya'
 #
 hook_option:
@@ -22,15 +22,15 @@ hook_option:
         open_file: True
         save_file: False
         # extra
-        create_scene_src: False
+        with_texture_bake: False
         #
-        with_work_scene_src: False
+        bake_resolution: 1024
     #
     deadline:
+        # need render, do not use subprocess
+        group: all
         #
-        group: subprogress
-        #
-        pool: subprogress
+        pool: emergency
     #
     rez:
         extend_packages: []

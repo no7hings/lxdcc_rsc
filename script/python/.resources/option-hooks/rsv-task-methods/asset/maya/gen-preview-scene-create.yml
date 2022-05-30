@@ -7,7 +7,7 @@ option:
     gui:
         group_name: maya
         #
-        name: 'camera-create'
+        name: 'General Preview Scene Create'
         icon_name: 'application/maya'
 #
 hook_option:
@@ -22,15 +22,18 @@ hook_option:
         open_file: True
         save_file: False
         # extra
+        # create scene-src file
         create_scene_src: False
-        #
+        # export scene
+        with_scene: False
+        # export work scene-src
         with_work_scene_src: False
     #
     deadline:
+        # need render, do not use subprocess
+        group: all
         #
-        group: subprogress
-        #
-        pool: subprogress
+        pool: emergency
     #
     rez:
         extend_packages: []

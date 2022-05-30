@@ -7,7 +7,7 @@ option:
     gui:
         group_name: 'katana'
         #
-        name: 'Katana Combination Render Create'
+        name: 'Katana Combination Render Scene Create'
         icon_name: 'application/katana'
 #
 hook_option:
@@ -19,9 +19,7 @@ hook_option:
         #
         file: ''
         #
-        render_file: ''
-        #
-        create_scene: False
+        choice_scheme: ''
         #
         cameras: []
         layers: []
@@ -33,18 +31,15 @@ hook_option:
         shot_asset: ''
         #
         render_asset_frames: []
-        render_asset_frame_step: 1.0
         render_shot_frames: []
-        render_shot_frame_step: 1.0
-        render_output_directory: ''
+        #
+        usd_variant_scheme: False
     #
     deadline:
         #
-        group: all
+        group: subprogress
         #
-        pool: emergency
-        #
-        error_limit: 1
+        pool: subprogress
     #
     rez:
         extend_packages: []

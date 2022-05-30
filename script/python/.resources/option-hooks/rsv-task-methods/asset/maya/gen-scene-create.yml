@@ -7,7 +7,7 @@ option:
     gui:
         group_name: maya
         #
-        name: 'camera-create'
+        name: ' General Scene Create  '
         icon_name: 'application/maya'
 #
 hook_option:
@@ -24,7 +24,13 @@ hook_option:
         # extra
         create_scene_src: False
         #
-        with_work_scene_src: False
+        with_build: False
+        #
+        with_model_geometry: False
+        with_surface_look: False
+        with_surface_geometry_uv_map: False
+        #
+        geometry_var_names: []
     #
     deadline:
         #

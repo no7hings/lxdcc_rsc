@@ -7,7 +7,7 @@ option:
     gui:
         group_name: maya
         #
-        name: 'Scene Export'
+        name: 'General Scene Export'
         icon_name: 'application/maya'
 #
 hook_option:

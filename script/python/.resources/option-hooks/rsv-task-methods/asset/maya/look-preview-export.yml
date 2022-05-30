@@ -29,7 +29,7 @@ hook_option:
         # export work scene-src
         with_work_scene_src: True
         #
-        texture_resolution: 2048
+        bake_resolution: 2048
     #
     deadline:
         # need render, do not use subprocess

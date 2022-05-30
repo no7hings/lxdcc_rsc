@@ -13,7 +13,7 @@ parameters:
     #
     options/scheme:
         widget: enumerate
-        value: ['passthrough', 'default', 'custom', 'asset', 'light_rig']
+        value: ['default', 'custom']
         tool_tip: '...'
 
     options/asset:
@@ -26,39 +26,14 @@ parameters:
         value: 'import lxkatana.scripts as ktn_scripts; ktn_scripts.LxLight(node).set_guess()'
         tool_tip: '...'
     #
-    lights/default/live_group:
+    live_group/file:
         widget: file
         value: '/l/resource/td/asset/live-group/default.livegroup'
         tool_tip: '...'
 
-    lights/custom/live_group:
-        widget: file
-        value: '/l/resource/td/asset/live-group/custom.livegroup'
-        tool_tip: '...'
-
-    lights/asset/live_group:
-        widget: file
-        value: '/l/resource/td/asset/live-group/default.livegroup'
-        tool_tip: '...'
-
-    lights/light_rig/name:
-        widget: enumerate
-        value: [ 'sunny01_lightrig', 'studio02_lightrig', 'overcast01_lightrig', 'overcast02_lightrig' ]
-        tool_tip: '...'
-
-    lights/light_rig/refresh:
+    live_group/create:
         widget: button
-        value: 'import lxkatana.scripts as ktn_scripts; ktn_scripts.LxLight(node).set_refresh_light_rig()'
-        tool_tip: '...'
-
-    lights/light_rig/live_group:
-        widget: file
-        value: '/l/resource/td/asset/live-group/default.livegroup'
-        tool_tip: '...'
-
-    lights/light_rig/load:
-        widget: button
-        value: 'import lxkatana.scripts as ktn_scripts; ktn_scripts.LxLight(node).set_load_light_rig()'
+        value: 'import lxkatana.scripts as ktn_scripts; ktn_scripts.LxLight(node).set_create()'
         tool_tip: '...'
     #
     settings/background_enable:
@@ -69,11 +44,6 @@ parameters:
     settings/background_color:
         widget: color3
         value: [0.18, 0.18, 0.18]
-        tool_tip: '...'
-
-    settings/ground_enable:
-        widget: boolean
-        value: False
         tool_tip: '...'
     #
     rotations/enable:
