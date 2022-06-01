@@ -46,6 +46,8 @@ hook_option:
         render_arnold_override_enable: False
         render_arnold_override_aa_sample: 6
         #
+        usd_reverse_face_vertex_enable: False
+        #
         deadline_priority: 50
     #
     deadline:
@@ -223,6 +225,8 @@ option_hooks:
             'render_arnold_override_aa_sample',
             #
             'deadline_priority',
+            #
+            'usd_reverse_face_vertex_enable',
         ],
         with_scene_create: True,
     }

@@ -7,15 +7,10 @@ def main(session):
         #
         _node = w.get_options_node()
         _option = w.get_options_as_kwargs()
-        _option['project'] = project_
-        _option['asset'] = asset_
         #
         _render_resolution = _option.pop('render.resolution')
-        _option['render_resolution'] = _render_resolution
+        #
         _option = dict(
-            project=_node.get('project'),
-            asset=_node.get('asset').name,
-            #
             with_model_geometry=_node.get('build_options.with_model_geometry'),
             #
             with_groom_geometry=_node.get('build_options.with_groom_geometry'), with_groom_grow_geometry=_node.get('build_options.with_groom_grow_geometry'),
@@ -28,6 +23,9 @@ def main(session):
             #
             save_scene=_node.get('build_options.save_scene'),
         )
+        _option['render_resolution'] = _render_resolution
+        _option['project'] = project_
+        _option['asset'] = asset_
         #
         mya_fnc_builders.AssetBuilder(
             option=_option

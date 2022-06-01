@@ -289,6 +289,12 @@ build:
                 current: 'None'
                 enable: False
                 tool_tip: '...'
+
+            debuggers/reverse_face_vertex_enable:
+                widget: boolean
+                value: True
+                enable: False
+                tool_tip: '...'
         #
         settings:
             td/test_scheme:

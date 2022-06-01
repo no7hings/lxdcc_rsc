@@ -31,6 +31,8 @@ hook_option:
         with_look_yml: False
         #
         with_look_properties_usd: False
+        #
+        use_scene: False
     #
     deadline:
         #

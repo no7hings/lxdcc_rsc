@@ -35,6 +35,8 @@ hook_option:
         render_asset_frames: []
         render_shot_frames: []
         render_output_directory: ''
+        #
+        usd_reverse_face_vertex_enable: False
     #
     deadline:
         #

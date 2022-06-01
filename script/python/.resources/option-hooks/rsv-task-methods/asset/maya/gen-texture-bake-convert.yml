@@ -25,6 +25,8 @@ hook_option:
         with_texture_bake_convert: False
         #
         bake_resolution: 1024
+        #
+        with_work_scene_src_link: False
     #
     deadline:
         # need render, do not use subprocess

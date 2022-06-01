@@ -26,6 +26,13 @@ def main(session):
                         rsv_scene_properties,
                         hook_option_opt,
                     ).set_asset_texture_bake_convert()
+                #
+                with_work_scene_src_link = hook_option_opt.get('with_work_scene_src_link') or False
+                if with_work_scene_src_link is True:
+                    mya_rsv_objects.RsvDccSceneHookOpt(
+                        rsv_scene_properties,
+                        hook_option_opt,
+                    ).set_asset_work_scene_src_link()
             else:
                 raise RuntimeError()
         else:

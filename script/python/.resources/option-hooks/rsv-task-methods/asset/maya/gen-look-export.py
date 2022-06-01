@@ -48,6 +48,10 @@ def main(session):
                 with_look_ass = hook_option_opt.get('with_look_ass') or False
                 if with_look_ass is True:
                     set_look_ass_export(rsv_task, rsv_scene_properties)
+                #
+                with_look_yml = hook_option_opt.get('with_look_yml') or False
+                if with_look_yml is True:
+                    pass
             else:
                 raise RuntimeError()
         else:
