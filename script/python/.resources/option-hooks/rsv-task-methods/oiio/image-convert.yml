@@ -5,9 +5,9 @@ option:
         - '*-*'
     #
     gui:
-        group_name: 'rv'
+        group_name: 'oiio'
         #
-        name: 'Movie Convert'
+        name: 'Image Convert'
         icon_name: 'application/python'
 #
 hook_option:
@@ -20,12 +20,8 @@ hook_option:
         file: ''
         #
         image_file: ''
-        movie_file: ''
-        movie_file_name: ''
-
-        lut_directory: '/l/packages/pg/third_party/ocio/aces/1.0.3/baked/maya/sRGB_for_ACEScg_Maya.csp'
-        start_frame: 0
-        end_frame: 0
+        #
+        output_image_file: ''
 
         option_hook_key_extend: []
     #

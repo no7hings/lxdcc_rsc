@@ -5,7 +5,7 @@ option:
         - '*-*'
     #
     gui:
-        group_name: 'rez'
+        group_name: 'python'
         #
         name: 'Rez Graph'
         icon_name: 'application/python'

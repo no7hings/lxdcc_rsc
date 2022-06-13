@@ -139,8 +139,8 @@ def main(session):
                         image_file=i_image_file_path,
                         movie_file=i_movie_file_path,
                         #
-                        start_frame=i_render_frames[0],
-                        end_frame=i_render_frames[-1],
+                        start_frame=i_render_frames_[0],
+                        end_frame=i_render_frames_[-1],
                         #
                         option_hook_key_extend=[i_option_hook_key],
                         #

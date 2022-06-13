@@ -17,8 +17,8 @@ def main(session):
             resolver = rsv_commands.get_resolver()
             rsv_scene_properties = resolver.get_rsv_scene_properties_by_any_scene_file_path(any_scene_file_path)
             if rsv_scene_properties:
-                with_scene_create = hook_option_opt.get('with_scene_create') or False
-                if with_scene_create is True:
+                create_scene = hook_option_opt.get('create_scene') or False
+                if create_scene is True:
                     ktn_rsv_objects.RsvDccSceneHookOpt(
                         rsv_scene_properties,
                         hook_option_opt,

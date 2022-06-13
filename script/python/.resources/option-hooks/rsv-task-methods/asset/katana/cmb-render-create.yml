@@ -37,6 +37,17 @@ hook_option:
         render_shot_frames: []
         render_shot_frame_step: 1.0
         render_output_directory: ''
+        # render
+        with_render: False
+        #
+        render_use_scene: False
+        render_use_scene_src: False
+        # convert
+        with_convert_movie: False
+        with_convert_image: False
+        #
+        convert_image_exts: ['.png']
+        convert_extra_aovs: []
     #
     deadline:
         #

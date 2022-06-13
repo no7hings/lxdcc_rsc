@@ -29,7 +29,7 @@ build:
         character:
             camera: ['full_body', 'upper_body', 'upper_body_35', 'upper_body_50', 'close_up', 'add_0', 'add_1', 'shot']
             layer: ['master', 'no_hair']
-            light_pass: ['all']
+            light_pass: ['all', 'light_rig_1', 'light_rig_2']
             look_pass: ['default', 'plastic', 'ambocc', 'wire', 'white', 'white_disp', 'white_zbrush']
             quality: ['low', 'med', 'hi', 'custom']
     #
@@ -89,6 +89,7 @@ build:
                 /light_pass/all: True
                 /look_pass/default: True
                 /quality/custom: True
+
         settings:
             asset: {}
             asset-fast:
@@ -108,6 +109,7 @@ build:
                 enable: False
                 tool_tip: '...'
                 scheme_key: 'variables'
+
             settings:
                 widget: enumerate
                 value: ['asset', 'asset-fast']
@@ -363,6 +365,24 @@ build:
                 label: 'AA sample'
                 value: 6
                 enable: False
+                tool_tip: '...'
+
+            light_pass/all:
+                widget: enumerate
+                value: [ 'sunny01_lightrig', 'studio02_lightrig', 'overcast01_lightrig', 'overcast02_lightrig' ]
+                current: 'sunny01_lightrig'
+                tool_tip: '...'
+
+            light_pass/light_rig_1:
+                widget: enumerate
+                value: [ 'sunny01_lightrig', 'studio02_lightrig', 'overcast01_lightrig', 'overcast02_lightrig' ]
+                current: 'studio02_lightrig'
+                tool_tip: '...'
+
+            light_pass/light_rig_2:
+                widget: enumerate
+                value: [ 'sunny01_lightrig', 'studio02_lightrig', 'overcast01_lightrig', 'overcast02_lightrig' ]
+                current: 'overcast01_lightrig'
                 tool_tip: '...'
 
             deadline/priority:

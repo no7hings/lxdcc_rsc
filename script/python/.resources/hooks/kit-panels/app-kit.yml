@@ -2,11 +2,7 @@ option:
     type: 'kit-panel'
     # config used system
     systems:
-        - '*-python'
-        #
-        - '*-maya'
-        - '*-houdini'
-        - '*-katana'
+        - '*-*'
     #
     gui:
         name: 'App Kit'
@@ -45,3 +41,4 @@ app:
         - 'launchers/maya'
         - 'launchers/katana'
         - 'launchers/maya-test'
+        - 'tool-panels/asset-lineup'

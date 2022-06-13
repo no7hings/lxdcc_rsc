@@ -46,7 +46,16 @@ hook_option:
         render_arnold_override_enable: False
         render_arnold_override_aa_sample: 6
         #
-        usd_reverse_face_vertex_enable: False
+        light_pass_override_enable: False
+        light_pass_override_scheme: 'light_rig'
+        #
+        light_pass_all: 'sunny01_lightrig'
+        light_pass_light_rig_1: 'studio02_lightrig'
+        light_pass_light_rig_2: 'overcast01_lightrig'
+        #
+        usd_version_enable: True
+        usd_version_override_enable: True
+        usd_reverse_face_vertex_enable: True
         #
         deadline_priority: 50
     #
@@ -196,6 +205,7 @@ option_hooks:
             # usd
             '../usd/gen-usd-create',
         ],
+        #
         with_shot_asset_component_usd: True,
         with_shot_set_usd: True,
     }
@@ -224,11 +234,21 @@ option_hooks:
             'render_arnold_override_enable',
             'render_arnold_override_aa_sample',
             #
-            'deadline_priority',
+            'light_pass_override_enable',
+            'light_pass_override_scheme',
             #
+            'light_pass_all',
+            'light_pass_light_rig_1',
+            'light_pass_light_rig_2',
+            #
+            'usd_version_enable',
+            'usd_version_override_enable',
             'usd_reverse_face_vertex_enable',
+            #
+            'deadline_priority',
         ],
-        with_scene_create: True,
+        #
+        create_scene: True,
     }
     # create render
     - 'rsv-task-methods/asset/katana/cmb-render-create': {
@@ -255,4 +275,9 @@ option_hooks:
             #
             'deadline_priority',
         ],
+        #
+        with_render: True,
+        render_use_scene: True,
+        #
+        with_convert_movie: True,
     }

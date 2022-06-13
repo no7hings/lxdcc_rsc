@@ -29,8 +29,6 @@ hook_option:
         #
         shot: ''
         shot_asset: ''
-        # usd
-        usd_variant_scheme: 'main'
         # asset
         cache_asset_frames: [1001]
         render_asset_frames: [1001]
@@ -40,13 +38,24 @@ hook_option:
         render_shot_frames: [1001]
         render_shot_frame_step: 1.0
         #
-        render_arnold_aov_enable: True
+        render_arnold_aov_enable: False
         #
         render_override_enable: False
         render_override_percent: 100%
         #
         render_arnold_override_enable: False
         render_arnold_override_aa_sample: 6
+        #
+        light_pass_override_enable: True
+        light_pass_override_scheme: 'custom'
+        #
+        light_pass_all: 'sunny01_lightrig'
+        light_pass_light_rig_1: 'studio02_lightrig'
+        light_pass_light_rig_2: 'overcast01_lightrig'
+        # usd
+        usd_version_enable: False
+        usd_version_override_enable: False
+        usd_reverse_face_vertex_enable: True
         #
         deadline_priority: 50
     #
@@ -68,8 +77,6 @@ option_hooks:
             'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
             'shot', 'shot_asset',
             #
-            'usd_variant_scheme',
-            #
             'render_asset_frames',
             'render_asset_frame_step',
             'render_shot_frames',
@@ -83,9 +90,22 @@ option_hooks:
             'render_arnold_override_enable',
             'render_arnold_override_aa_sample',
             #
+            'light_pass_override_enable',
+            'light_pass_override_scheme',
+            #
+            'light_pass_all',
+            'light_pass_light_rig_1',
+            'light_pass_light_rig_2',
+            #
+            'usd_version_enable',
+            'usd_version_override_enable',
+            'usd_reverse_face_vertex_enable',
+            #
             'deadline_priority',
         ],
+        #
         create_scene: True,
+        with_scene_src_link: True,
     }
     # create render
     - 'rsv-task-methods/asset/katana/gen-prv-render-create': {
@@ -96,8 +116,6 @@ option_hooks:
             'cameras', 'layers', 'light_passes', 'look_passes', 'qualities',
             'shot', 'shot_asset',
             #
-            'usd_variant_scheme',
-            #
             'render_asset_frames',
             'render_asset_frame_step',
             'render_shot_frames',
@@ -113,4 +131,10 @@ option_hooks:
             #
             'deadline_priority',
         ],
+        #
+        with_render: True,
+        render_use_scene: True,
+        #
+        with_convert_image: True,
+        convert_image_exts: ['.png'],
     }
