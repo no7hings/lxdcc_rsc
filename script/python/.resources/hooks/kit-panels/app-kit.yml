@@ -30,10 +30,8 @@ app:
         - 'rsv-panels/shot-loader'
         - 'rsv-panels/shot-camera-loader'
         - 'rsv-panels/shot-set-loader'
-        - 'tool-panels/texture-tx-converter'
         #
-        - 'tool-panels/test-for-dialog'
-        - 'tool-panels/test-for-render-submitter'
+        - 'tool-panels/texture-tx-converter'
         #
         - 'rsv-panels/asset-batcher'
     #
