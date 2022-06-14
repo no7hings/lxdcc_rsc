@@ -298,6 +298,25 @@ build:
                 enable: False
                 tool_tip: '...'
         #
+        variables:
+            light_pass/all:
+                widget: enumerate
+                value: [ 'None' ]
+                enable: False
+                tool_tip: '...'
+
+            light_pass/light_rig_1:
+                widget: enumerate
+                value: [ 'None' ]
+                enable: False
+                tool_tip: '...'
+
+            light_pass/light_rig_2:
+                widget: enumerate
+                value: [ 'None' ]
+                enable: False
+                tool_tip: '...'
+        #
         settings:
             td/test_scheme:
                 widget: enumerate
@@ -388,25 +407,6 @@ build:
             submit:
                 widget: button
                 value: ''
-                tool_tip: '...'
-        #
-        variables:
-            light_pass/all:
-                widget: enumerate
-                value: [ 'None' ]
-                enable: False
-                tool_tip: '...'
-
-            light_pass/light_rig_1:
-                widget: enumerate
-                value: [ 'None' ]
-                enable: False
-                tool_tip: '...'
-
-            light_pass/light_rig_2:
-                widget: enumerate
-                value: [ 'None' ]
-                enable: False
                 tool_tip: '...'
     #
     node_collapse:
