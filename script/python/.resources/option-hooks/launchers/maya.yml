@@ -15,7 +15,7 @@ option:
 hook_option:
     script:
         project: 'cgm'
-        use_as_launcher: True
+        use_as_launcher: False
 
     extra:
         cgm:

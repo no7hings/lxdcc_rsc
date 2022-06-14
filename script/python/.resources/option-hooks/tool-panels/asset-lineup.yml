@@ -41,6 +41,7 @@ build:
             output/file:
                 widget: file
                 file_mode: save
+                ext_filter: 'All Image File (*.png *.jpg *.jpeg)'
                 value: ''
                 tool_tip: '...'
 
