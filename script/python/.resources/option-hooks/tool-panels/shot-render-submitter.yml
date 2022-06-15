@@ -275,7 +275,7 @@ build:
                 tool_tip: ['点击发布渲染']
 
         variables:
-            light_pass/default:
+            light_pass/all:
                 widget: enumerate
                 value: [ 'None' ]
                 enable: False

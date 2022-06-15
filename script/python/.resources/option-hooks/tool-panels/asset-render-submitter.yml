@@ -10,8 +10,8 @@ option:
         name: 'Asset Render Submitter'
         icon_name: 'application/python'
 
-        size: [1280, 960]
-        item_frame_size: [136, 224]
+        size: [ 1280, 960 ]
+        item_frame_size: [ 136, 224 ]
 #
 hook_option:
     engine: lynxi
@@ -20,18 +20,18 @@ hook_option:
         file: ''
     #
     rez:
-        extend_packages: ['usd']
+        extend_packages: [ 'usd' ]
         add_environs:
             PXR_AR_DEFAULT_SEARCH_PATH: '/l/prod'
 #
 build:
     variables:
         character:
-            camera: ['full_body', 'upper_body', 'close_up', 'shot']
-            layer: ['master', 'no_hair']
-            light_pass: ['all', 'light_rig_1', 'light_rig_2']
-            look_pass: ['default', 'plastic', 'ambocc', 'wire', 'white', 'white_disp', 'white_zbrush']
-            quality: ['low', 'med', 'hi', 'custom']
+            camera: [ 'full_body', 'upper_body', 'close_up', 'shot' ]
+            layer: [ 'master', 'no_hair' ]
+            light_pass: [ 'all', 'add_1', 'add_2' ]
+            look_pass: [ 'default', 'plastic', 'ambocc', 'wire', 'white', 'white_disp', 'white_zbrush' ]
+            quality: [ 'low', 'med', 'hi', 'custom' ]
     #
     scheme:
         variables:
@@ -305,13 +305,19 @@ build:
                 enable: False
                 tool_tip: '...'
 
-            light_pass/light_rig_1:
+            light_pass/add_1:
                 widget: enumerate
                 value: [ 'None' ]
                 enable: False
                 tool_tip: '...'
 
-            light_pass/light_rig_2:
+            light_pass/add_2:
+                widget: enumerate
+                value: [ 'None' ]
+                enable: False
+                tool_tip: '...'
+
+            look_pass/default:
                 widget: enumerate
                 value: [ 'None' ]
                 enable: False
@@ -320,7 +326,7 @@ build:
         settings:
             td/test_scheme:
                 widget: enumerate
-                value: ['td_enable', 'rez_beta', 'auto']
+                value: [ 'td_enable', 'rez_beta', 'auto' ]
                 current: 'auto'
                 tool_tip: '...'
 
@@ -368,7 +374,7 @@ build:
 
             render/override/percent:
                 widget: enumerate
-                value: ['25%', '50%', '75%', '100%', '125%', '150%', '175%', '200%']
+                value: [ '25%', '50%', '75%', '100%', '125%', '150%', '175%', '200%' ]
                 current: '100%'
                 enable: False
                 tool_tip: '...'
@@ -394,7 +400,7 @@ build:
 
             user/background_color:
                 widget: rgb
-                value: [255, 255, 255]
+                value: [ 255, 255, 255 ]
                 enable: False
                 tool_tip: '...'
 
@@ -410,6 +416,6 @@ build:
                 tool_tip: '...'
     #
     node_collapse:
-        usd: ['file', 'variants', 'debuggers']
-        variables: ['light_pass']
-        settings: ['td', 'render/arnold', 'render/override', 'deadline', 'user']
+        usd: [ 'file', 'variants', 'debuggers' ]
+        variables: [ 'light_pass', 'look_pass' ]
+        settings: [ 'td', 'render/arnold', 'render/override', 'deadline', 'user' ]

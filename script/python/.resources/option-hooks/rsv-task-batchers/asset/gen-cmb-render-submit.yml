@@ -49,9 +49,9 @@ hook_option:
         light_pass_override_enable: False
         light_pass_override_scheme: 'light_rig'
         #
-        light_pass_all: 'sunny01_lightrig'
-        light_pass_light_rig_1: 'studio02_lightrig'
-        light_pass_light_rig_2: 'overcast01_lightrig'
+        light_pass_all: ''
+        light_pass_add_1: ''
+        light_pass_add_2: ''
         #
         usd_version_enable: True
         usd_version_override_enable: True
@@ -238,8 +238,8 @@ option_hooks:
             'light_pass_override_scheme',
             #
             'light_pass_all',
-            'light_pass_light_rig_1',
-            'light_pass_light_rig_2',
+            'light_pass_add_1',
+            'light_pass_add_2',
             #
             'usd_version_enable',
             'usd_version_override_enable',
