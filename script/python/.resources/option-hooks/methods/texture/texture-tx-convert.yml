@@ -1,5 +1,5 @@
 option:
-    type: rsv-task-method
+    type: method
     #
     systems:
         - '*-*'
@@ -7,23 +7,21 @@ option:
     gui:
         group_name: 'python'
         #
-        name: 'Image Convert'
+        name: 'Texture-tx Convert'
         icon_name: 'application/python'
 #
 hook_option:
-    engine: 'python'
+    engine: 'lynxi-python'
     #
     script:
-        # scene file-path
-        batch_file: ''
-        #
-        file: ''
-        #
-        image_file: ''
-        #
-        output_image_file: ''
+        directory: ''
+        output_directory: ''
 
-        option_hook_key_extend: []
+        below_enable: False
+
+        force_enable: False
+
+        include_exts: ['.exr']
     #
     deadline:
         #

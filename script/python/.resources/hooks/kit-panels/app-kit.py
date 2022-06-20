@@ -16,20 +16,20 @@ class AppKit(prx_widgets.PrxToolWindow):
     def __init__(self, session, *args, **kwargs):
         super(AppKit, self).__init__(*args, **kwargs)
         self._session = session
-        self._ssn_configure = self._session.configure
+        self._configure = self._session.configure
         #
-        self._utl_gui_configure = self._session.utl_gui_configure
+        self._gui_configure = self._session.gui_configure
         #
-        self.set_window_title(self._utl_gui_configure.get('name'))
+        self.set_window_title(self._gui_configure.get('name'))
         if self._session.get_rez_beta():
             self.set_window_title(
-                '[BETA] {}'.format(self._utl_gui_configure.get('name'))
+                '[BETA] {}'.format(self._gui_configure.get('name'))
             )
-        self.set_definition_window_size(self._utl_gui_configure.get('size'))
-        self.set_window_icon_name(self._utl_gui_configure.get('icon_name'))
+        self.set_definition_window_size(self._gui_configure.get('size'))
+        self.set_window_icon_name(self._gui_configure.get('icon_name'))
         #
-        self._item_frame_size = self._utl_gui_configure.get('item_frame_size')
-        self._item_name_frame_size = self._utl_gui_configure.get('item_name_frame_size')
+        self._item_frame_size = self._gui_configure.get('item_frame_size')
+        self._item_name_frame_size = self._gui_configure.get('item_name_frame_size')
         self._tab_view = prx_widgets.PrxTabView()
         self.set_widget_add(self._tab_view)
         #
@@ -85,12 +85,12 @@ class AppKit(prx_widgets.PrxToolWindow):
         self._set_option_hooks_build_()
 
     def _set_hooks_build_(self):
-        hook_keys = self._ssn_configure.get('app.hooks') or []
+        hook_keys = self._configure.get('app.hooks') or []
         #
         self._list_view_dict = {}
         #
-        item_frame_size = self._utl_gui_configure.get('item_frame_size')
-        item_name_frame_size = self._utl_gui_configure.get('item_name_frame_size')
+        item_frame_size = self._gui_configure.get('item_frame_size')
+        item_name_frame_size = self._gui_configure.get('item_name_frame_size')
         #
         for i_key in hook_keys:
             i_hook_args = ssn_commands.get_hook_args(
@@ -99,7 +99,7 @@ class AppKit(prx_widgets.PrxToolWindow):
             if i_hook_args is not None:
                 i_session, i_execute_fnc = i_hook_args
                 if i_session.get_is_loadable() is True:
-                    i_gui_configure = i_session.utl_gui_configure
+                    i_gui_configure = i_session.gui_configure
                     #
                     i_group_name = i_gui_configure.get('group_name')
                     if i_group_name in self._list_view_dict:
@@ -142,7 +142,7 @@ class AppKit(prx_widgets.PrxToolWindow):
                     # )
 
     def _set_option_hooks_build_(self):
-        option_hook_keys = self._ssn_configure.get('app.option-hooks') or []
+        option_hook_keys = self._configure.get('app.option-hooks') or []
         for i in option_hook_keys:
             if isinstance(i, (str, unicode)):
                 i_hook_key = i
@@ -158,7 +158,7 @@ class AppKit(prx_widgets.PrxToolWindow):
             if i_hook_args:
                 i_session, i_execute_fnc = i_hook_args
                 if i_session.get_is_loadable() is True:
-                    i_gui_configure = i_session.utl_gui_configure
+                    i_gui_configure = i_session.gui_configure
                     #
                     i_group_name = i_gui_configure.get('group_name')
                     if i_group_name in self._list_view_dict:

@@ -17,10 +17,10 @@ j_option_opt = bsc_core.KeywordArgumentsOpt(
         # choice_scheme='asset-maya-create-and-publish',
         #
         # file='/l/prod/cgm/work/assets/chr/bl_xiz_f/mod/modeling/maya/scenes/bl_xiz_f.mod.modeling.v000.ma',
-        # file='/l/prod/cgm/work/assets/chr/nn_4y_test/mod/modeling/maya/scenes/nn_4y_test.mod.modeling.v000.ma',
+        file='/l/prod/cgm/work/assets/chr/nn_4y_test/mod/modeling/maya/scenes/nn_4y_test.mod.modeling.v000.ma',
         # file='/l/prod/cgm/work/assets/chr/grandma_test/mod/modeling/maya/scenes/grandma_test.mod.modeling.v000.ma',
         # file='/l/prod/cgm/work/assets/chr/nn_14y_test/mod/modeling/maya/scenes/nn_14y_test.mod.modeling.v000.ma',
-        file='/l/prod/cgm/work/assets/prp/bus_nn/mod/modeling/maya/scenes/bus_nn.mod.modeling.v000.ma',
+        # file='/l/prod/cgm/work/assets/prp/bus_nn/mod/modeling/maya/scenes/bus_nn.mod.modeling.v000.ma',
         #
         td_enable=True,
         # rez_beta=True,

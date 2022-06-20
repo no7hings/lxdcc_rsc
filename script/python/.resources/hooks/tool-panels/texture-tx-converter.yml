@@ -16,3 +16,54 @@ option:
         tool_tip: 'use for texture batch convert to ".tx"'
         #
         size: [640, 640]
+
+build:
+    node:
+        options:
+            directory:
+                widget: directory
+                open_or_save: open
+                value: ''
+                tool_tip: '...'
+
+            output_directory:
+                widget: directory
+                open_or_save: save
+                value: ''
+                tool_tip: '...'
+
+            match_pattern:
+                widget: string
+                value: ''
+                tool_tip: '...'
+
+            match_ext:
+                widget: string
+                value: 'exr, tga'
+                tool_tip: '...'
+
+            below_enable:
+                widget: boolean
+                value: False
+                tool_tip: '...'
+
+            refresh:
+                widget: button
+                value:
+                tool_tip: '...'
+
+            force_enable:
+                widget: boolean
+                value: False
+                tool_tip: '...'
+
+            convert:
+                widget: 'status_button'
+                value:
+                tool_tip: '...'
+                join_to_next: True
+
+            convert_use_deadline:
+                widget: button
+                value:
+                tool_tip: '...'
